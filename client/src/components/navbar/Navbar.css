@@ -1,0 +1,31 @@
+.navbar {
+    padding: 1rem;
+    margin: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.navbar-form .input-text {
+    padding: 0.5rem;
+    width: 350px;
+    margin-right: 10px;
+}
+
+.navbar-form .btn {
+    padding: 0.5rem 1rem;
+    width: 100px;
+    font-size: 1rem;
+}
+
+button {
+    margin-right: 10px;
+    padding: 0.5rem 1rem;
+    width: 100px;
+    font-size: 1rem;
+}
