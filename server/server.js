@@ -3,6 +3,14 @@ import mongoose from "mongoose";
 import dotenv from "dotenv"
 dotenv.config();
 
+import cloudinary from "cloudinary";
+//clodinary config
+cloudinary.v2.config({
+    cloud_name: "",
+    api_key: "",
+    api_secret: ""
+})
+
 const app = express();
 
 app.use(express.json());
