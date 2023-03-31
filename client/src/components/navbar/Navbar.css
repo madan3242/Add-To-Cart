@@ -4,6 +4,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 2px solid #efefef;
+    /* box-shadow: 10px 5px 5px black; */
 }
 
 .navbar-brand {
@@ -13,9 +15,10 @@
 }
 
 .navbar-form .input-text {
-    padding: 0.5rem;
+    padding: 0.6rem;
     width: 350px;
     margin-right: 10px;
+    border: 2px solid #efefef;
 }
 
 .navbar-form .btn {
