@@ -2,7 +2,7 @@ import express from "express"
 import { 
     login, 
     signup 
-} from "../controllers/userController";
+} from "../controllers/userController.js";
 
 let router = express.Router();
 
