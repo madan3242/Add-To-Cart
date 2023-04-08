@@ -1,22 +1,19 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Home } from './pages/homePage/Home'
-import { Navbar } from './components/navbar/Navbar'
-import { Footer } from './components/footer/Footer'
-import Products from './admin/pages/Products'
-import { ProductList } from './pages/productPage/ProductList'
+import Admin from './admin/App'
+import Products from './pages/productPage/Products'
 
 const App = () => {
   return (
     <>
       <Router>
-        <Navbar />
         <Routes>
-          <Route path='/' element={<Home />}  />
-          <Route path='/p' element={<ProductList />}  />
-          
+          <Route path='/' exact element={<Home />}  />
+          <Route path='/' exact element={<Products />}  />
+
+          <Route path='/admin/*' element={<Admin />} />
         </Routes>
-        <Footer />
       </Router>
     </>
   )
