@@ -23,3 +23,10 @@
 .navbar .nav-link:hover {
     color: #efefef;
 }
+
+.navbar .navbar-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+}
