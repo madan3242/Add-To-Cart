@@ -1,22 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import "./Navbar.css";
-import { Container, Form, Nav, Navbar } from "react-bootstrap";
 
-const HomeNavbar = () => {
+const HomeNavbar = ({toggleDropdown, toggleLogin}) => {
   const navigate = useNavigate();
   return (
     <>
-      <Navbar className="navbar">
+      <Navbar className="navbar" fixed="top">
         <Container>
           <Navbar.Brand onClick={() => navigate('/')}>
-              Fashion Cart
+              Add To Cart
           </Navbar.Brand>
+
           <div className="d-flex">
-            <Nav.Link>Mens</Nav.Link>
-            <Nav.Link>Womens</Nav.Link>
-            <Nav.Link>Kids</Nav.Link>
+            <Nav.Link onClick={toggleDropdown}>Mens</Nav.Link>
+            <Nav.Link onClick={toggleDropdown}>Womens</Nav.Link>
+            <Nav.Link onClick={toggleDropdown}>Kids</Nav.Link>
           </div>
+
           <Form>
             <Form.Control
               type="search"
@@ -25,6 +27,7 @@ const HomeNavbar = () => {
               aria-label="Search"
             />
           </Form>
+          <Button onClick={toggleLogin} variant="null">Login / SignUp</Button>
           </Container>
       </Navbar>
     </>

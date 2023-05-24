@@ -1,0 +1,7 @@
+.navbar-dropdown {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    top: 4rem;
+    z-index: 10;
+}
