@@ -1,8 +1,16 @@
 import React from 'react'
+import { Row } from 'react-bootstrap'
 
 const Products = () => {
   return (
-    <div>Products</div>
+    <>
+        <Row>
+            <h2>Products</h2>
+        </Row>
+        <Row>
+
+        </Row>
+    </>
   )
 }
 
