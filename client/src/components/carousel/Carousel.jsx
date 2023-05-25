@@ -1,36 +1,39 @@
 import React from 'react'
-import poster1 from '../../assets/carousel/poster1.jpg'
-import poster2 from '../../assets/carousel/poster2.jpg'
-import poster3 from '../../assets/carousel/poster3.jpg'
+import { Carousel, Container } from 'react-bootstrap'
+import slide1 from '../../assets/images/carousel/slide-1.gif'
+import slide2 from '../../assets/images/carousel/slide-2.gif'
+import slide3 from '../../assets/images/carousel/slide-3.gif'
 
-const Carousel = () => {
+const HomeCarousel = () => {
   return (
     <>
-        <div className="container-fluid">
-            <div id="carouselExample" className="carousel slide">
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src={poster1} className="d-block w-100" alt="..." />
-                    </div>
-                    <div className="carousel-item">
-                        <img src={poster2} className="d-block w-100" alt="..." />
-                    </div>
-                    <div className="carousel-item">
-                        <img src={poster3} className="d-block w-100" alt="..." />
-                    </div>
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
+        <Container className='py-3' style={{ marginTop: "4rem"}}>
+            <Carousel>
+                <Carousel.Item>
+                    <img 
+                        className="d-block w-100"
+                        src={slide1} 
+                        alt="" 
+                    />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img 
+                        className="d-block w-100"
+                        src={slide2} 
+                        alt="" 
+                    />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img 
+                        className="d-block w-100" 
+                        src={slide3} 
+                        alt="" 
+                    />
+                </Carousel.Item>
+            </Carousel>
+        </Container>
     </>
   )
 }
 
-export default Carousel
+export default HomeCarousel
