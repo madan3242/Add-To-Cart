@@ -1,11 +1,14 @@
 import React from 'react'
+import { Navbar } from 'react-bootstrap'
 
-const Navbar = () => {
+const AdminNavbar = () => {
   return (
-    <div className="navbar navbar-dark bg-dark m-0">
-        <a href="" className="navbar-brand">Admin</a>
-    </div>
+    <Navbar style={{padding: "0 1rem"}}>
+      <Navbar.Brand>
+        Add To Cart - Admin
+      </Navbar.Brand>
+    </Navbar>
   )
 }
 
-export default Navbar
+export default AdminNavbar

@@ -135,7 +135,7 @@ router.route('/logout').get(
 
 
 //admin routes
-router.route('/admin/users').get(adminGetAllUsers)
+router.route('/admin/users').get(isLoggedIn, adminGetAllUsers)
 
 router.route('/admin/user/:id')
     .get(adminGetUserById)

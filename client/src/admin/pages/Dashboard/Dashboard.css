@@ -1,0 +1,7 @@
+.admin-container {
+    display: flex;
+}
+
+.admin-main {
+    padding: 1rem;
+}
