@@ -42,8 +42,6 @@ export const Footer = () => {
               <li>Lingerie</li>
               <li>Nightwear</li>
               <li>Sportswear</li>
-              <li>Beauty</li>
-              <li>Watches & Sunglasses</li>
             </ul>
           </Col>
           <Col lg={2}>
@@ -56,8 +54,6 @@ export const Footer = () => {
               <li>Sportswear</li>
               <li>Innerwear</li>
               <li>Grooming</li>
-              <li>Watches</li>
-              <li>Sunglasses</li>
             </ul>
           </Col>
           <Col lg={2}>
@@ -78,13 +74,10 @@ export const Footer = () => {
               <li>Online Offers</li>
               <li>Store Offers</li>
               <li>Online Gift Card</li>
-              <li>Store Gift Card</li>
               <li>Stores Nearby</li>
               <li>EDGE Membership</li>
               <li>Shop on WhatsApp</li>
               <li>Fashion VLOG</li>
-              <li>Join CIRCLEMAG</li>
-              <li>SBI Offers</li>
               <li>Homecentre</li>
             </ul>
           </Col>
