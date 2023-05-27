@@ -2,7 +2,10 @@ const express = require('express');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { isLoggedIn, customRole } = require('../middlewares/user');
+const { 
+    isLoggedIn, 
+    customRole 
+} = require('../middlewares/user');
 const { 
     adminGetAllUsers, 
     adminGetUserById, 
@@ -135,7 +138,7 @@ router.route('/logout').get(
 
 
 //admin routes
-router.route('/admin/users').get(isLoggedIn, adminGetAllUsers)
+router.route('/admin/users').get(isLoggedIn, customRole('admin'), adminGetAllUsers)
 
 router.route('/admin/user/:id')
     .get(adminGetUserById)

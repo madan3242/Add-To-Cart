@@ -36,5 +36,6 @@ exports.customRole = (...roles) => {
                 error: 'You are not allowed'
             })
         }
+        next();
     }
 }
