@@ -13,9 +13,13 @@ app.use(express.urlencoded({ extended: true }));
 //morgan middleware
 app.use(morgan('dev'));
 
-const user = require('./routes/userRoutes')
 
-app.use('/api/v1', user)
+//routes
+const user = require('./routes/userRoutes');
+const product = require('./routes/productRoutes');
+
+app.use('/api/v1', user);
+app.use('/api/v1', product);
 
 app.get('/', (req, res) => {
     res.send('<h1>Add To Cart - Backend</h1>')
