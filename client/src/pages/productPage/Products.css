@@ -1,0 +1,9 @@
+.productContainer{
+    margin-top: 5rem;
+}
+
+.productFilter {
+    height: 600px;
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+}

@@ -1,10 +1,13 @@
 import React from "react";
 import "./footer.css";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export const Footer = () => {
   const d = new Date();
   const year = d.getFullYear();
+
+  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -104,7 +107,7 @@ export const Footer = () => {
           </Col>
         </Row>
       </Container>
-      <div className="footer">All Right Reserved {year} ® - Add To Cart</div>
+      <div className="footer" onClick={() => navigate('/admin')}>All Right Reserved {year} ® - Add To Cart</div>
     </>
   );
 };

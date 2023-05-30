@@ -1,10 +1,19 @@
 import React from 'react'
-import HomeNavbar from '../../components/navbar/Navbar'
+import { Col, Container, Row } from 'react-bootstrap'
+import ProductFilter from '../../components/products/ProductFilter'
+import './Products.css'
 
 const Products = () => {
   return (
     <>
-      <HomeNavbar />
+      <div className="productContainer" style={{ height: "700px"}}>
+        <Container>
+          <Row>
+            <ProductFilter />
+            <Col lg={9}>HI</Col>
+          </Row>
+        </Container>
+      </div>
     </>
   )
 }

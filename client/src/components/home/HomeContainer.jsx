@@ -12,7 +12,6 @@ const HomeContainer = () => {
   return (
     <>
       <HomeCarousel />
-
       <Container>
         <div className="banner1 mb-4">
           <img className="w-100" src={banner1} alt="" />
