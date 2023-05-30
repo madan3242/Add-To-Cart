@@ -37,7 +37,7 @@ const adminGetUserById = async (req, res, next) => {
 
 const adminDeleteUserById = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findByIdAndDelete(req.params.id);
 
     if(!user) {
         return res.status(401).json({
