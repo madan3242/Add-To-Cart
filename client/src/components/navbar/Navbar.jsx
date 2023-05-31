@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import "./Navbar.css";
 
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
 
-const HomeNavbar = ({toggleDropdown, toggleLogin}) => {
+const HomeNavbar = ({toggleDropdown, toggleLogin, loggedIn}) => {
   const navigate = useNavigate();
   return (
     <>
@@ -31,7 +31,14 @@ const HomeNavbar = ({toggleDropdown, toggleLogin}) => {
             />
           </Form>
           <div className="navbar-buttons">
-            <Button onClick={toggleLogin} variant="null">Login / SignUp</Button>
+            {
+              !loggedIn ? <>
+                <Button onClick={toggleLogin} variant="null">Login / SignUp</Button>
+              </> : <>
+                <Button variant="null">Logout</Button>
+                <AiOutlineUser size={20} onClick={navigate('/profile')} />
+              </>
+            }
 
             <AiOutlineHeart size={20} />
             <BsCart2 size={20} />

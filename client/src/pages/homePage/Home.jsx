@@ -14,6 +14,7 @@ import Profile from '../profilePage/Profile'
 export const Home = () => {
   const [showLogin, setShowLogin] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [loggedIn, setIsLoggedIn] = useState(false);
 
   const toggleLogin = () => {
     setShowLogin(!showLogin);
@@ -26,9 +27,9 @@ export const Home = () => {
   return (
     <>
       <div style={{ position: "relative"}}>
-        {showLogin && <Login toggleLogin={toggleLogin} />}
+        {showLogin && <Login toggleLogin={toggleLogin} setIsLoggedIn={setIsLoggedIn} />}
         {showDropdown && <MenDropdown />}
-        <HomeNavbar toggleDropdown={toggleDropdown} toggleLogin={toggleLogin} />
+        <HomeNavbar toggleDropdown={toggleDropdown} toggleLogin={toggleLogin} loggedIn={loggedIn} />
 
         <Routes>
           <Route path='/' element={<HomeContainer />} />

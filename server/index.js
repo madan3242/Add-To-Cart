@@ -5,6 +5,7 @@ const fileUpload = require('express-fileupload');
 const morgan = require('morgan');
 const connectDb = require('./config/dbConfig');
 const cloudinary = require('cloudinary').v2;
+const cors = require('cors');
 
 const app = express ();
 
@@ -19,6 +20,8 @@ app.use(fileUpload({
 
 //morgan middleware
 app.use(morgan('dev'));
+
+app.use(cors());
 
 
 //routes
