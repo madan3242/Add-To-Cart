@@ -1,14 +1,51 @@
 .profileContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    margin-top: 5rem;
 }
 
-.userProfile, .userAddress{
-    width: 65%;
+.user-profile, .userAddress{
     height: 400px;
     margin: 2% 0;
-    padding: 4%;
-    background-color: #449ec7;
+    background-color: #f6f6f6;
+}
+
+.user-profile {
+    padding: 2rem 4rem;
+    height: 350px;
+}
+
+.more-profile{
+    height: 400px;
+    margin: 2% 0;
+}
+
+.more-profile .side-section {
+    background-color: #f2f2f2;
+    height: 400px;
+}
+
+.more-profile .main-section {
+    background-color: #f9f9f9;
+    height: 400px;
+}
+
+.more-profile .side-section, .more-profile .side-section .side-section-list ul {
+    padding: 0;
+}
+
+.more-profile .side-section .side-section-list ul li {
+    list-style: none;
+    padding: 1rem;
+}
+
+.more-profile .side-section .side-section-list ul li a{
+    color: #000;
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.more-profile .side-section .side-section-list ul li:hover{
+    color: #000;
+    background-color: #fff;
 }

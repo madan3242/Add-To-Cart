@@ -7,6 +7,7 @@ import MenDropdown from '../../components/Dropdowns/MenDropdown'
 import { Route, Routes } from 'react-router-dom'
 import HomeContainer from '../../components/home/HomeContainer'
 import Products from '../productPage/Products'
+import Profile from '../profilePage/Profile'
 
 
 
@@ -32,9 +33,9 @@ export const Home = () => {
         <Routes>
           <Route path='/' element={<HomeContainer />} />
           <Route path='/products' element={<Products />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
         
-
         <Footer />
       </div>
     </>
