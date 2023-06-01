@@ -12,9 +12,9 @@ import Profile from '../profilePage/Profile'
 
 
 export const Home = () => {
-  const [showLogin, setShowLogin] = useState(true);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [loggedIn, setIsLoggedIn] = useState(false);
+  const [showLogin, setShowLogin] = useState(loggedIn ? false : true);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleLogin = () => {
     setShowLogin(!showLogin);

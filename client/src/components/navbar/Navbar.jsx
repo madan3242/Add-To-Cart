@@ -36,7 +36,7 @@ const HomeNavbar = ({toggleDropdown, toggleLogin, loggedIn}) => {
                 <Button onClick={toggleLogin} variant="null">Login / SignUp</Button>
               </> : <>
                 <Button variant="null">Logout</Button>
-                <AiOutlineUser size={20} onClick={navigate('/profile')} />
+                <AiOutlineUser size={20} onClick={() => navigate('/profile')} />
               </>
             }
 
