@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Profile.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { AiOutlineUser, AiTwotoneEdit } from "react-icons/ai";
 import AddressCard from "../../components/addresscard/AddressCard";
 
 const Profile = () => {
+  const [edit, setEdit] = useState(true);
+
   return (
     <Container className="profileContainer">
       <Row className="user-profile">
         <Col lg={6} className="mx-auto">
           <Form>
-            <AiTwotoneEdit style={{ float: "right" }} size={20} />
+            <AiTwotoneEdit style={{ float: "right" }} size={20} onClick={() => setEdit(!edit)} />
             <AiOutlineUser size={80} />
 
             <Form.Group className="mb-3" as={Row}>
@@ -18,7 +20,7 @@ const Profile = () => {
                 Name
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" />
+                <Form.Control type="text" disabled={edit} />
               </Col>
             </Form.Group>
 
@@ -27,7 +29,7 @@ const Profile = () => {
                 Email
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" />
+                <Form.Control type="text" disabled={edit} />
               </Col>
             </Form.Group>
             <Form.Group className="mb-3" as={Row}>
@@ -35,13 +37,15 @@ const Profile = () => {
                 Phone
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" />
+                <Form.Control type="text" disabled={edit} />
               </Col>
             </Form.Group>
-            <div style={{float: "right", display: "none"}}>
-              <Button variant="primary">Edit</Button>&nbsp;
-              <Button variant="secondary">Cancel</Button>
-            </div>
+            {!edit &&
+              <div style={{float: "right"}}>
+                <Button variant="primary" onClick={() => setEdit(!edit)}>Save</Button>&nbsp;
+                <Button variant="secondary" onClick={() => setEdit(!edit)}>Cancel</Button>
+              </div>
+            }
           </Form>
         </Col>
       </Row>

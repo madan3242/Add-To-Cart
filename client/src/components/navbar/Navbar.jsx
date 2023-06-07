@@ -6,7 +6,7 @@ import "./Navbar.css";
 import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
 
-const HomeNavbar = ({toggleDropdown, toggleLogin, loggedIn}) => {
+const HomeNavbar = ({toggleLogin, loggedIn, toggleMenDropdown, toggleWomenDropdown, toggleKidsDropdown}) => {
   const navigate = useNavigate();
   return (
     <>
@@ -17,9 +17,9 @@ const HomeNavbar = ({toggleDropdown, toggleLogin, loggedIn}) => {
           </Navbar.Brand>
 
           <div className="d-flex">
-            <Nav.Link onClick={toggleDropdown}>Mens</Nav.Link>
-            <Nav.Link onClick={toggleDropdown}>Womens</Nav.Link>
-            <Nav.Link onClick={toggleDropdown}>Kids</Nav.Link>
+            <Nav.Link onMouseEnter={toggleMenDropdown}>Mens</Nav.Link>
+            <Nav.Link onMouseEnter={toggleWomenDropdown}>Womens</Nav.Link>
+            <Nav.Link onMouseEnter={toggleKidsDropdown}>Kids</Nav.Link>
           </div>
 
           <Form>

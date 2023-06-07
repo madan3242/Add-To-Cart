@@ -35,7 +35,10 @@ const Login = ({ toggleLogin, setIsLoggedIn }) => {
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      
+      const response = await axios.post(`${API_URL}/api/v1/login`, {
+        email: loginUserData.email,
+        password: loginUserData.password
+      })
     } catch (error) {
       
     }

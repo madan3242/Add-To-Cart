@@ -8,28 +8,43 @@ import { Route, Routes } from 'react-router-dom'
 import HomeContainer from '../../components/home/HomeContainer'
 import Products from '../productPage/Products'
 import Profile from '../profilePage/Profile'
-
-
+import WomensDropdown from '../../components/Dropdowns/WomensDropdown'
+import KidsDropdown from '../../components/Dropdowns/KidsDropdown'
 
 export const Home = () => {
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(loggedIn ? false : true);
-  const [showDropdown, setShowDropdown] = useState(false);
+
+  const [showMenDropdown, setShowMenDropdown] = useState(false);
+  const [showWomenDropdown, setShowWomenDropdown] = useState(false);
+  const [showKidsDropdown, setShowKidsDropdown] = useState(false);
 
   const toggleLogin = () => {
     setShowLogin(!showLogin);
   }
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
+  const toggleMenDropdown = () => {
+    setShowMenDropdown(!showMenDropdown);
+  }
+
+  const toggleWomenDropdown = () => {
+    setShowWomenDropdown(!showWomenDropdown);
+  }
+
+  const toggleKidsDropdown = () => {
+    setShowKidsDropdown(!showKidsDropdown);
   }
 
   return (
     <>
       <div style={{ position: "relative"}}>
         {showLogin && <Login toggleLogin={toggleLogin} setIsLoggedIn={setIsLoggedIn} />}
-        {showDropdown && <MenDropdown />}
-        <HomeNavbar toggleDropdown={toggleDropdown} toggleLogin={toggleLogin} loggedIn={loggedIn} />
+
+        {showMenDropdown && <MenDropdown toggleMenDropdown={toggleMenDropdown} />}
+        {showWomenDropdown && <WomensDropdown toggleWomenDropdown={toggleWomenDropdown} />}
+        {showKidsDropdown && <KidsDropdown toggleKidsDropdown={toggleKidsDropdown} />}
+
+        <HomeNavbar toggleMenDropdown={toggleMenDropdown} toggleLogin={toggleLogin} loggedIn={loggedIn} toggleWomenDropdown={toggleWomenDropdown} toggleKidsDropdown={toggleKidsDropdown} />
 
         <Routes>
           <Route path='/' element={<HomeContainer />} />

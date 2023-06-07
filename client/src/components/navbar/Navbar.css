@@ -17,11 +17,11 @@
 }
 
 .nav-link {
-    margin-right: 1rem;
+    margin-right: 2rem;
 }
 
 .navbar .nav-link:hover {
-    color: #efefef;
+    color: #fcc05a;
 }
 
 .navbar .navbar-buttons {
