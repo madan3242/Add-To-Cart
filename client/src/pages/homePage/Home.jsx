@@ -25,14 +25,20 @@ export const Home = () => {
 
   const toggleMenDropdown = () => {
     setShowMenDropdown(!showMenDropdown);
+    setShowWomenDropdown(false);
+    setShowKidsDropdown(false)
   }
 
   const toggleWomenDropdown = () => {
     setShowWomenDropdown(!showWomenDropdown);
+    setShowMenDropdown(false)
+    setShowKidsDropdown(false)
   }
 
   const toggleKidsDropdown = () => {
     setShowKidsDropdown(!showKidsDropdown);
+    setShowMenDropdown(false)
+    setShowWomenDropdown(false)
   }
 
   return (
