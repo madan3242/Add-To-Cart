@@ -2,7 +2,7 @@ import React from 'react'
 import './Dropdown.css'
 import { Col, Container, Row } from 'react-bootstrap'
 
-const MenDropdown = ({toggleMenDropdown}) => {
+const MensDropdown = ({toggleMenDropdown}) => {
   return (
     <div className='navbar-dropdown' onMouseLeave={toggleMenDropdown}>
       <Container>
@@ -67,4 +67,4 @@ const MenDropdown = ({toggleMenDropdown}) => {
   )
 }
 
-export default MenDropdown
+export default MensDropdown
