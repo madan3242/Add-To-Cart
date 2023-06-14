@@ -1,9 +1,0 @@
-.admin-container {
-    display: flex;
-}
-
-.admin-main {
-    padding: 1rem;
-    width: calc(100% - 250px);
-    box-sizing: border-box;
-}
