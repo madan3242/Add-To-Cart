@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row } from 'react-bootstrap'
+import { Button, Row } from 'react-bootstrap'
 
 const Products = () => {
   return (
@@ -8,7 +8,9 @@ const Products = () => {
             <h2>Products</h2>
         </Row>
         <Row>
-
+          <Col>
+            <Button>Add Product</Button>
+          </Col>
         </Row>
     </>
   )
