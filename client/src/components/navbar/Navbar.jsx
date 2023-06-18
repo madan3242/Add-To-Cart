@@ -40,8 +40,8 @@ const HomeNavbar = ({toggleLogin, loggedIn, toggleMenDropdown, toggleWomenDropdo
               </>
             }
 
-            <AiOutlineHeart size={20} />
-            <BsCart2 size={20} />
+            <AiOutlineHeart size={20} onClick={() => navigate('/wishlist')} />
+            <BsCart2 size={20} onClick={() => navigate('/cart')} />
           </div>
         </Container>
       </Navbar>

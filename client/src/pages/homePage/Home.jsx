@@ -10,6 +10,8 @@ import Profile from '../profilePage/Profile'
 import MensDropdown from '../../components/dropdowns/MensDropdown'
 import WomensDropdown from '../../components/dropdowns/WomensDropdown'
 import KidsDropdown from '../../components/dropdowns/KidsDropdown'
+import Cart from '../cartPage/Cart'
+import WishList from '../wishlistPage/WishList'
 
 export const Home = () => {
   const [loggedIn, setIsLoggedIn] = useState(false);
@@ -56,6 +58,8 @@ export const Home = () => {
           <Route path='/' element={<HomeContainer />} />
           <Route path='/products' element={<Products />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/wishlist' element={<WishList />} />
+          <Route path='/cart' element={<Cart />} />
         </Routes>
         
         <Footer />

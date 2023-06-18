@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); */
 
 .navbar {
     height: 4rem;
@@ -13,7 +13,7 @@
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 600;
-    font-family: 'Pacifico', cursive;
+    /* font-family: 'Pacifico', cursive; */
 }
 
 .nav-link {

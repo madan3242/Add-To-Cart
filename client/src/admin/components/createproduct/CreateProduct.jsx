@@ -23,6 +23,7 @@ const CreateProduct = () => {
   return (
     <>
         <div className="create-product">
+            <h2>Create Product</h2>
             <Form>
                 <Form.Label>Product Name</Form.Label>
                 <Form.Control type="text" placeholder="Enter Product Name" />

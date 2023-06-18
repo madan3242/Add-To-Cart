@@ -10,7 +10,7 @@ const Products = () => {
         <Container>
           <Row>
             <ProductFilter />
-            <Col lg={9}>HI</Col>
+            <Col lg={10}>HI</Col>
           </Row>
         </Container>
       </div>

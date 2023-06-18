@@ -5,7 +5,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 const ProductFilter = () => {
   return (
     <>
-      <Col lg={3} className="productFilter">
+      <Col lg={2} className="productFilter">
         <Form>
             <Form.Group className="mb-3">
                 <Form.Label>Price</Form.Label>
@@ -28,7 +28,7 @@ const ProductFilter = () => {
                 <Form.Check type="radio" name="category" value="womens" label="WOMENS" />
                 <Form.Check type="radio" name="category" value="kids" label="KIDS" />
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 mx-auto">
                 <Form.Label>Ratings</Form.Label>
                 <div style={{cursor: "pointer"}}>
                     <AiFillStar size={30} style={{ color: "gold"}} />

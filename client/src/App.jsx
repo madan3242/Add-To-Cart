@@ -6,6 +6,7 @@ import Admin from './admin/Admin'
 
 if(localStorage.token){
   setAuthToken(localStorage.token)
+  console.log(localStorage.token);
 }
 
 const App = () => {
