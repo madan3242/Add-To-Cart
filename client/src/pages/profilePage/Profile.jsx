@@ -7,9 +7,13 @@ import { useSelector } from "react-redux";
 
 const Profile = () => {
   const [edit, setEdit] = useState(true);
+  const userData = useSelector(state => state.auth.user)
 
-  const [user, setUser] = useState(useSelector(state => state.auth.user))
-  console.log(user);
+  const [user, setUser] = useState({
+    name: userData?.name,
+    email: userData?.email,
+    phonenumber: userData?.phonenumber
+  })
 
   const handleUserChange = (e) => {
     setUser({

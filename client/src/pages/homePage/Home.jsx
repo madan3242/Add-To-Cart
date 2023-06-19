@@ -13,19 +13,23 @@ import KidsDropdown from '../../components/dropdowns/KidsDropdown'
 import Cart from '../cartPage/Cart'
 import WishList from '../wishlistPage/WishList'
 import { setAuthToken } from '../../services/setAuthToken'
+import { viewProfile } from '../../services/auth.services'
+import { useDispatch } from 'react-redux'
 
 export const Home = () => {
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if(localStorage.token){
       setAuthToken(localStorage.token)
-      console.log(JSON.parse(localStorage.user));
+      dispatch(viewProfile(JSON.parse(localStorage.user)))
       setIsLoggedIn(true);
       setShowLogin(false)
     }
   })
+
 
   const [showMenDropdown, setShowMenDropdown] = useState(false);
   const [showWomenDropdown, setShowWomenDropdown] = useState(false);

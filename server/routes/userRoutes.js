@@ -23,9 +23,9 @@ router.route('/login').post(userLogin);
 
 router.route('/logout').get(userLogout);
 
-router.route('/:id')
-    .get(isLoggedIn, viewProfile)
-    .put(isLoggedIn, updateProfile)
+router.route('/viewprofile').get(isLoggedIn, viewProfile)
+
+router.route('/updateprofile').put(isLoggedIn, updateProfile)
 
 
 //admin routes

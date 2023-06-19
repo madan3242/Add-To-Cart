@@ -73,7 +73,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                user: payload.user
+                user: payload
             }
         case GET_USER_FAILURE: 
             return {

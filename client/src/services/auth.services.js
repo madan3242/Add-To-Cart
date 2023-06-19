@@ -66,14 +66,12 @@ export const userLogout = (setIsLoggedIn) => {
     }
 }
 
-export const viewProfile = () => {
+export const viewProfile = (user) => {
     return async (dispatch) => {
+        dispatch({ type: GET_USER_REQUEST})
         try {
-            dispatch({ type: GET_USER_REQUEST})
-            const response = await axios.get('/viewprofile')
-
-            dispatch({ type: GET_USER_SUCCESS, payload: response.data})
-
+            // const response = await axios.get(`${API_URL}/viewprofile`)
+            dispatch({ type: GET_USER_SUCCESS, payload: user})
         } catch (error) {
             dispatch({ type: GET_USER_FAILURE, payload: error.message})
         }
