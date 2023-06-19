@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Home.css'
 import HomeNavbar from '../../components/navbar/Navbar'
 import { Footer } from '../../components/footer/Footer'
@@ -12,10 +12,20 @@ import WomensDropdown from '../../components/dropdowns/WomensDropdown'
 import KidsDropdown from '../../components/dropdowns/KidsDropdown'
 import Cart from '../cartPage/Cart'
 import WishList from '../wishlistPage/WishList'
+import { setAuthToken } from '../../services/setAuthToken'
 
 export const Home = () => {
   const [loggedIn, setIsLoggedIn] = useState(false);
-  const [showLogin, setShowLogin] = useState(loggedIn ? false : true);
+  const [showLogin, setShowLogin] = useState(true);
+
+  useEffect(() => {
+    if(localStorage.token){
+      setAuthToken(localStorage.token)
+      console.log(JSON.parse(localStorage.user));
+      setIsLoggedIn(true);
+      setShowLogin(false)
+    }
+  })
 
   const [showMenDropdown, setShowMenDropdown] = useState(false);
   const [showWomenDropdown, setShowWomenDropdown] = useState(false);
@@ -53,10 +63,10 @@ export const Home = () => {
         {showKidsDropdown && <KidsDropdown toggleKidsDropdown={toggleKidsDropdown} />}
 
         <HomeNavbar 
-          toggleMenDropdown={toggleMenDropdown} 
           toggleLogin={toggleLogin} 
           loggedIn={loggedIn} 
           setIsLoggedIn={setIsLoggedIn} 
+          toggleMenDropdown={toggleMenDropdown} 
           toggleWomenDropdown={toggleWomenDropdown} 
           toggleKidsDropdown={toggleKidsDropdown} 
         />

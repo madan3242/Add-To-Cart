@@ -4,11 +4,6 @@ import { Home } from './pages/homePage/Home'
 import { setAuthToken } from './services/setAuthToken'
 import Admin from './admin/Admin'
 
-if(localStorage.token){
-  setAuthToken(localStorage.token)
-  console.log(localStorage.token);
-}
-
 const App = () => {
   return (
     <>

@@ -3,10 +3,14 @@ import "./Profile.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { AiOutlineUser, AiTwotoneEdit } from "react-icons/ai";
 import AddressCard from "../../components/addresscard/AddressCard";
+import { useReducer } from "react";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const [edit, setEdit] = useState(true);
 
+  const user = useSelector(state => state.auth)
+console.log(user);
   return (
     <Container className="profileContainer">
       <Row className="user-profile">
