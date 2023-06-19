@@ -25,13 +25,13 @@ const CreateProduct = () => {
         <div className="create-product">
             <h2>Create Product</h2>
             <Form>
-                <Form.Label>Product Name</Form.Label>
+                <Form.Label>Name</Form.Label>
                 <Form.Control type="text" placeholder="Enter Product Name" />
 
-                <Form.Label>Product Price</Form.Label>
+                <Form.Label>Price</Form.Label>
                 <Form.Control type="text" placeholder="Enter Product Price" />
 
-                <Form.Label>Product Qty</Form.Label>
+                <Form.Label>Qty</Form.Label>
                 <Form.Control type="text" placeholder="Enter Product Qty" />
 
                 <Button onClick={createProduct}>Create Product</Button>

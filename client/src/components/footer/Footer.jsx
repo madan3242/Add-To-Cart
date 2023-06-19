@@ -34,7 +34,7 @@ export const Footer = () => {
         </Row>
         
         <Row className="footer-list">
-          <Col lg={2}>
+          <Col xs={6} md={4} lg={2}>
             <p>Women</p>
             <ul>
               <li>Tops</li>
@@ -47,7 +47,7 @@ export const Footer = () => {
               <li>Sportswear</li>
             </ul>
           </Col>
-          <Col lg={2}>
+          <Col xs={6} md={4} lg={2}>
             <p>Men</p>
             <ul>
               <li>Tops</li>
@@ -59,7 +59,7 @@ export const Footer = () => {
               <li>Grooming</li>
             </ul>
           </Col>
-          <Col lg={2}>
+          <Col xs={6} md={4} lg={2}>
             <p>Kids</p>
             <ul>
               <li>Girls Clothing</li>
@@ -71,7 +71,7 @@ export const Footer = () => {
               <li>The Teen Shop</li>
             </ul>
           </Col>
-          <Col lg={2}>
+          <Col xs={6} md={4} lg={2}>
             <p>Explore</p>
             <ul>
               <li>Online Offers</li>
@@ -84,7 +84,7 @@ export const Footer = () => {
               <li>Homecentre</li>
             </ul>
           </Col>
-          <Col lg={2}>
+          <Col xs={6} md={4} lg={2}>
             <p>About</p>
             <ul>
               <li>About us</li>
@@ -95,7 +95,7 @@ export const Footer = () => {
               <li>Landmark Cares</li>
             </ul>
           </Col>
-          <Col lg={2}>
+          <Col xs={6} md={4} lg={2}>
             <p>Help</p>
             <ul>
               <li>Contact us</li>
