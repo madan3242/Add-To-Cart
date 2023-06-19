@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { AiOutlineUser, AiTwotoneEdit } from "react-icons/ai";
 import AddressCard from "../../components/addresscard/AddressCard";
-import { useReducer } from "react";
 import { useSelector } from "react-redux";
 
 const Profile = () => {
   const [edit, setEdit] = useState(true);
 
-  const user = useSelector(state => state.auth)
-console.log(user);
+  const [user, setUser] = useState(useSelector(state => state.auth.user))
+  console.log(user);
+
+  const handleUserChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const updateProfile = (e) => {
+    e.preventDefault();
+    setEdit(!edit)
+
+
+  }
   return (
     <Container className="profileContainer">
       <Row className="user-profile">
@@ -24,7 +37,7 @@ console.log(user);
                 Name
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" disabled={edit} />
+                <Form.Control type="text" disabled={edit} name="name" value={user?.name} onChange={handleUserChange} />
               </Col>
             </Form.Group>
 
@@ -33,7 +46,7 @@ console.log(user);
                 Email
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" disabled={edit} />
+                <Form.Control type="text" disabled={edit} name="email" value={user?.email} onChange={handleUserChange} />
               </Col>
             </Form.Group>
             <Form.Group className="mb-3" as={Row}>
@@ -41,12 +54,12 @@ console.log(user);
                 Phone
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" disabled={edit} />
+                <Form.Control type="text" disabled={edit} name="phonenumber" value={user?.phone} onChange={handleUserChange} />
               </Col>
             </Form.Group>
             {!edit &&
               <div style={{float: "right"}}>
-                <Button variant="primary" onClick={() => setEdit(!edit)}>Save</Button>&nbsp;
+                <Button variant="primary" onClick={updateProfile}>Save</Button>&nbsp;
                 <Button variant="secondary" onClick={() => setEdit(!edit)}>Cancel</Button>
               </div>
             }

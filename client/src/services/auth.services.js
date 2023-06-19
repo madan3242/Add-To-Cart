@@ -1,5 +1,8 @@
 import axios from "axios"
 import { 
+    GET_USER_FAILURE,
+    GET_USER_REQUEST,
+    GET_USER_SUCCESS,
     LOGIN_FAILURE, 
     LOGIN_REQUEST, 
     LOGIN_SUCCESS, 
@@ -60,5 +63,32 @@ export const userLogout = (setIsLoggedIn) => {
         const response = await axios.get(`${API_URL}/logout`)
         console.log(response);
         setIsLoggedIn(false)
+    }
+}
+
+export const viewProfile = () => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: GET_USER_REQUEST})
+            const response = await axios.get('/viewprofile')
+
+            dispatch({ type: GET_USER_SUCCESS, payload: response.data})
+
+        } catch (error) {
+            dispatch({ type: GET_USER_FAILURE, payload: error.message})
+        }
+    }
+}
+
+export const updateProfile = (data) => {
+    return async () => {
+        try {
+            const response = await axios.post('/updateprofile', data, config)
+
+            console.log(response);
+            viewProfile()
+        } catch (error) {
+            
+        }
     }
 }
