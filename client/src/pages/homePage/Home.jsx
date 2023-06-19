@@ -52,7 +52,14 @@ export const Home = () => {
         {showWomenDropdown && <WomensDropdown toggleWomenDropdown={toggleWomenDropdown} />}
         {showKidsDropdown && <KidsDropdown toggleKidsDropdown={toggleKidsDropdown} />}
 
-        <HomeNavbar toggleMenDropdown={toggleMenDropdown} toggleLogin={toggleLogin} loggedIn={loggedIn} toggleWomenDropdown={toggleWomenDropdown} toggleKidsDropdown={toggleKidsDropdown} />
+        <HomeNavbar 
+          toggleMenDropdown={toggleMenDropdown} 
+          toggleLogin={toggleLogin} 
+          loggedIn={loggedIn} 
+          setIsLoggedIn={setIsLoggedIn} 
+          toggleWomenDropdown={toggleWomenDropdown} 
+          toggleKidsDropdown={toggleKidsDropdown} 
+        />
 
         <Routes>
           <Route path='/' element={<HomeContainer />} />

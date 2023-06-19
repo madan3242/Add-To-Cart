@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { GrClose } from "react-icons/gr";
-import axios from 'axios'
+import { userLogin, userSignup } from "../../services/auth.services";
+import { useDispatch } from 'react-redux'
 
 const Login = ({ toggleLogin, setIsLoggedIn }) => {
-  const API_URL =  `http://localhost:5000`
   const [loginUserData, setLoginUserData] = useState({
     email: "",
     password: "",
   });
+
   const [signupUserData, setSignupUserData] = useState({
     email: "",
     password: "",
     confirmPassword: ""
   });
+
+  const dispatch = useDispatch();
 
   const [login, setLogin] = useState(true);
 
@@ -35,28 +38,23 @@ const Login = ({ toggleLogin, setIsLoggedIn }) => {
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${API_URL}/api/v1/login`, {
+      const data = {
         email: loginUserData.email,
         password: loginUserData.password
-      })
-    } catch (error) {
-      
-    }
+      }
+      dispatch(userLogin(data, setIsLoggedIn, toggleLogin))
+    } catch (error) { }
   }
 
   const signupSubmit = async (e) => {
     e.preventDefault();
     if(signupUserData.password === signupUserData.confirmPassword){
       try {
-        const response = await axios.post(`${API_URL}/api/v1/signup`, {
+        const data = {
           email: signupUserData.email,
           password: signupUserData.password
-        })
-
-        console.log(response);
-        localStorage.setItem("token", response?.data?.token);
-        setIsLoggedIn(true);
-        toggleLogin();
+        }
+        dispatch(userSignup(data, setIsLoggedIn, toggleLogin))
       } catch (error) {
         alert(JSON.stringify(error))
       }

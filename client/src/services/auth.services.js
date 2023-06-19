@@ -1,34 +1,64 @@
 import axios from "axios"
+import { 
+    LOGIN_FAILURE, 
+    LOGIN_REQUEST, 
+    LOGIN_SUCCESS, 
+    SIGNUP_FAILURE, 
+    SIGNUP_REQUEST, 
+    SIGNUP_SUCCESS, 
+    USER_LOGOUT
+} from "../redux/users/user.action"
 const API_URL =  `http://localhost:5000/api/v1`
 
-const login = (data) => {
-    axios.post(`${API_URL}/login`, data, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(data => {return data})
-    .catch(error => { return error})
+const config = {
+    headers: {
+        'Content-Type': 'application/json'
+    }
 }
 
-const signup = (data) => {
-    axios.post(`${API_URL}/signup`, data, {
-        headers: {
-            'Content-Type': 'application/json'
+export const userLogin = (data, setIsLoggedIn, toggleLogin) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: LOGIN_REQUEST })
+
+            const response = await axios.post(`${API_URL}/login`, data, config)
+
+            console.log(response);
+
+            dispatch({ type: LOGIN_SUCCESS, payload: response.data })
+            setIsLoggedIn(true)
+            toggleLogin()
+
+        } catch(error) {
+            dispatch({ type: LOGIN_FAILURE, payload: error})
         }
-    })
-    .then(data => {return data})
-    .catch(error => { return error})
+    }
 }
 
-const logout = () => {
-    axios.get(`${API_URL}/logout`, {
-        headers: {
-            'Content-Type': 'application/json'
+export const userSignup = (data, setIsLoggedIn, toggleLogin) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: SIGNUP_REQUEST })
+
+            const response = await axios.post(`${API_URL}/signup`, data, config)
+
+            console.log(response);
+
+            dispatch({ type: SIGNUP_SUCCESS, payload: response.data })
+            setIsLoggedIn(true)
+            toggleLogin()
+
+        } catch(error) {
+            dispatch({ type: SIGNUP_FAILURE, payload: error})
         }
-    })
-    .then(data => {return data})
-    .catch(error => { return error})
+    }
 }
 
-export { login, logout, signup}
+export const userLogout = (setIsLoggedIn) => {
+    return async (dispatch) => {
+        dispatch({ type: USER_LOGOUT })
+        const response = await axios.get(`${API_URL}/logout`)
+        console.log(response);
+        setIsLoggedIn(false)
+    }
+}

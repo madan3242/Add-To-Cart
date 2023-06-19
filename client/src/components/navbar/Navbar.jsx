@@ -5,9 +5,17 @@ import "./Navbar.css";
 
 import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
+import { userLogout } from "../../services/auth.services";
+import { useDispatch } from "react-redux";
 
-const HomeNavbar = ({toggleLogin, loggedIn, toggleMenDropdown, toggleWomenDropdown, toggleKidsDropdown}) => {
+const HomeNavbar = ({toggleLogin, loggedIn, setIsLoggedIn, toggleMenDropdown, toggleWomenDropdown, toggleKidsDropdown}) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(userLogout(setIsLoggedIn))
+  }
+  
   return (
     <>
       <Navbar className="navbar" fixed="top">
@@ -35,7 +43,7 @@ const HomeNavbar = ({toggleLogin, loggedIn, toggleMenDropdown, toggleWomenDropdo
               !loggedIn ? <>
                 <Button onClick={toggleLogin} variant="null">Login / SignUp</Button>
               </> : <>
-                <Button variant="null">Logout</Button>
+                <Button variant="null" onClick={logout}>Logout</Button>
                 <AiOutlineUser size={20} onClick={() => navigate('/profile')} />
               </>
             }
