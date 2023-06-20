@@ -122,18 +122,6 @@ const userLogout = async (req, res) => {
   }
 };
 
-const viewProfile = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id);
-
-    res.status(201).json({ user });
-  } catch (error) {
-    res.status(500).json({
-      error: `Your request cannot be processed. Please try again`,
-    });
-  }
-}
-
 const updateProfile = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.user.id, {

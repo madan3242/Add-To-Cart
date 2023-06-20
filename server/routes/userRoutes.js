@@ -23,8 +23,6 @@ router.route('/login').post(userLogin);
 
 router.route('/logout').get(userLogout);
 
-router.route('/viewprofile').get(isLoggedIn, viewProfile)
-
 router.route('/updateprofile').put(isLoggedIn, updateProfile)
 
 

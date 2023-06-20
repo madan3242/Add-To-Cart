@@ -1,13 +1,13 @@
 import { 
-    GET_USER_FAILURE, 
-    GET_USER_REQUEST, 
-    GET_USER_SUCCESS, 
     LOGIN_FAILURE, 
     LOGIN_REQUEST, 
     LOGIN_SUCCESS, 
     SIGNUP_FAILURE, 
     SIGNUP_REQUEST, 
     SIGNUP_SUCCESS, 
+    UPDATE_USER_FAILURE, 
+    UPDATE_USER_REQUEST, 
+    UPDATE_USER_SUCCESS, 
     USER_LOGOUT 
 } from "./user.action"
 
@@ -64,18 +64,19 @@ const authReducer = (state = initialState, action) => {
                 errorMessage: payload.error
             }
 
-        case GET_USER_REQUEST: 
+        case UPDATE_USER_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case GET_USER_SUCCESS: 
+        case UPDATE_USER_SUCCESS:
+            localStorage.setItem("user", JSON.stringify(payload.user))
             return {
                 ...state,
                 loading: false,
-                user: payload
+                user: payload.user,
             }
-        case GET_USER_FAILURE: 
+        case UPDATE_USER_FAILURE:
             return {
                 ...state,
                 loading: false,

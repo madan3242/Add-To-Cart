@@ -9,6 +9,9 @@ import {
     SIGNUP_FAILURE, 
     SIGNUP_REQUEST, 
     SIGNUP_SUCCESS, 
+    UPDATE_USER_FAILURE, 
+    UPDATE_USER_REQUEST, 
+    UPDATE_USER_SUCCESS, 
     USER_LOGOUT
 } from "../redux/users/user.action"
 const API_URL =  `http://localhost:5000/api/v1`
@@ -66,27 +69,17 @@ export const userLogout = (setIsLoggedIn) => {
     }
 }
 
-export const viewProfile = (user) => {
-    return async (dispatch) => {
-        dispatch({ type: GET_USER_REQUEST})
-        try {
-            // const response = await axios.get(`${API_URL}/viewprofile`)
-            dispatch({ type: GET_USER_SUCCESS, payload: user})
-        } catch (error) {
-            dispatch({ type: GET_USER_FAILURE, payload: error.message})
-        }
-    }
-}
-
 export const updateProfile = (data) => {
-    return async () => {
+    return async (dispatch) => {
         try {
+            dispatch({ type: UPDATE_USER_REQUEST })
+
             const response = await axios.post('/updateprofile', data, config)
+            dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data})
 
             console.log(response);
-            viewProfile()
         } catch (error) {
-            
+            dispatch({ type: UPDATE_USER_FAILURE, payload: error.message })
         }
     }
 }
