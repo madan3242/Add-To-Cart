@@ -42,7 +42,10 @@ const Profile = () => {
                 Name
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" disabled={edit} name="name" value={user?.name} onChange={handleUserChange} />
+                {!edit ? 
+                  <Form.Control type="text" name="name" value={user?.name} onChange={handleUserChange} />
+                  : <div style={{ paddingTop: "7px"}}>{user?.name}</div>
+                }
               </Col>
             </Form.Group>
 
@@ -51,7 +54,10 @@ const Profile = () => {
                 Email
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" disabled={edit} name="email" value={user?.email} onChange={handleUserChange} />
+                {!edit ?
+                  <Form.Control type="text" name="email" value={user?.email} onChange={handleUserChange} />
+                  : <div style={{ paddingTop: "7px"}}>{user?.email}</div>
+                }
               </Col>
             </Form.Group>
             <Form.Group className="mb-3" as={Row}>
@@ -59,7 +65,8 @@ const Profile = () => {
                 Phone
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" disabled={edit} name="phonenumber" value={user?.phonenumber} onChange={handleUserChange} />
+                {!edit ? <Form.Control type="text" name="phonenumber" value={user?.phonenumber} onChange={handleUserChange} /> : <div style={{ paddingTop: "7px"}}>{user?.phonenumber}</div>
+                }
               </Col>
             </Form.Group>
             {!edit &&

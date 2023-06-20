@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
-import CreateProduct from '../../components/createproduct/CreateProduct'
+import CreateProduct from '../createproduct/CreateProduct'
 import './product.css'
 
 const Products = () => {
