@@ -190,7 +190,6 @@ module.exports = {
   userSignup,
   userLogin,
   userLogout,
-  viewProfile,
   updateProfile,
   adminGetAllUsers,
   adminGetUserById,

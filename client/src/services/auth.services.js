@@ -1,8 +1,5 @@
 import axios from "axios"
 import { 
-    GET_USER_FAILURE,
-    GET_USER_REQUEST,
-    GET_USER_SUCCESS,
     LOGIN_FAILURE, 
     LOGIN_REQUEST, 
     LOGIN_SUCCESS, 
@@ -69,14 +66,14 @@ export const userLogout = (setIsLoggedIn) => {
     }
 }
 
-export const updateProfile = (data) => {
+export const updateUserProfile = (data, setEdit) => {
     return async (dispatch) => {
         try {
             dispatch({ type: UPDATE_USER_REQUEST })
 
-            const response = await axios.post('/updateprofile', data, config)
+            const response = await axios.put(`${API_URL}/updateprofile`, data, config)
             dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data})
-
+            setEdit(true)
             console.log(response);
         } catch (error) {
             dispatch({ type: UPDATE_USER_FAILURE, payload: error.message })

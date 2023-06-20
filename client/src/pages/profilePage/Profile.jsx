@@ -3,10 +3,12 @@ import "./Profile.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { AiOutlineUser, AiTwotoneEdit } from "react-icons/ai";
 import AddressCard from "../../components/addresscard/AddressCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserProfile } from "../../services/auth.services";
 
 const Profile = () => {
   const [edit, setEdit] = useState(true);
+  const dispatch = useDispatch();
   const userData = useSelector(state => state.auth.user)
 
   const [user, setUser] = useState({
@@ -25,8 +27,7 @@ const Profile = () => {
   const updateProfile = (e) => {
     e.preventDefault();
     setEdit(!edit)
-
-
+    dispatch(updateUserProfile(user, setEdit))
   }
   return (
     <Container className="profileContainer">
@@ -58,7 +59,7 @@ const Profile = () => {
                 Phone
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" disabled={edit} name="phonenumber" value={user?.phone} onChange={handleUserChange} />
+                <Form.Control type="text" disabled={edit} name="phonenumber" value={user?.phonenumber} onChange={handleUserChange} />
               </Col>
             </Form.Group>
             {!edit &&
