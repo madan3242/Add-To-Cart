@@ -12,7 +12,7 @@ import {
 } from "./user.action"
 
 const initialState = {
-    user: null,
+    user: localStorage.user ? JSON.parse(localStorage.user) : null,
     token: null,
     loading: false,
     isAuthinticated: false,

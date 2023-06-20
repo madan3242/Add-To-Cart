@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
-import "./Navbar.css";
+import "./navbar.css";
 import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
 import { userLogout } from "../../services/auth.services";

@@ -9,18 +9,15 @@ import Products from '../productPage/Products'
 import Cart from '../cartPage/Cart'
 import WishList from '../wishlistPage/WishList'
 import { setAuthToken } from '../../services/setAuthToken'
-import { viewProfile } from '../../services/auth.services'
-import { useDispatch } from 'react-redux'
+import Profile from '../profilePage/Profile'
 
 export const Home = () => {
   const [isloggedIn, setIsLoggedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if(localStorage.token){
       setAuthToken(localStorage.token)
-      dispatch(viewProfile(JSON.parse(localStorage.user)))
       setIsLoggedIn(true);
       setShowLogin(false)
     }
@@ -43,6 +40,7 @@ export const Home = () => {
 
         <Routes>
           <Route path='/' element={<HomeContainer />} />
+          <Route path='/profile' element={<Profile />} />
           <Route path='/products' element={<Products />} />
           <Route path='/wishlist' element={<WishList />} />
           <Route path='/cart' element={<Cart />} />
