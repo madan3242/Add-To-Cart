@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import "./Navbar.css";
-
 import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
 import { userLogout } from "../../services/auth.services";
 import { useDispatch } from "react-redux";
+import MensDropdown from '../../components/dropdowns/MensDropdown'
+import WomensDropdown from '../../components/dropdowns/WomensDropdown'
+import KidsDropdown from '../../components/dropdowns/KidsDropdown'
 
-const HomeNavbar = ({toggleLogin, loggedIn, setIsLoggedIn, toggleMenDropdown, toggleWomenDropdown, toggleKidsDropdown}) => {
+const HomeNavbar = ({toggleLogin, isloggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [showMenDropdown, setShowMenDropdown] = useState(false);
+  const [showWomenDropdown, setShowWomenDropdown] = useState(false);
+  const [showKidsDropdown, setShowKidsDropdown] = useState(false);
+
+  const toggleMenDropdown = () => {
+    setShowMenDropdown(!showMenDropdown);
+    setShowWomenDropdown(false);
+    setShowKidsDropdown(false)
+  }
+
+  const toggleWomenDropdown = () => {
+    setShowWomenDropdown(!showWomenDropdown);
+    setShowMenDropdown(false)
+    setShowKidsDropdown(false)
+  }
+
+  const toggleKidsDropdown = () => {
+    setShowKidsDropdown(!showKidsDropdown);
+    setShowMenDropdown(false)
+    setShowWomenDropdown(false)
+  }
 
   const logout = () => {
     dispatch(userLogout(setIsLoggedIn))
@@ -40,7 +64,7 @@ const HomeNavbar = ({toggleLogin, loggedIn, setIsLoggedIn, toggleMenDropdown, to
           </Form>
           <div className="navbar-buttons">
             {
-              !loggedIn ? <>
+              !isloggedIn ? <>
                 <Button onClick={toggleLogin} variant="null">Login / SignUp</Button>
               </> : <>
                 <Button variant="null" onClick={logout}>Logout</Button>
@@ -53,6 +77,10 @@ const HomeNavbar = ({toggleLogin, loggedIn, setIsLoggedIn, toggleMenDropdown, to
           </div>
         </Container>
       </Navbar>
+
+      {showMenDropdown && <MensDropdown toggleMenDropdown={toggleMenDropdown} />}
+      {showWomenDropdown && <WomensDropdown toggleWomenDropdown={toggleWomenDropdown} />}
+      {showKidsDropdown && <KidsDropdown toggleKidsDropdown={toggleKidsDropdown} />}
     </>
   );
 };

@@ -20,7 +20,6 @@ const KidsDropdown = ({toggleKidsDropdown}) => {
               <li>Jackets & Waistcoat</li>
               <li>Innerwear</li>
               <li>Ethnic Wear</li>
-              <li></li>
             </ul>
           </Col>
           <Col lg={2} className="dropdown-list">
