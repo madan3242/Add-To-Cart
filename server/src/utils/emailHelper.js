@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer')
 
-exports.sendOtp = async (options) => {
+exports.emailHelper = async (options) => {
     // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -21,5 +21,3 @@ exports.sendOtp = async (options) => {
 
   await transporter.sendMail(message)  
 }
-
-module.exports = sendOtp
