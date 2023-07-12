@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 
-const CreateProduct = () => {
+const AddProduct = () => {
     const [product, setProduct] = useState({
         name: "",
         price: "",
@@ -16,14 +16,14 @@ const CreateProduct = () => {
         })
     }
 
-    const createProduct = (e) => {
+    const addProduct = (e) => {
         e.preventDefault();
 
     }
   return (
     <>
         <div className="create-product">
-            <h2>Create Product</h2>
+            <h2>Add Product</h2>
             <Form>
                 <Form.Label>Name</Form.Label>
                 <Form.Control type="text" placeholder="Enter Product Name" />
@@ -34,7 +34,7 @@ const CreateProduct = () => {
                 <Form.Label>Qty</Form.Label>
                 <Form.Control type="text" placeholder="Enter Product Qty" />
 
-                <Button onClick={createProduct}>Create Product</Button>
+                <Button onClick={addProduct}>Add Product</Button>
             </Form>
         </div>
     </>

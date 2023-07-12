@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
-import CreateProduct from '../createproduct/CreateProduct'
+import AddProduct from './AddProduct'
 import './product.css'
 
 const Products = () => {
-  const [createProduct, setCreateProduct] = useState(false)
+  const [addProduct, setAddProduct] = useState(false)
 
   const toggleAddProduct = () => {
     setCreateProduct(!createProduct)
@@ -12,7 +12,7 @@ const Products = () => {
   return (
     <>
       <div style={{ position: "relative"}}>
-        {createProduct && <CreateProduct />}
+        {addProduct && <AddProduct />}
         <Button style={{float: "right"}} onClick={toggleAddProduct}>Add Product</Button>
         <Row>
             <h2>Products</h2>

@@ -1,17 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Home } from './pages/homePage/Home'
-import Admin from './admin/Admin'
+import Admin from './components/Admin/Admin'
+import HomeNavbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
+import Home from './components/Home/Home'
+import Profile from './components/Profile/Profile'
+import Products from './components/Products/Products'
+import Login from './components/Login/Login'
+import { setAuthToken } from './services/setAuthToken'
 
 const App = () => {
+  const [isloggedIn, setIsLoggedIn] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
+
+  useEffect(() => {
+    if(localStorage.token){
+      setAuthToken(localStorage.token)
+      setIsLoggedIn(true);
+      setShowLogin(false)
+    }
+  })
+
+  const toggleLogin = () => {
+    setShowLogin(!showLogin);
+  }
   return (
     <>
-      <Router>
+      <div style={{ position: "relative" }}>
+      <Router >
+      {showLogin && <Login toggleLogin={toggleLogin} setIsLoggedIn={setIsLoggedIn} />}
+        <HomeNavbar />
         <Routes>
-          <Route path='/*' exact element={<Home />}  />
+          <Route path='/' exact element={<Home />}  />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/products' element={<Products />} />
+
+          
           <Route path='/admin/*' element={<Admin />} />
         </Routes>
+        <Footer />
       </Router>
+      </div>
     </>
   )
 }

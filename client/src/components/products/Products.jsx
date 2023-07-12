@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import ProductFilter from '../../components/products/ProductFilter'
+import ProductFilter from './ProductFilter'
 import './Products.css'
 
 const Products = () => {
