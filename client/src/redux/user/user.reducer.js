@@ -2,13 +2,14 @@ import {
     LOGIN_FAILURE, 
     LOGIN_REQUEST, 
     LOGIN_SUCCESS, 
+    LOGOUT_SUCCESS, 
     SIGNUP_FAILURE, 
     SIGNUP_REQUEST, 
     SIGNUP_SUCCESS, 
     UPDATE_USER_FAILURE, 
     UPDATE_USER_REQUEST, 
     UPDATE_USER_SUCCESS, 
-    USER_LOGOUT 
+     
 } from "./user.action"
 
 const initialState = {
@@ -19,7 +20,7 @@ const initialState = {
     errorMessage: null
 }
 
-const authReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
     const {type, payload} = action
     switch(type){
         case LOGIN_REQUEST: 
@@ -83,7 +84,7 @@ const authReducer = (state = initialState, action) => {
                 errorMessage: payload.error
             }
         
-        case USER_LOGOUT: 
+        case LOGOUT_SUCCESS: 
             localStorage.removeItem("token")
             localStorage.removeItem("user")
             return {
@@ -97,4 +98,4 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export default authReducer;
+export default userReducer;

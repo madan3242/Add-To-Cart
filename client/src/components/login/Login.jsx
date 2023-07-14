@@ -2,32 +2,33 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { GrClose } from "react-icons/gr";
-import { userLogin, userSignup } from "../../services/auth.services";
 import { useDispatch } from 'react-redux'
+import { login, signup } from "../../redux/user/user.action";
 
-const Login = ({ toggleLogin, setIsLoggedIn }) => {
+const Login = ({ toggleLogin, setIsAuthenticated }) => {
+  const dispatch = useDispatch();
+  //login data
   const [loginUserData, setLoginUserData] = useState({
     email: "",
     password: "",
   });
 
+  //signup data
   const [signupUserData, setSignupUserData] = useState({
+    name: "",
     email: "",
-    password: "",
-    confirmPassword: ""
+    password: ""
   });
 
-  const dispatch = useDispatch();
-
-  const [login, setLogin] = useState(true);
-
+  const [isLogin, setIsLogin] = useState(true);
+  //to handle the login data change
   const handleLoginChange = (e) => {
     setLoginUserData({
       ...loginUserData,
       [e.target.name]: e.target.value
     })
   }
-  
+  //to handle the signup data change
   const handleSignupChange = (e) => {
     setSignupUserData({
       ...signupUserData,
@@ -42,32 +43,29 @@ const Login = ({ toggleLogin, setIsLoggedIn }) => {
         email: loginUserData.email,
         password: loginUserData.password
       }
-      dispatch(userLogin(data, setIsLoggedIn, toggleLogin))
+      dispatch(login(data, setIsAuthenticated, toggleLogin))
     } catch (error) { }
   }
 
   const signupSubmit = async (e) => {
     e.preventDefault();
-    if(signupUserData.password === signupUserData.confirmPassword){
       try {
         const data = {
+          name: signupUserData.name,
           email: signupUserData.email,
           password: signupUserData.password
         }
-        dispatch(userSignup(data, setIsLoggedIn, toggleLogin))
+        dispatch(signup(data, setIsAuthenticated, toggleLogin))
       } catch (error) {
-        alert(JSON.stringify(error))
+        alert(JSON.stringify(error.message))
       }
-    } else {
-      alert("Password dosen't match")
-    }
   }
 
   return (
     <>
       <div className="login-form">
         <GrClose size={30} className="close-icon" onClick={toggleLogin} />
-        {login ? (
+        {isLogin ? (
           <>
             <Form onSubmit={loginSubmit}>
             <h2 className="mb-4">Login</h2>
@@ -95,7 +93,7 @@ const Login = ({ toggleLogin, setIsLoggedIn }) => {
                 Don't have an account ?{" "}
                 <span
                   className="span-button"
-                  onClick={() => setLogin(!login)}
+                  onClick={() => setIsLogin(!isLogin)}
                 >
                   Sign up
                 </span>{" "}
@@ -107,6 +105,14 @@ const Login = ({ toggleLogin, setIsLoggedIn }) => {
           <>
             <Form onSubmit={signupSubmit}>
             <h2 className="mb-4">Signup</h2>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Name"
+              className="mb-3"
+            >
+              <Form.Control type="text" name="name" onChange={handleSignupChange} placeholder="Name" />
+            </FloatingLabel>
+
             <FloatingLabel
               controlId="floatingInput"
               label="Email address"
@@ -123,14 +129,6 @@ const Login = ({ toggleLogin, setIsLoggedIn }) => {
               <Form.Control type="password" name="password" onChange={handleSignupChange} placeholder="Password" />
             </FloatingLabel>
 
-            <FloatingLabel
-              controlId="floatingConfirmPassword"
-              label="Confirm Password"
-              className="mb-3"
-            >
-              <Form.Control type="password"  name="confirmPassword" onChange={handleSignupChange} placeholder="Confirm Password" />
-            </FloatingLabel>
-
             <div className="text-center">
               <Button variant="success" className="mb-2" type="submit">
                 Signup
@@ -139,7 +137,7 @@ const Login = ({ toggleLogin, setIsLoggedIn }) => {
                 Already have an account ?{" "}
                 <span
                   className="span-button"
-                  onClick={() => setLogin(!login)}
+                  onClick={() => setIsLogin(!isLogin)}
                 >
                   Login
                 </span>

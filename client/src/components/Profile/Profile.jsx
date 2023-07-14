@@ -3,7 +3,6 @@ import "./Profile.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { AiOutlineUser, AiTwotoneEdit } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserProfile } from "../../services/auth.services";
 
 const Profile = () => {
     const [edit, setEdit] = useState(true);
@@ -26,7 +25,7 @@ const Profile = () => {
     const updateProfile = (e) => {
       e.preventDefault();
       setEdit(!edit)
-      dispatch(updateUserProfile(user, setEdit))
+      // dispatch(updateUserProfile(user, setEdit))
     }
     return (
       <Container className="profileContainer">

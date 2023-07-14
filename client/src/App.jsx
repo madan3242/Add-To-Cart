@@ -10,13 +10,13 @@ import Login from './components/Login/Login'
 import { setAuthToken } from './services/setAuthToken'
 
 const App = () => {
-  const [isloggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
 
   useEffect(() => {
     if(localStorage.token){
       setAuthToken(localStorage.token)
-      setIsLoggedIn(true);
+      setIsAuthenticated(true);
       setShowLogin(false)
     }
   })
@@ -28,7 +28,7 @@ const App = () => {
     <>
       <div style={{ position: "relative" }}>
       <Router >
-      {showLogin && <Login toggleLogin={toggleLogin} setIsLoggedIn={setIsLoggedIn} />}
+        {showLogin && <Login toggleLogin={toggleLogin} setIsAuthenticated={setIsAuthenticated} />}
         <HomeNavbar />
         <Routes>
           <Route path='/' exact element={<Home />}  />

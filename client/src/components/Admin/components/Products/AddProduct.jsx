@@ -41,4 +41,4 @@ const AddProduct = () => {
   )
 }
 
-export default CreateProduct
+export default AddProduct

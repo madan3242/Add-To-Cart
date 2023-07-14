@@ -4,7 +4,7 @@ import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 import "./navbar.css";
 import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
-import { userLogout } from "../../services/auth.services";
+// import { userLogout } from "../../services/auth.services";
 import { useDispatch } from "react-redux";
 
 const HomeNavbar = ({toggleLogin, isloggedIn, setIsLoggedIn }) => {
@@ -12,7 +12,7 @@ const HomeNavbar = ({toggleLogin, isloggedIn, setIsLoggedIn }) => {
   const dispatch = useDispatch();
 
   const logout = () => {
-    dispatch(userLogout(setIsLoggedIn))
+    // dispatch(logout(setIsLoggedIn))
   }
   
   return (
