@@ -3,6 +3,7 @@ import "./Profile.css";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { AiOutlineUser, AiTwotoneEdit } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+import { updateProfile } from "../../redux/user/user.action";
 
 const Profile = () => {
     const [edit, setEdit] = useState(true);
@@ -22,10 +23,10 @@ const Profile = () => {
       })
     }
   
-    const updateProfile = (e) => {
+    const handleUpdate = (e) => {
       e.preventDefault();
       setEdit(!edit)
-      // dispatch(updateUserProfile(user, setEdit))
+      dispatch(updateProfile(user, setEdit))
     }
     return (
       <Container className="profileContainer">
@@ -69,7 +70,7 @@ const Profile = () => {
               </Form.Group>
               {!edit &&
                 <div style={{float: "right"}}>
-                  <Button variant="primary" onClick={updateProfile}>Save</Button>&nbsp;
+                  <Button variant="primary" onClick={handleUpdate}>Save</Button>&nbsp;
                   <Button variant="secondary" onClick={() => setEdit(!edit)}>Cancel</Button>
                 </div>
               }
@@ -89,7 +90,7 @@ const Profile = () => {
               </div>
             </Col>
             <Col lg={9} className="main-section">
-              <AddressCard />
+              {/* <AddressCard /> */}
             </Col>
           </Row>
         </div>

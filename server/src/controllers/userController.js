@@ -152,10 +152,10 @@ exports.viewProfile = AsyncErrors(async (req, res, next) => {
 })
 
 exports.updateProfile = AsyncErrors(async (req, res, next) => {
-  const {name, email} = req.body
+  const {name, email, phonenumber} = req.body
 
-  await User.findByIdAndUpdate(req.user.id, {
-    name, email
+  const user = await User.findByIdAndUpdate(req.user.id, {
+    name, email, phonenumber
   }, {
     new: true,
     runValidators: true,
@@ -164,7 +164,8 @@ exports.updateProfile = AsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "User updated successfully"
+    message: "User updated successfully",
+    user
   })
 })
 

@@ -2,6 +2,8 @@ import {
     LOGIN_FAILURE, 
     LOGIN_REQUEST, 
     LOGIN_SUCCESS, 
+    LOGOUT_FAILURE, 
+    LOGOUT_REQUEST, 
     LOGOUT_SUCCESS, 
     SIGNUP_FAILURE, 
     SIGNUP_REQUEST, 
@@ -84,6 +86,11 @@ const userReducer = (state = initialState, action) => {
                 errorMessage: payload.error
             }
         
+        case LOGOUT_REQUEST: 
+            return {
+                ...state,
+                loading: true,
+            }
         case LOGOUT_SUCCESS: 
             localStorage.removeItem("token")
             localStorage.removeItem("user")
@@ -93,6 +100,11 @@ const userReducer = (state = initialState, action) => {
                 user: null,
                 token: null,
                 isAuthinticated: false
+            }
+        case LOGOUT_FAILURE: 
+            return {
+                ...state,
+                loading: false,
             }
         default: return state
     }

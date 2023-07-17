@@ -16,7 +16,7 @@ export const UPDATE_USER_REQUEST = "UPDATE_USER_REQUEST";
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
 
-const API_URL =  `http://localhost:5000/api/v1`
+const API_URL =  `http://localhost:8080/api/v1`
 
 const config = {
     headers: {
@@ -56,22 +56,21 @@ export const login = (data, setIsAuthenticated, toggleLogin) => {
     }
 }
 
-
-export const logout = (setIsLoggedIn) => {
+export const logout = (setIsAuthenticated) => {
     return async (dispatch) => {
         try {
             dispatch({ type: LOGOUT_REQUEST })
             const response = await axios.get(`${API_URL}/logout`)
             dispatch({ type: LOGOUT_SUCCESS })
             console.log(response);
-            setIsLoggedIn(false)
+            setIsAuthenticated(false)
         } catch (error) {
             dispatch({ type: LOGOUT_FAILURE })
         }
     }
 }
 
-export const updateUserProfile = (data, setEdit) => {
+export const updateProfile = (data, setEdit) => {
     return async (dispatch) => {
         try {
             dispatch({ type: UPDATE_USER_REQUEST })
