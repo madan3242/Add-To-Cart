@@ -1,9 +1,37 @@
-.box {
-    height: 200px;
-    
-    /* margin: 0.5rem; */
+.carousel-one, .carousel-two, .carousel-three, .box {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.carousel-one, .carousel-two, .carousel-three{
+    height: 400px;
+    color: white;
+}
+
+.carousel-one h1, .carousel-two h1, .carousel-three h1 {
+    font-size: 3.6rem;
+}
+
+.carousel-one {
+    background: rgb(238,174,202);
+    background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.carousel-two {
+    background: rgb(63,225,251);
+    background: linear-gradient(90deg, rgba(63,225,251,0.9781162464985994) 18%, rgba(205,145,201,1) 100%);
+}
+
+.carousel-three {
+    background: rgb(63,251,182);
+    background: linear-gradient(90deg, rgba(63,251,182,0.9781162464985994) 18%, rgba(205,145,201,1) 100%);
+}
+
+.discount-box, .box {
     background-color: #f5f5f5;
+}
+
+.box {
+    height: 200px;
 }

@@ -11,18 +11,19 @@ const HomeCarousel = () => {
     <>
       <Carousel>
         <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={slide1}
-            alt=""
-            onClick={() => navigate("/products")}
-          />
+          <div className="carousel-one">
+            <h1>Discounts you won't find anywhere else.</h1>
+          </div>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="d-block w-100" src={slide2} alt="" />
+        <div className="carousel-two">
+            <h1>Enhance your joy - of shopping.</h1>
+          </div>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="d-block w-100" src={slide3} alt="" />
+        <div className="carousel-three">
+            <h1>Keep smiling and carry on purchasing.</h1>
+          </div>
         </Carousel.Item>
       </Carousel>
     </>

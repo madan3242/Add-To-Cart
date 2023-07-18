@@ -8,12 +8,14 @@ const Home = () => {
     <>
       <Container className="py-3" style={{ marginTop: "4rem" }}>
         <HomeCarousel />
+
         <Row>
-          <Col className="my-4 py-3 text-center">
+          <Col className="my-4 py-3 text-center discount-box">
             <h2>10% Instant Discount*</h2>
             <p>on Credit and Debit Cards</p>
           </Col>
         </Row>
+
         <Row style={{ justifyContent: "space-between"}}>
           <Col lg={4} className="box">
             <h2>Amazing Dealing on TVs | Up to ₹5000 off</h2>
