@@ -36,9 +36,9 @@ const HomeNavbar = ({toggleLogin, isAuthenticated, setIsAuthenticated }) => {
           </Navbar.Offcanvas> */}
 
           <div className="d-flex">
-            <Nav.Link >Mens</Nav.Link>
-            <Nav.Link >Womens</Nav.Link>
-            <Nav.Link >Kids</Nav.Link>
+            <Nav.Link onClick={() => navigate('/products')}>Mobiles</Nav.Link>
+            <Nav.Link >Electronics</Nav.Link>
+            <Nav.Link >Fashion</Nav.Link>
           </div>
 
           <Form>

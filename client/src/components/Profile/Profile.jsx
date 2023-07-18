@@ -77,23 +77,6 @@ const Profile = () => {
             </Form>
           </Col>
         </Row>
-  
-        <div className="more-profile">
-          <Row>
-            <Col lg={3} className="side-section">
-              <div className="side-section-list">
-                <ul>
-                  <li>Address</li>
-                  <li>Wishlist</li>
-                  <li>Orders</li>
-                </ul>
-              </div>
-            </Col>
-            <Col lg={9} className="main-section">
-              {/* <AddressCard /> */}
-            </Col>
-          </Row>
-        </div>
       </Container>
     );
   };

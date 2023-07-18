@@ -7,12 +7,13 @@ const Products = () => {
   const [addProduct, setAddProduct] = useState(false)
 
   const toggleAddProduct = () => {
-    setCreateProduct(!createProduct)
+    setAddProduct(!addProduct)
   }
+
   return (
     <>
       <div style={{ position: "relative"}}>
-        {addProduct && <AddProduct />}
+        {addProduct && <AddProduct setAddProduct={setAddProduct} />}
         <Button style={{float: "right"}} onClick={toggleAddProduct}>Add Product</Button>
         <Row>
             <h2>Products</h2>

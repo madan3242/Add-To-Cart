@@ -2,20 +2,11 @@
     margin-top: 5rem;
 }
 
-.user-profile, .userAddress{
-    height: 400px;
+.user-profile {
+    height: 450px;
     margin: 2% 0;
     background-color: #f6f6f6;
-}
-
-.user-profile {
     padding: 2rem 4rem;
-    height: 350px;
-}
-
-.more-profile{
-    height: 400px;
-    margin: 2% 0;
 }
 
 .more-profile .side-section {
