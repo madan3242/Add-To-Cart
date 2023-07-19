@@ -22,7 +22,29 @@ const Products = () => {
         <Container>
           <Row>
             <ProductFilter filter={filter} setFilter={setFilter} />
-            <Col lg={10}>HI</Col>
+            <Col lg={10}>
+              <Row>
+                <Col lg={3} className='product'>
+                  Product
+                </Col>
+                <Col lg={3} className='product'>
+                  Product
+                </Col>
+                <Col lg={3} className='product'>
+                  Product
+                </Col>
+                <Col lg={3} className='product'>
+                  Product
+                </Col>
+                <Col lg={3} className='product'>
+                  Product
+                </Col>
+                <Col lg={3} className='product'>
+                  Product
+                </Col>
+              </Row>
+              
+            </Col>
           </Row>
         </Container>
       </div>

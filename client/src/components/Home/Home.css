@@ -11,6 +11,7 @@
 
 .carousel-one h1, .carousel-two h1, .carousel-three h1 {
     font-size: 3.6rem;
+    background-color: transparent;
 }
 
 .carousel-one {

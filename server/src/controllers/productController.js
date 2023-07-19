@@ -137,15 +137,15 @@ exports.getOnlyReviewsForOneProduct = AsyncErrors(async (req, res, next) => {
 })
 
 exports.adminAddProduct = AsyncErrors(async ( req, res, next ) => {
-  let imageArray = []
+  let imageArray = [];
 
-  if(!req.files){
+  if(!req.body.photos){
     return next(new ErrorHandler('Product images are required', 401))
   }
 
-  if(req.files){
-    for (let index = 0; index < req.files.photos.length; index++) {
-      let result = await cloudinary.uploader.upload(req.files.photos[index].tempFilePath, {
+  if(req.body.photos.length > 0){
+    for (let index = 0; index < req.body.photos.length; index++) {
+      let result = await cloudinary.uploader.upload(req.body.photos[index], {
         folder: 'add-to-cart/products'
       })
 

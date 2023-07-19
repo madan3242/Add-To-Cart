@@ -9,8 +9,11 @@ import Products from './components/Products/Products'
 import Login from './components/Login/Login'
 import { setAuthToken } from './services/setAuthToken'
 import NotFound from './components/NotFound/NotFound'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import { useSelector } from 'react-redux'
 
 const App = () => {
+  const user = useSelector(state => state.auth.user);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
 
@@ -37,7 +40,11 @@ const App = () => {
         />
         <Routes>
           <Route path='/' exact element={<Home />}  />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Profile />
+            </ProtectedRoute>
+          } />
           <Route path='/products' element={<Products />} />
 
           <Route path='/admin/*' element={<Admin />} />

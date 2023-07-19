@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { createProduct } from "../../../../redux/product/product.action";
 
 const AddProduct = ({ setAddProduct }) => {
+  const dispatch = useDispatch();
   const [product, setProduct] = useState({
     name: "",
     price: "",
@@ -19,14 +22,30 @@ const AddProduct = ({ setAddProduct }) => {
     });
   };
 
-  const handleImageChange = () => {
-
-  }
+  let imageHandler = (e) => {
+    let imageFiles = Array.from(e.target.files)
+    let files = [];
+    
+    imageFiles.map((file) => {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.addEventListener('load', () => {
+        if(reader.result) {
+          files.push(reader.result)
+        }
+      })
+    })
+    setProduct({
+      ...product,
+      photos: files
+    })
+}
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setAddProduct(false);
     console.log(product);
+    dispatch(createProduct(product))
   };
   return (
     <>
@@ -53,7 +72,7 @@ const AddProduct = ({ setAddProduct }) => {
             </Col>
             <Col lg={6}>
               <Form.Label className="mt-3">Photos</Form.Label>
-              <Form.Control type="file" multiple name="photos" />
+              <Form.Control type="file" multiple name="photos" onChange={imageHandler} />
 
               <Form.Label className="mt-3">Category</Form.Label>
               <Form.Control as={"select"} placeholder="Enter Product Category" name="category" onChange={handleInputChange} >
