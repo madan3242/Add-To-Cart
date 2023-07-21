@@ -13,7 +13,7 @@ const Products = () => {
   return (
     <>
       <div style={{ position: "relative"}}>
-        {addProduct && <AddProduct setAddProduct={setAddProduct} />}
+        {addProduct && <AddProduct setAddProduct={setAddProduct} toggleAddProduct={toggleAddProduct} />}
         <Button style={{float: "right"}} onClick={toggleAddProduct}>Add Product</Button>
         <Row>
             <h2>Products</h2>

@@ -31,10 +31,18 @@ const Profile = () => {
     return (
       <Container className="profileContainer">
         <Row className="user-profile">
-          <Col lg={6} className="mx-auto">
+          <Col lg={3} className="side-section">
+            <div className="side-section-list">
+              <ul>
+                <li>Profile</li>
+                <li onClick={() => setEdit(!edit)}>Update</li>
+              </ul>
+            </div>
+          </Col>
+          <Col lg={9} className="main-section" >
             <Form>
-              <AiTwotoneEdit style={{ float: "right" }} size={20} onClick={() => setEdit(!edit)} />
-              <AiOutlineUser size={80} />
+              {/* <AiTwotoneEdit style={{ float: "right" }} size={20} onClick={() => setEdit(!edit)} /> */}
+              <AiOutlineUser size={70} />
   
               <Form.Group className="mb-3" as={Row}>
                 <Form.Label column sm="2">

@@ -24,33 +24,37 @@ const config = {
     }
 }
 
-export const signup = (data, setIsAuthenticated, toggleLogin) => {
+export const signup = (data, setIsAuthenticated, toggleLogin, setLoading) => {
     return async (dispatch) => {
         try {
             dispatch({ type: SIGNUP_REQUEST })
+            setLoading(true)
             const response = await axios.post(`${API_URL}/signup`, data, config)
-            console.log(response);
             dispatch({ type: SIGNUP_SUCCESS, payload: response.data })
             setIsAuthenticated(true)
+            setLoading(false)
             toggleLogin()
         } catch(error) {
             dispatch({ type: SIGNUP_FAILURE, payload: error})
+            setLoading(false)
             setIsAuthenticated(false)
         }
     }
 }
 
-export const login = (data, setIsAuthenticated, toggleLogin) => {
+export const login = (data, setIsAuthenticated, toggleLogin, setLoading) => {
     return async (dispatch) => {
         try {
             dispatch({ type: LOGIN_REQUEST })
+            setLoading(true)
             const response = await axios.post(`${API_URL}/login`, data, config)
-            console.log(response);
             dispatch({ type: LOGIN_SUCCESS, payload: response.data })
             setIsAuthenticated(true)
+            setLoading(false)
             toggleLogin()
         } catch(error) {
             dispatch({ type: LOGIN_FAILURE, payload: error})
+            setLoading(false)
             setIsAuthenticated(false)
         }
     }

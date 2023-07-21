@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../../../redux/product/product.action";
+import { GrClose } from "react-icons/gr";
 
-const AddProduct = ({ setAddProduct }) => {
+const AddProduct = ({ setAddProduct, toggleAddProduct }) => {
   const dispatch = useDispatch();
   const [product, setProduct] = useState({
     name: "",
@@ -14,6 +15,7 @@ const AddProduct = ({ setAddProduct }) => {
     brand: "",
     stocks: "",
   });
+  const [loading, setLoading] = useState(false)
 
   const handleInputChange = (e) => {
     setProduct({
@@ -43,13 +45,12 @@ const AddProduct = ({ setAddProduct }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setAddProduct(false);
-    console.log(product);
-    dispatch(createProduct(product))
+    dispatch(createProduct(product, setAddProduct))
   };
   return (
     <>
       <div className="add-product">
+        <GrClose size={30} className="close-icon" onClick={toggleAddProduct} />
         <h2>Add Product</h2>
         <Form encType="multipart/form-data" onSubmit={handleSubmit}>
           <Row>

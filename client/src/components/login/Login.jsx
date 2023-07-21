@@ -4,9 +4,11 @@ import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { GrClose } from "react-icons/gr";
 import { useDispatch } from 'react-redux'
 import { login, signup } from "../../redux/user/user.action";
+import Loader from "../Loader/Loader";
 
 const Login = ({ toggleLogin, setIsAuthenticated }) => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false)
   //login data
   const [loginUserData, setLoginUserData] = useState({
     email: "",
@@ -43,7 +45,7 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
         email: loginUserData.email,
         password: loginUserData.password
       }
-      dispatch(login(data, setIsAuthenticated, toggleLogin))
+      dispatch(login(data, setIsAuthenticated, toggleLogin, setLoading))
     } catch (error) { }
   }
 
@@ -55,7 +57,7 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
           email: signupUserData.email,
           password: signupUserData.password
         }
-        dispatch(signup(data, setIsAuthenticated, toggleLogin))
+        dispatch(signup(data, setIsAuthenticated, toggleLogin, setLoading))
       } catch (error) {
         alert(JSON.stringify(error.message))
       }
@@ -87,7 +89,7 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
 
             <div className="text-center">
               <Button variant="success" className="mb-2" type="submit">
-                Login
+                {!loading ? 'Login' : <Loader />}
               </Button>
               <p>
                 Don't have an account ?{" "}
@@ -95,7 +97,7 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
                   className="span-button"
                   onClick={() => setIsLogin(!isLogin)}
                 >
-                  Sign up
+                  Signup
                 </span>{" "}
               </p>
             </div>
@@ -131,7 +133,7 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
 
             <div className="text-center">
               <Button variant="success" className="mb-2" type="submit">
-                Signup
+                {!loading ? 'Signup' : <Loader />}
               </Button>
               <p>
                 Already have an account ?{" "}
