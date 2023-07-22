@@ -14,9 +14,9 @@ export const UPDATE_PRODUCT_REQUEST = 'NEW_PRODUCT_REQUEST'
 export const UPDATE_PRODUCT_SUCCESS = 'NEW_PRODUCT_SUCCESS'
 export const UPDATE_PRODUCT_FAILURE = 'NEW_PRODUCT_FAILURE'
 
+export const DELETE_PRODUCT_REQUEST = 'NEW_PRODUCT_REQUEST'
 export const DELETE_PRODUCT_SUCCESS = 'NEW_PRODUCT_SUCCESS'
 export const DELETE_PRODUCT_FAILURE = 'NEW_PRODUCT_FAILURE'
-export const DELETE_PRODUCT_REQUEST = 'NEW_PRODUCT_REQUEST'
 
 import axios from "axios"
 const API_URL =  `http://localhost:8080/api/v1`
@@ -26,7 +26,7 @@ const config = {
         'Content-Type': 'application/json'
     }
 }
-
+//Get All Products
 export const getAllProducts = (keyword, currentPage = 1, price = [0, 250000], category, rating = 0) => {
     return async (dispatch) => {
         try {
@@ -43,19 +43,19 @@ export const getAllProducts = (keyword, currentPage = 1, price = [0, 250000], ca
         }
     }
 }
-
+//Get All Products for admin
 export const getAdminProducts = () => {
     return async (dispatch) => {
         try {
             dispatch({ type: ADMIN_PRODUCTS_REQUEST })
-            const response = await axios.get(`${API_URL}/products`)
+            const response = await axios.get(`${API_URL}/admin/products`)
             dispatch({ type: ADMIN_PRODUCTS_SUCCESS, payload: response.data })
         } catch (error) {
             dispatch({ type: ADMIN_PRODUCTS_FAILURE, payload: error.message })
         }
     }
 }
-
+//Create Product
 export const createProduct = (data, setAddProduct) => {
     return async (dispatch) => {
         try {
@@ -68,8 +68,8 @@ export const createProduct = (data, setAddProduct) => {
         }
     }
 }
-
-const getOneProduct = () => {
+//Update product
+export const updateProduct = (id, data) => {
     return async (dispatch) => {
         try {
             
@@ -78,9 +78,13 @@ const getOneProduct = () => {
         }
     }
 }
-
-const getProductByID = () => {
-    axios.get(`${API_URL}/products/:id`)
-    .then(data => {return data})
-    .catch(error => { return error})
+//Get single product
+const getOneProduct = (id) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`${API_URL}/products/:id`)
+        } catch (error) {
+            
+        }
+    }
 }

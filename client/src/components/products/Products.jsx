@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ProductFilter from './ProductFilter'
 import './Products.css'
+import { useSelector } from 'react-redux'
+import Pagination from './Pagination'
 
 const Products = () => {
   const [filter, setFilter] = useState({
@@ -11,10 +13,9 @@ const Products = () => {
     catagorey: "",
     rating: 0
   })
+
+  const products = useSelector((state) => state.products)
   
-
-
-
   return (
     <>
       <div className="productContainer" style={{ height: "700px"}}>
@@ -44,6 +45,8 @@ const Products = () => {
                 </Col>
               </Row>
               
+                
+                {/* <Pagination />  */}
             </Col>
           </Row>
         </Container>

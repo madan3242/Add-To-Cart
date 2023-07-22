@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Row, Table } from 'react-bootstrap'
 import AddProduct from './AddProduct'
 import './product.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAdminProducts } from '../../../../redux/product/product.action'
 
 const Products = () => {
   const [addProduct, setAddProduct] = useState(false)
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAdminProducts())
+  }, [dispatch])
 
   const toggleAddProduct = () => {
     setAddProduct(!addProduct)
@@ -21,7 +26,7 @@ const Products = () => {
             <h2>Products</h2>
         </Row>
         <Row style={{ margin: "1rem"}}>
-          <Table striped bordered hover variant="secondary">
+          <Table striped bordered hover >
             <thead>
               <tr>
                 <th>ID</th>
@@ -39,11 +44,13 @@ const Products = () => {
                 products?.length > 0 ? <>{
                   products.map((product) => {
                     return <tr>
-                      <td>{product.id}</td>
+                      <td>{product._id}</td>
                       <td>{product.name}</td>
                       <td>{product.price}</td>
                       <td>{product.description}</td>
-                      <td>{product.photo[0]}</td>
+                      <td>
+                        <img src={product.photos[0].secure_url} height={100} alt="" />
+                      </td>
                       <td>{product.category}</td>
                       <td>{product.brand}</td>
                       <td>{product.stocks}</td>

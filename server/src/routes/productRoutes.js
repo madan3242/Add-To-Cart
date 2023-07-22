@@ -8,6 +8,7 @@ const {
     adminAddProduct,
     adminUpdateProduct,
     adminDeleteProduct,
+    adminAllProducts,
 } = require('../controllers/productController')
 const { 
     isLoggedIn, 
@@ -26,7 +27,7 @@ router.route("/reviews").get(isLoggedIn, getOnlyReviewsForOneProduct);
 //admin routes
 router.route("/admin/products/add").post(isLoggedIn, customRole('admin') , adminAddProduct);
 
-router.route("/admin/products").post(isLoggedIn, customRole('admin') );
+router.route("/admin/products").get(isLoggedIn, customRole('admin'), adminAllProducts );
 
 router.route("/admin/products/:id")
     .put(isLoggedIn, customRole('admin'), adminUpdateProduct)

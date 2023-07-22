@@ -1,4 +1,8 @@
 import { 
+    ALL_USERS_FAILURE,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    CLEAR_ERRORS,
     LOGIN_FAILURE, 
     LOGIN_REQUEST, 
     LOGIN_SUCCESS, 
@@ -22,7 +26,7 @@ const initialState = {
     errorMessage: null
 }
 
-const userReducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
     const {type, payload} = action
     switch(type){
         case LOGIN_REQUEST: 
@@ -110,4 +114,31 @@ const userReducer = (state = initialState, action) => {
     }
 }
 
-export default userReducer;
+export const allUsersReducer = (state = { users: [] }, action) => {
+    switch(action.type){
+        case ALL_USERS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+        case ALL_USERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                users: action.payload
+            }
+        case ALL_USERS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        default:
+            return state
+    }
+}

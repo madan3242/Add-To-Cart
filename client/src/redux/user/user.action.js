@@ -16,6 +16,12 @@ export const UPDATE_USER_REQUEST = "UPDATE_USER_REQUEST";
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
 
+export const ALL_USERS_REQUEST = 'ALL_USERS_REQUEST'
+export const ALL_USERS_SUCCESS = 'ALL_USERS_SUCCESS'
+export const ALL_USERS_FAILURE = 'ALL_USERS_FAILURE'
+
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'
+
 const API_URL =  `http://localhost:8080/api/v1`
 
 const config = {
@@ -23,7 +29,7 @@ const config = {
         'Content-Type': 'application/json'
     }
 }
-
+//User signup
 export const signup = (data, setIsAuthenticated, toggleLogin, setLoading) => {
     return async (dispatch) => {
         try {
@@ -41,7 +47,7 @@ export const signup = (data, setIsAuthenticated, toggleLogin, setLoading) => {
         }
     }
 }
-
+//User login
 export const login = (data, setIsAuthenticated, toggleLogin, setLoading) => {
     return async (dispatch) => {
         try {
@@ -59,7 +65,7 @@ export const login = (data, setIsAuthenticated, toggleLogin, setLoading) => {
         }
     }
 }
-
+//User logout
 export const logout = (setIsAuthenticated) => {
     return async (dispatch) => {
         try {
@@ -73,7 +79,7 @@ export const logout = (setIsAuthenticated) => {
         }
     }
 }
-
+//Update profile
 export const updateProfile = (data, setEdit) => {
     return async (dispatch) => {
         try {
@@ -85,6 +91,18 @@ export const updateProfile = (data, setEdit) => {
             console.log(response);
         } catch (error) {
             dispatch({ type: UPDATE_USER_FAILURE, payload: error.message })
+        }
+    }
+}
+//Admin get all users
+export const getAllUsers = () => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: ALL_USERS_REQUEST })
+            const response = await axios.get(`${API_URL}/admin/users`)
+            dispatch({ type: ALL_USERS_SUCCESS, payload: response?.data?.users})
+        } catch (error) {
+            dispatch({ type: ALL_USERS_FAILURE, payload: error.message })
         }
     }
 }

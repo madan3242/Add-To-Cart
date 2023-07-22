@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Table } from "react-bootstrap";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers } from '../../../../redux/user/user.action'
 
 const User = () => {
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.users.users);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllUsers())
+  }, [dispatch])
   return (
     <>
       <Row>
         <h2>Users</h2>
       </Row>
       <Row style={{ margin: "1rem"}}>
-      <Table striped bordered hover variant="secondary">
+      <Table striped bordered hover >
             <thead>
               <tr>
               <th>ID</th>
@@ -24,32 +29,19 @@ const User = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Test</td>
-                <td>Test</td>
-                <td>Test</td>
-                <td>Test</td>
-                <td>Test</td>
-                <td>
-                  <AiOutlineEdit size={20} />
-                  {/* <AiOutlineDelete size={20} /> */}
-                </td>
-                <td>
-                  {/* <AiOutlineEdit size={20} /> */}
-                  <AiOutlineDelete size={20} />
-                </td>
-              </tr>
               {
                 users?.length > 0 ? <>{
-                  users.map((product) => {
+                  users.map((user) => {
                     return <tr>
-                      <td>{users.id}</td>
-                      <td>{users.name}</td>
-                      <td>{users.email}</td>
-                      <td>{users.phone}</td>
-                      <td>{users.role}</td>
+                      <td>{user._id}</td>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td>{user.phonenumber}</td>
+                      <td>{user.role}</td>
                       <td>
                         <AiOutlineEdit size={20} />
+                      </td>
+                      <td>
                         <AiOutlineDelete size={20} />
                       </td>
                     </tr>
