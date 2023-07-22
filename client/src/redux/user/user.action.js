@@ -16,9 +16,29 @@ export const UPDATE_USER_REQUEST = "UPDATE_USER_REQUEST";
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
 
-export const ALL_USERS_REQUEST = 'ALL_USERS_REQUEST'
-export const ALL_USERS_SUCCESS = 'ALL_USERS_SUCCESS'
-export const ALL_USERS_FAILURE = 'ALL_USERS_FAILURE'
+export const UPDATE_PASSWORD_REQUEST = "UPDATE_PASSWORD_REQUEST";
+export const UPDATE_PASSWORD_SUCCESS = "UPDATE_PASSWORD_SUCCESS";
+export const UPDATE_PASSWORD_FAILURE = "UPDATE_PASSWORD_FAILURE";
+
+export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
+export const FORGOT_PASSWORD_FAILURE = "FORGOT_PASSWORD_FAILURE";
+export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
+
+export const RESET_PASSWORD_REQUEST = "RESET_PASSWORD_REQUEST";
+export const RESET_PASSWORD_FAILURE = "RESET_PASSWORD_FAILURE";
+export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS";
+
+export const ALL_USERS_REQUEST = 'ALL_USERS_REQUEST';
+export const ALL_USERS_SUCCESS = 'ALL_USERS_SUCCESS';
+export const ALL_USERS_FAILURE = 'ALL_USERS_FAILURE';
+
+export const DELETE_USER_REQUEST = "DELETE_USER_REQUEST";
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const DELETE_USER_FAILURE = "DELETE_USER_FAILURE";
+
+export const ADMIN_UPDATE_USER_REQUEST = "ADMIN_UPDATE_USER_REQUEST";
+export const ADMIN_UPDATE_USER_SUCCESS = "ADMIN_UPDATE_USER_SUCCESS";
+export const ADMIN_UPDATE_USER_FAILURE = "ADMIN_UPDATE_USER_FAILURE";
 
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
@@ -94,6 +114,43 @@ export const updateProfile = (data, setEdit) => {
         }
     }
 }
+//update password
+export const updatePassword = (passwords) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: UPDATE_PASSWORD_REQUEST })
+            const response = await axios.put(`${API_URL}/changepassword`, passwords, config)
+            dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: response.data })
+        } catch (error) {
+            dispatch({ type: UPDATE_PASSWORD_FAILURE, payload: error.message })
+        }
+    }
+}
+//Forgot password
+export const forgotPassword = (email) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: FORGOT_PASSWORD_REQUEST })
+            const response = await axios.post(`${API_URL}/forgotpassword`, email, config)
+            dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: response.data })
+        } catch (error) {
+            dispatch({ type: FORGOT_PASSWORD_FAILURE, payload: error.message })
+        }
+    }
+}
+//Reset password
+export const resetPassword = (token, passwords) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: RESET_PASSWORD_REQUEST })
+            const response = await axios.put(`${API_URL}/password/reset/${token}`, passwords,config)
+            dispatch({ type: RESET_PASSWORD_SUCCESS, payload: response.data })
+        } catch (error) {
+            dispatch({ type: RESET_PASSWORD_FAILURE, payload: error.message })
+        }
+    }
+}
+
 //Admin get all users
 export const getAllUsers = () => {
     return async (dispatch) => {
@@ -103,6 +160,30 @@ export const getAllUsers = () => {
             dispatch({ type: ALL_USERS_SUCCESS, payload: response?.data?.users})
         } catch (error) {
             dispatch({ type: ALL_USERS_FAILURE, payload: error.message })
+        }
+    }
+}
+//Admin delete user
+export const adminDeleteUser = (id) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: DELETE_USER_REQUEST })
+            const response = await axios.delete(`${API_URL}/admin/users/${id}`)
+            dispatch({ type: DELETE_USER_SUCCESS, payload: response.data})
+        } catch (error) {
+            dispatch({ type: DELETE_USER_FAILURE, payload: error.message })
+        }
+    }
+}
+//Admin update user
+export const adminUpdateUser = (id, data) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: ADMIN_UPDATE_USER_REQUEST })
+            const response = await axios.put(`${API_URL}/admin/users/${id}`, data, config)
+            dispatch({ type: ADMIN_UPDATE_USER_SUCCESS, payload: response.data})
+        } catch (error) {
+            dispatch({ type: ADMIN_UPDATE_USER_FAILURE, payload: error.message })
         }
     }
 }

@@ -27,7 +27,7 @@ const config = {
     }
 }
 //Get All Products
-export const getAllProducts = (keyword, currentPage = 1, price = [0, 250000], category, rating = 0) => {
+export const getAllProducts = (keyword="", currentPage = 1, price = [0, 250000], category, rating = 0) => {
     return async (dispatch) => {
         try {
             dispatch({ type: PRODUCTS_REQUEST })

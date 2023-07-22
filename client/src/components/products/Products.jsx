@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ProductFilter from './ProductFilter'
 import './Products.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Pagination from './Pagination'
+import { getAllProducts } from '../../redux/product/product.action'
 
 const Products = () => {
+  const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllProducts())
+  }, [dispatch])
+
   const [filter, setFilter] = useState({
     minPrice: 0,
     maxPrice: 0,
@@ -13,13 +20,11 @@ const Products = () => {
     catagorey: "",
     rating: 0
   })
-
-  const products = useSelector((state) => state.products)
   
   return (
     <>
       <div className="productContainer" style={{ height: "700px"}}>
-        {/* {JSON.stringify(filter)} */}
+        {/* {JSON.stringify(products)} */}
         <Container>
           <Row>
             <ProductFilter filter={filter} setFilter={setFilter} />
