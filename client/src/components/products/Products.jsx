@@ -8,18 +8,19 @@ import { getAllProducts } from '../../redux/product/product.action'
 
 const Products = () => {
   const products = useSelector((state) => state.products.products);
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getAllProducts())
-  }, [dispatch])
-
+  const dispatch = useDispatch();
   const [filter, setFilter] = useState({
+    search: "",
     minPrice: 0,
-    maxPrice: 0,
+    maxPrice: 250000,
     brand: "",
     catagorey: "",
     rating: 0
   })
+  useEffect(() => {
+    dispatch(getAllProducts(filter))
+  }, [dispatch])
+
   
   return (
     <>

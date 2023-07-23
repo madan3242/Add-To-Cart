@@ -1,13 +1,12 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const NotFound = () => {
-    const navigate = useNavigate()
   return (
     <>
-        <div className="text-center" style={{ paddingTop: "4rem"}}>
+        <div className="text-center" style={{ padding: "6rem", height: "475px", }}>
             <h1>Error 404: Page Not Found</h1>
-            <p onClick={() => navigate('/')}>To Home</p>
+            <Link to='/' style={{ textDecoration: "none", color: "#000"}}>To Home</Link>
         </div>
     </>
   )

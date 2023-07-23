@@ -9,6 +9,7 @@ import Loader from "../Loader/Loader";
 const Login = ({ toggleLogin, setIsAuthenticated }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false)
+
   //login data
   const [loginUserData, setLoginUserData] = useState({
     email: "",

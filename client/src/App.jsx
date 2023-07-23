@@ -47,7 +47,11 @@ const App = () => {
           } />
           <Route path='/products' element={<Products />} />
 
-          <Route path='/admin/*' element={<Admin />} />
+          <Route path='/admin/*' element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Admin />
+            </ProtectedRoute>
+          } />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
