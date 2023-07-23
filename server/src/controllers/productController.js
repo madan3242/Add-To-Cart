@@ -12,8 +12,9 @@ exports.getAllProducts = AsyncErrors(async (req, res, next) => {
     .search()
     .filter()
 
-  const products = await productsObj.base;
-  const filteredProductNumber = products.length;
+  let products = await productsObj.base;
+  // console.log(productsObj.base);
+  let filteredProductNumber = products.length;
 
   productsObj.pagination(resultPerPage);
 

@@ -28,19 +28,18 @@ const config = {
 }
 //Get All Products
 export const getAllProducts = (filter) => {
-    const {search, currentPage = 1, price = [0, 250000], category, rating = 0} = filter
+    const {keyword, currentPage = 1, minPrice = 0, maxPrice = 250000, category, rating = 0} = filter
     return async (dispatch) => {
         try {
             dispatch({ type: PRODUCTS_REQUEST })
-            let url = `/products?search=${search}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`
+            let url = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${minPrice}&price[lte]=${maxPrice}&rating[gte]=${rating}`
 
             if(category) {
-                url = `/products?category=${category}&search=${search}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`
+                url = `/products?category=${category}&keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`
             }
-            if(!search & !category){
-                url = `/products?page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`
-            }
+            
             const response = await axios.get(`${API_URL}${url}`)
+            console.log(response.data);
             dispatch({ type: PRODUCTS_SUCCESS, payload: response.data })
         } catch (error) {
             dispatch({ type: PRODUCTS_FAILURE, payload: error.message })

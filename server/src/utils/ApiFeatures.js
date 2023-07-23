@@ -3,30 +3,31 @@ class ApiFeatures {
         this.base = base;
         this.query = query;
     }
-
+    
     search() {
-        const searchWord = this.query.search
+        const keyword = this.query.keyword
         ? {
             name: {
-                $regex: this.query.search,
+                $regex: this.query.keyword,
                 $options: "i",
             },
         }
         : {};
 
-        this.base = this.base.find({ ...searchWord });
+        this.base = this.base.find({ ...keyword });
         return this;
     }
 
     filter() {
         const copyQuery = { ...this.query };
 
-        delete copyQuery["search"]
+        delete copyQuery["keyword"]
         delete copyQuery["limit"]
         delete copyQuery["page"]
-
+        
         //convert query into a string => copyQuery
         let stringOfCopyQuery = JSON.stringify(copyQuery)
+
 
         stringOfCopyQuery = stringOfCopyQuery.replace(
             /\b(gt|gte|lt|lte)\b/g,

@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-const ProductFilter = ({ filter, setFilter }) => {
+const ProductFilter = ({ filter, setFilter, submitFilter }) => {
     
     const handleChange = (e) => {
         setFilter({
@@ -74,7 +74,7 @@ const ProductFilter = ({ filter, setFilter }) => {
                 </div>
             </Form.Group>
             <div className="d-grid">
-                <Button>Filter</Button>
+                <Button onClick={submitFilter}>Filter</Button>
             </div>
         </Form>
       </Col>
