@@ -143,7 +143,7 @@ export const resetPassword = (token, passwords) => {
     return async (dispatch) => {
         try {
             dispatch({ type: RESET_PASSWORD_REQUEST })
-            const response = await axios.put(`${API_URL}/password/reset/${token}`, passwords,config)
+            const response = await axios.put(`${API_URL}/password/reset/${token}`, passwords, config)
             dispatch({ type: RESET_PASSWORD_SUCCESS, payload: response.data })
         } catch (error) {
             dispatch({ type: RESET_PASSWORD_FAILURE, payload: error.message })

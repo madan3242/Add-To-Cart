@@ -7,7 +7,7 @@ import { BsCart2 } from 'react-icons/bs'
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/user/user.action";
 
-const HomeNavbar = ({toggleLogin, isAuthenticated, setIsAuthenticated }) => {
+const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
@@ -52,13 +52,12 @@ const HomeNavbar = ({toggleLogin, isAuthenticated, setIsAuthenticated }) => {
           <div className="navbar-buttons">
             {
               !isAuthenticated ? <>
-                <Button onClick={toggleLogin} variant="null">Login / SignUp</Button>
+                <Button onClick={() => navigate('/login')} variant="null">Login / Signup</Button>
               </> : <>
                 <Button variant="null" onClick={() => dispatch(logout(setIsAuthenticated))}>Logout</Button>
                 <AiOutlineUser size={20} onClick={() => navigate('/profile')} />
               </>
             }
-
             <AiOutlineHeart size={20} onClick={() => navigate('/wishlist')} />
             <BsCart2 size={20} onClick={() => navigate('/cart')} />
           </div>

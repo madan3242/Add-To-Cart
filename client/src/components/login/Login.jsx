@@ -5,9 +5,11 @@ import { GrClose } from "react-icons/gr";
 import { useDispatch } from 'react-redux'
 import { login, signup } from "../../redux/user/user.action";
 import Loader from "../Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ toggleLogin, setIsAuthenticated }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false)
 
   //login data
@@ -66,8 +68,8 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
 
   return (
     <>
+      <div className="login-container">
       <div className="login-form">
-        <GrClose size={30} className="close-icon" onClick={toggleLogin} />
         {isLogin ? (
           <>
             <Form onSubmit={loginSubmit}>
@@ -93,13 +95,19 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
                 {!loading ? 'Login' : <Loader />}
               </Button>
               <p>
-                Don't have an account ?{" "}
+                Don't have an account?{" "}
                 <span
                   className="span-button"
                   onClick={() => setIsLogin(!isLogin)}
                 >
                   Signup
-                </span>{" "}
+                </span>{" "} <br />
+                <span
+                  className="span-button"
+                  onClick={() => navigate('/forgotpassword')}
+                >
+                  Forgot password?
+                </span> 
               </p>
             </div>
             </Form>
@@ -144,11 +152,19 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
                 >
                   Login
                 </span>
+                <br />
+                <span
+                  className="span-button"
+                  onClick={() => navigate('/forgotpassword')}
+                >
+                  Forgot password?
+                </span> 
               </p>
             </div>
             </Form>
           </>
         )}
+      </div>
       </div>
     </>
   );

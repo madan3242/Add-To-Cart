@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 const ProtectedRoute = ({ isAuthenticated, children }) => {
-  const navigate = useNavigate();
   if(!isAuthenticated){
-    return navigate('/')
+    return <Navigate to={'/login'} />
   }
   return children
 }
