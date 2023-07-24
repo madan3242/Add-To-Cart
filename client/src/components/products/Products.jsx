@@ -11,30 +11,36 @@ const Products = () => {
   const {products, totalProductCount, filteredProductNumber} = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [filter, setFilter] = useState({
+  const initialFilter = {
     keyword: "",
     minPrice: 0,
     maxPrice: 250000,
     brand: "",
     category: "",
     rating: 0
-  })
+  }
+  const [filter, setFilter] = useState(initialFilter)
 
   useEffect(() => {
     dispatch(getAllProducts(filter))
-  }, [dispatch])
+  }, [dispatch, filter])
 
   const submitFilter = (e) => {
     e.preventDefault()
     dispatch(getAllProducts(filter))
   }
   
+  const handleReset = () => {
+    setFilter(initialFilter)
+  }
+  
   return (
     <>
       <div className="product-container">
+      {/* {JSON.stringify(filter)} */}
         <Container>
           <Row>
-            <ProductFilter filter={filter} setFilter={setFilter} submitFilter={submitFilter} />
+            <ProductFilter filter={filter} setFilter={setFilter} submitFilter={submitFilter} handleReset={handleReset} />
             <Col lg={10}>
               <Row>
                 { products?.length > 0 ? <>                  

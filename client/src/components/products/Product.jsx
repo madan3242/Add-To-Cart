@@ -134,10 +134,9 @@ const Product = () => {
                 <Row>
                   {product.reviews?.map((rev) => {
                     return <>
-                    {/* {JSON.stringify(rev)} */}
                       <Card>
                         <Card.Body>
-                          <Card.Title>{rev.comment}</Card.Title>
+                          <Card.Title>{rev.rating}<AiFillStar size={25} style={{ color: "gold" }} /> {rev.comment}</Card.Title>
                           <Card.Text>{rev.name}</Card.Text>
                         </Card.Body>
                       </Card>
