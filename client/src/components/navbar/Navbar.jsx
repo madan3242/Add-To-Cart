@@ -15,7 +15,7 @@ const HomeNavbar = ({toggleLogin, isAuthenticated, setIsAuthenticated }) => {
     <>
       <Navbar className="navbar" fixed="top">
         <Container>
-          <Navbar.Brand onClick={() => navigate('/')}>
+          <Navbar.Brand onClick={() => navigate('/')} style={{ cursor: "pointer"}}>
               Add To Cart
           </Navbar.Brand>
 

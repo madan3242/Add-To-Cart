@@ -2,6 +2,10 @@ export const PRODUCTS_REQUEST = 'PRODUCTS_REQUEST'
 export const PRODUCTS_SUCCESS = 'PRODUCTS_SUCCESS'
 export const PRODUCTS_FAILURE = 'PRODUCTS_FAILURE'
 
+export const PRODUCT_REQUEST = 'PRODUCT_REQUEST'
+export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS'
+export const PRODUCT_FAILURE = 'PRODUCT_FAILURE'
+
 export const ADMIN_PRODUCTS_REQUEST = 'PRODUCTS_REQUEST'
 export const ADMIN_PRODUCTS_SUCCESS = 'PRODUCTS_SUCCESS'
 export const ADMIN_PRODUCTS_FAILURE = 'PRODUCTS_FAILURE'
@@ -82,12 +86,14 @@ export const updateProduct = (id, data) => {
     }
 }
 //Get single product
-const getOneProduct = (id) => {
+export const getOneProduct = (id) => {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`${API_URL}/products/:id`)
+            dispatch({ type: PRODUCT_REQUEST })
+            const response = await axios.get(`${API_URL}/products/${id}`)
+            dispatch({ type: PRODUCT_SUCCESS, payload: response.data })
         } catch (error) {
-            
+            dispatch({ type: PRODUCT_FAILURE, payload: error.message })
         }
     }
 }

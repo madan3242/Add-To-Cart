@@ -11,6 +11,7 @@ import { setAuthToken } from './services/setAuthToken'
 import NotFound from './components/NotFound/NotFound'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { useSelector } from 'react-redux'
+import Product from './components/Products/Product'
 
 const App = () => {
   const user = useSelector(state => state.auth.user);
@@ -46,6 +47,7 @@ const App = () => {
             </ProtectedRoute>
           } />
           <Route path='/products' element={<Products />} />
+          <Route path='/products/:id' element={<Product />} />
 
           <Route path='/admin/*' element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>

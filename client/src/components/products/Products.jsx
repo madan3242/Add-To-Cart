@@ -5,10 +5,12 @@ import './Products.css'
 import { useDispatch, useSelector } from 'react-redux'
 import Pagination from './Pagination'
 import { getAllProducts } from '../../redux/product/product.action'
+import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
   const {products, totalProductCount, filteredProductNumber} = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [filter, setFilter] = useState({
     keyword: "",
     minPrice: 0,
@@ -17,6 +19,7 @@ const Products = () => {
     category: "",
     rating: 0
   })
+
   useEffect(() => {
     dispatch(getAllProducts(filter))
   }, [dispatch])
@@ -28,7 +31,7 @@ const Products = () => {
   
   return (
     <>
-      <div className="productContainer" style={{ height: "700px"}}>
+      <div className="product-container">
         <Container>
           <Row>
             <ProductFilter filter={filter} setFilter={setFilter} submitFilter={submitFilter} />
@@ -36,13 +39,14 @@ const Products = () => {
               <Row>
                 { products?.length > 0 ? <>                  
                   {products?.map((product) => {
-                    return <Col lg={3} className='product' key={product._id}>
-                      <img src={product.photos[0].secure_url} alt="" height="220px" />
+                    return <Col lg={3} className='product' key={product._id} onClick={() => navigate(`/products/${product._id}`)}>
+                      <img src={product.photos[3].secure_url} alt={product.name} height="220px" />
                       <h4 className='mt-2'>{product.name}</h4>
+                      <p>&#8377;{product.price}</p>
                     </Col>
                   })}
                 </> : <>
-                  
+                  <h2>No products found</h2>
                 </>}
               </Row>
                 {/* <Pagination />  */}

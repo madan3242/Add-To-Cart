@@ -7,7 +7,10 @@ import {
     NEW_PRODUCT_SUCCESS, 
     PRODUCTS_FAILURE, 
     PRODUCTS_REQUEST, 
-    PRODUCTS_SUCCESS 
+    PRODUCTS_SUCCESS, 
+    PRODUCT_FAILURE, 
+    PRODUCT_REQUEST,
+    PRODUCT_SUCCESS
 } from "./product.action"
 
 export const productsReducer = (state = { products: [] }, action) => {
@@ -34,6 +37,30 @@ export const productsReducer = (state = { products: [] }, action) => {
             }
         default:
             return state
+    }
+}
+
+export const productDetailsReducer = (state = { product: {} }, action) => {
+    switch(action.type){
+        case PRODUCT_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case PRODUCT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                product: action.payload
+            }
+        case PRODUCT_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        default:
+            return state   
     }
 }
 
