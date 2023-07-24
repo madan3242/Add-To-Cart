@@ -42,6 +42,7 @@ exports.getOneProduct = AsyncErrors(async (req, res, next) => {
 })
 
 exports.addReview = AsyncErrors(async (req, res, next) => {
+  console.log(req.body);
   const { rating, comment, productId } = req.body
 
   const review = {
@@ -52,6 +53,10 @@ exports.addReview = AsyncErrors(async (req, res, next) => {
   }
 
   const product = await Product.findById(productId);
+
+  if (!product) {
+    return next(new ErrorHandler('No product found.', 404))
+  }
 
   const isReviewed = product.reviews.find(
     (review) => review.user.toString() === req.user._id.toString()

@@ -20,7 +20,7 @@ const router = express.Router();
 //user routes
 router.route("/products").get(getAllProducts);
 router.route("/products/:id").get(getOneProduct);
-router.route("/review").put(isLoggedIn, addReview);
+router.route("/review").post(isLoggedIn, addReview);
 router.route("/review").delete(isLoggedIn, deleteReview);
 router.route("/reviews").get(isLoggedIn, getOnlyReviewsForOneProduct);
 

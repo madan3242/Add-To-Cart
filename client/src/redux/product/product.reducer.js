@@ -1,4 +1,7 @@
 import { 
+    ADD_REVIEW_FAILURE,
+    ADD_REVIEW_REQUEST,
+    ADD_REVIEW_SUCCESS,
     ADMIN_PRODUCTS_FAILURE, 
     ADMIN_PRODUCTS_REQUEST, 
     ADMIN_PRODUCTS_SUCCESS, 
@@ -78,6 +81,30 @@ export const addProductReducer = (state = { product: {}}, action) => {
         case NEW_PRODUCT_FAILURE:
             return {
                 loading: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
+}
+
+export const addReviewReducer = (state = { review: {} }, action) => {
+    switch(action.type){
+        case ADD_REVIEW_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case ADD_REVIEW_SUCCESS:
+            return {
+                ...state,
+                loading: true,
+                review: action.payload
+            }
+        case ADD_REVIEW_FAILURE:
+            return {
+                ...state,
+                loading: true,
                 error: action.payload
             }
         default:
