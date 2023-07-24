@@ -12,12 +12,12 @@ exports.emailHelper = async (options) => {
     },
   });
 
-  let message = {
+  let mail = {
     from: '"Add To Cart" <madangowda323@gmail.com>', // sender address
     to: options.email, // list of receivers
     subject: options.subject, // Subject line
-    text: options.text, // plain text body
+    text: options.message, // plain text body
   };
 
-  await transporter.sendMail(message)  
+  await transporter.sendMail(mail)  
 }

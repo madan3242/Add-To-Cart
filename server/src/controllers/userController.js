@@ -6,8 +6,6 @@ const { emailHelper } = require("../utils/emailHelper");
 const crypto = require("crypto")
 
 exports.signup = AsyncErrors(async (req, res, next) => {
-  console.log(req.body);
-
   const { name, email, password } = req.body
 
   if(!email || !password || !name) {
@@ -74,7 +72,7 @@ exports.forgotPassword = AsyncErrors(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/passsword/reset/${resetToken}`
+  const resetPasswordUrl = `${req.protocol}://${req.get("host")}/passsword/reset/${resetToken}`
 
   //craft message
   const message = `Your password reset token is: \n\n ${resetPasswordUrl} \n\n If you have not requested this email then, Please ignore it.`;
