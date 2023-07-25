@@ -44,7 +44,7 @@ const config = {
 }
 //Get All Products
 export const getAllProducts = (filter) => {
-    const {keyword, currentPage = 1, minPrice = 0, maxPrice = 250000, category = "", rating = 0} = filter
+    const {keyword, currentPage = 2, minPrice = 0, maxPrice = 250000, category = "", rating = 0} = filter
     return async (dispatch) => {
         try {
             dispatch({ type: PRODUCTS_REQUEST })
@@ -56,6 +56,7 @@ export const getAllProducts = (filter) => {
             }
 
             const response = await axios.get(`${API_URL}${url}`)
+            console.log(response);
             dispatch({ type: PRODUCTS_SUCCESS, payload: response.data })
         } catch (error) {
             dispatch({ type: PRODUCTS_FAILURE, payload: error.message })
@@ -93,6 +94,7 @@ export const getAdminProducts = () => {
         try {
             dispatch({ type: ADMIN_PRODUCTS_REQUEST })
             const response = await axios.get(`${API_URL}/admin/products`)
+            console.log(response.data);
             dispatch({ type: ADMIN_PRODUCTS_SUCCESS, payload: response.data })
         } catch (error) {
             dispatch({ type: ADMIN_PRODUCTS_FAILURE, payload: error.message })

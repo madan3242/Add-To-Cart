@@ -3,12 +3,18 @@ import { Col, Container, Row } from 'react-bootstrap'
 import ProductFilter from './ProductFilter'
 import './Products.css'
 import { useDispatch, useSelector } from 'react-redux'
-import Pagination from './Pagination'
 import { getAllProducts } from '../../redux/product/product.action'
 import { useNavigate } from 'react-router-dom'
+import ReactPaginate from 'react-paginate';
 
 const Products = () => {
-  const {products, totalProductCount, filteredProductNumber} = useSelector((state) => state.products.products);
+  const {
+    products, 
+    resultPerPage,
+    totalProductCount, 
+    filteredProductNumber
+  } = useSelector((state) => state.products);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const initialFilter = {
@@ -17,9 +23,22 @@ const Products = () => {
     maxPrice: 250000,
     brand: "",
     category: "",
-    rating: 0
+    rating: 0,
+    currentPage: 1
   }
-  const [filter, setFilter] = useState(initialFilter)
+  const [filter, setFilter] = useState(initialFilter);
+
+  const pageCount = Math.ceil(totalProductCount / resultPerPage);
+
+  const handlePageChange = (e) => {
+    console.log(e);
+    setFilter({
+      ...filter,
+      page: e.selected
+    })
+  }
+
+  
 
   useEffect(() => {
     dispatch(getAllProducts(filter))
@@ -33,6 +52,8 @@ const Products = () => {
   const handleReset = () => {
     setFilter(initialFilter)
   }
+
+
   
   return (
     <>
@@ -41,11 +62,11 @@ const Products = () => {
         <Container>
           <Row>
             <ProductFilter filter={filter} setFilter={setFilter} submitFilter={submitFilter} handleReset={handleReset} />
-            <Col lg={10}>
+            <Col md={12} lg={10}>
               <Row>
                 { products?.length > 0 ? <>                  
                   {products?.map((product) => {
-                    return <Col lg={3} className='product' key={product._id} onClick={() => navigate(`/products/${product._id}`)}>
+                    return <Col md={6} lg={3} className='product' key={product._id} onClick={() => navigate(`/products/${product._id}`)}>
                       <img src={product.photos[3].secure_url} alt={product.name} height="220px" />
                       <h4 className='mt-2'>{product.name}</h4>
                       <p>&#8377;{product.price}</p>
@@ -55,7 +76,14 @@ const Products = () => {
                   <h2>No products found</h2>
                 </>}
               </Row>
-                {/* <Pagination />  */}
+              <Row >
+                <ReactPaginate 
+                  previousLabel="< prev"
+                  nextLabel="next >"
+                  pageCount={pageCount}
+                  onPageChange={handlePageChange}
+                />
+              </Row>
             </Col>
           </Row>
         </Container>

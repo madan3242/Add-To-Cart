@@ -7,8 +7,9 @@ import { getAdminProducts } from '../../../../redux/product/product.action'
 
 const Products = () => {
   const [addProduct, setAddProduct] = useState(false)
-  const products = useSelector((state) => state.products.products);
+  const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch()
+  console.log(useSelector((state) => state.products));
   useEffect(() => {
     dispatch(getAdminProducts())
   }, [dispatch])
@@ -43,7 +44,7 @@ const Products = () => {
               {
                 products?.length > 0 ? <>{
                   products.map((product) => {
-                    return <tr>
+                    return <tr key={product._id}>
                       <td>{product._id}</td>
                       <td>{product.name}</td>
                       <td>{product.price}</td>

@@ -5,7 +5,7 @@ const ErrorHandler = require("../utils/errorHandler");
 const cloudinary = require("cloudinary").v2;
 
 exports.getAllProducts = AsyncErrors(async (req, res, next) => {
-  const resultPerPage = 6;
+  const resultPerPage = 3;
   const totalProductCount = await Product.countDocuments();
 
   const productsObj = new ApiFeatures(Product.find(), req.query)
@@ -23,6 +23,7 @@ exports.getAllProducts = AsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     products,
+    resultPerPage,
     filteredProductNumber,
     totalProductCount
   });
@@ -177,7 +178,9 @@ exports.adminAddProduct = AsyncErrors(async ( req, res, next ) => {
 exports.adminAllProducts = AsyncErrors(async (req, res, next) => {
   const products = await Product.find();
 
-  res.status(200).json(products);
+  res.status(200).json({
+    products: products
+  });
 })
 
 exports.adminUpdateProduct = AsyncErrors(async (req, res, next) => {
