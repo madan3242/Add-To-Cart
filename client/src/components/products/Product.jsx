@@ -57,8 +57,8 @@ const Product = () => {
                 <Carousel>
                   {product?.photos?.map((photo) => {
                     return (
-                      <Carousel.Item key={photo.id}>
-                        <img src={photo?.secure_url} alt="" height="580px" />
+                      <Carousel.Item key={photo.id} className="mx-auto">
+                        <img src={photo?.secure_url} alt="" height="580px"  />
                       </Carousel.Item>
                     );
                   })}

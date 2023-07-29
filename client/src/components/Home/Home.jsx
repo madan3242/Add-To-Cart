@@ -16,7 +16,7 @@ const Home = () => {
           </Col>
         </Row>
 
-        <Row style={{ justifyContent: "space-between"}}>
+        <Row style={{ justifyContent: "space-between"}} >
           <Col lg={4} className="box">
             <h2>Amazing Dealing on TVs | Up to ₹5000 off</h2>
           </Col>

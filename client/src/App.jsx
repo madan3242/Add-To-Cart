@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 import Product from './components/Products/Product'
 import ForgotPassword from './components/Login/ForgotPassword'
 import ResetPassword from './components/Login/ResetPassword'
+import Cart from './components/Cart/Cart'
 
 const App = () => {
   const user = useSelector(state => state.auth.user);
@@ -47,6 +48,7 @@ const App = () => {
           } />
           <Route path='/products' element={<Products />} />
           <Route path='/products/:id' element={<Product />} />
+          <Route path='/cart' element={<Cart />} />
 
           <Route path='/admin/*' element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
