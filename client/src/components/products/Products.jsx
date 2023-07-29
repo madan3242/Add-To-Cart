@@ -4,7 +4,7 @@ import ProductFilter from './ProductFilter'
 import './Products.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../redux/product/product.action'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 import { GrNext, GrPrevious } from 'react-icons/gr'
 
@@ -16,8 +16,6 @@ const Products = () => {
     filteredProductNumber
   } = useSelector((state) => state.products);
 
-  const {category} = useParams()
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const initialFilter = {
@@ -25,7 +23,7 @@ const Products = () => {
     minPrice: 0,
     maxPrice: 250000,
     brand: "",
-    category: category ? category : "",
+    category: "",
     rating: 0,
     currentPage: 1
   }

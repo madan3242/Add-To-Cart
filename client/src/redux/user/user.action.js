@@ -50,7 +50,7 @@ const config = {
     }
 }
 //User signup
-export const signup = (data, setIsAuthenticated, toggleLogin, setLoading) => {
+export const signup = (data, setIsAuthenticated, setLoading, navigate) => {
     return async (dispatch) => {
         try {
             dispatch({ type: SIGNUP_REQUEST })
@@ -59,16 +59,16 @@ export const signup = (data, setIsAuthenticated, toggleLogin, setLoading) => {
             dispatch({ type: SIGNUP_SUCCESS, payload: response.data })
             setIsAuthenticated(true)
             setLoading(false)
-            toggleLogin()
+            navigate('/')
         } catch(error) {
-            dispatch({ type: SIGNUP_FAILURE, payload: error})
+            dispatch({ type: SIGNUP_FAILURE, payload: error.message})
             setLoading(false)
             setIsAuthenticated(false)
         }
     }
 }
 //User login
-export const login = (data, setIsAuthenticated, toggleLogin, setLoading) => {
+export const login = (data, setIsAuthenticated, setLoading, navigate, toast) => {
     return async (dispatch) => {
         try {
             dispatch({ type: LOGIN_REQUEST })
@@ -77,11 +77,13 @@ export const login = (data, setIsAuthenticated, toggleLogin, setLoading) => {
             dispatch({ type: LOGIN_SUCCESS, payload: response.data })
             setIsAuthenticated(true)
             setLoading(false)
-            toggleLogin()
+            navigate('/')
+            toast.success("Login Successful")
         } catch(error) {
             dispatch({ type: LOGIN_FAILURE, payload: error.message})
             setLoading(false)
             setIsAuthenticated(false)
+            toast.error(error.message)
         }
     }
 }
@@ -92,7 +94,6 @@ export const logout = (setIsAuthenticated) => {
             dispatch({ type: LOGOUT_REQUEST })
             const response = await axios.get(`${API_URL}/logout`)
             dispatch({ type: LOGOUT_SUCCESS })
-            console.log(response);
             setIsAuthenticated(false)
         } catch (error) {
             dispatch({ type: LOGOUT_FAILURE, payload: error.message })
@@ -108,7 +109,6 @@ export const updateProfile = (data, setEdit) => {
             const response = await axios.put(`${API_URL}/updateprofile`, data, config)
             dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data})
             setEdit(true)
-            console.log(response);
         } catch (error) {
             dispatch({ type: UPDATE_USER_FAILURE, payload: error.message })
         }

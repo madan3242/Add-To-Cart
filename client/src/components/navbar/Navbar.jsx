@@ -34,8 +34,8 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link onClick={() => navigate('/products')}>Products</Nav.Link>
                   <Nav.Link onClick={() => navigate('/products')}>Mobiles</Nav.Link>
-                  <Nav.Link >Electronics</Nav.Link>
-                  <Nav.Link >Fashion</Nav.Link>
+                  <Nav.Link onClick={() => navigate('/products')}>Electronics</Nav.Link>
+                  <Nav.Link onClick={() => navigate('/products')}>Fashion</Nav.Link>
                   <Form>
                     <Form.Control
                       type="search"
@@ -60,11 +60,6 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
                 </Nav>
               </Offcanvas.Body>
           </Navbar.Offcanvas>
-
-          
-
-          
-          
         </Container>
       </Navbar>
     </>

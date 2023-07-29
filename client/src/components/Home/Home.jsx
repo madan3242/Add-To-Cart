@@ -1,7 +1,7 @@
 import React from "react";
 import HomeCarousel from "./Carousel";
 import { Col, Container, Row } from "react-bootstrap";
-import './Home.css'
+import "./Home.css";
 
 const Home = () => {
   return (
@@ -15,16 +15,21 @@ const Home = () => {
             <p>on Credit and Debit Cards</p>
           </Col>
         </Row>
-
-        <Row style={{ justifyContent: "space-between"}} >
-          <Col lg={4} className="box">
-            <h2>Amazing Dealing on TVs | Up to ₹5000 off</h2>
+        <Row>
+          <Col lg={4}>
+            <div className="box text-center m-2 p-2">
+              <h2>Amazing Dealing on TVs | Up to ₹5000 off</h2>
+            </div>
           </Col>
-          <Col lg={4} className="box">
-            <h2>Up to 70% off | Styles for women</h2>
+          <Col lg={4}>
+            <div className="box text-center m-2 p-2">
+              <h2>Up to 70% off | Styles for women</h2>
+            </div>
           </Col>
-          <Col lg={4} className="box">
-            <h2>Clearance sale | 50% off on Electronics</h2>
+          <Col lg={4}>
+            <div className="box text-center m-2 p-2">
+              <h2>Clearance sale | 50% off on Electronics</h2>
+            </div>
           </Col>
         </Row>
       </Container>

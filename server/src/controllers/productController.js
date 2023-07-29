@@ -5,7 +5,7 @@ const ErrorHandler = require("../utils/errorHandler");
 const cloudinary = require("cloudinary").v2;
 
 exports.getAllProducts = AsyncErrors(async (req, res, next) => {
-  const resultPerPage = 3;
+  const resultPerPage = 6;
   const totalProductCount = await Product.countDocuments();
 
   const productsObj = new ApiFeatures(Product.find(), req.query)

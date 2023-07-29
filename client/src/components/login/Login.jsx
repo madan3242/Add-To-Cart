@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
-import { GrClose } from "react-icons/gr";
 import { useDispatch } from 'react-redux'
 import { login, signup } from "../../redux/user/user.action";
 import Loader from "../Loader/Loader";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toast";
 
-const Login = ({ toggleLogin, setIsAuthenticated }) => {
+const Login = ({ setIsAuthenticated }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false)
@@ -41,15 +41,18 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
     })
   }
 
-  const loginSubmit = async (e) => {
+  const loginSubmit = (e) => {
     e.preventDefault();
     try {
       const data = {
         email: loginUserData.email,
         password: loginUserData.password
       }
-      dispatch(login(data, setIsAuthenticated, toggleLogin, setLoading))
-    } catch (error) { }
+      dispatch(login(data, setIsAuthenticated, setLoading, navigate, toast))
+      toast("Logged In")
+    } catch (error) { 
+      toast(error.message)
+    }
   }
 
   const signupSubmit = async (e) => {
@@ -60,7 +63,7 @@ const Login = ({ toggleLogin, setIsAuthenticated }) => {
           email: signupUserData.email,
           password: signupUserData.password
         }
-        dispatch(signup(data, setIsAuthenticated, toggleLogin, setLoading))
+        dispatch(signup(data, setIsAuthenticated, setLoading, navigate))
       } catch (error) {
         alert(JSON.stringify(error.message))
       }
