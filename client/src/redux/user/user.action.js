@@ -79,7 +79,7 @@ export const login = (data, setIsAuthenticated, toggleLogin, setLoading) => {
             setLoading(false)
             toggleLogin()
         } catch(error) {
-            dispatch({ type: LOGIN_FAILURE, payload: error})
+            dispatch({ type: LOGIN_FAILURE, payload: error.message})
             setLoading(false)
             setIsAuthenticated(false)
         }
@@ -95,7 +95,7 @@ export const logout = (setIsAuthenticated) => {
             console.log(response);
             setIsAuthenticated(false)
         } catch (error) {
-            dispatch({ type: LOGOUT_FAILURE })
+            dispatch({ type: LOGOUT_FAILURE, payload: error.message })
         }
     }
 }

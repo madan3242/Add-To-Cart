@@ -4,8 +4,9 @@ import ProductFilter from './ProductFilter'
 import './Products.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../redux/product/product.action'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
+import { GrNext, GrPrevious } from 'react-icons/gr'
 
 const Products = () => {
   const {
@@ -15,6 +16,8 @@ const Products = () => {
     filteredProductNumber
   } = useSelector((state) => state.products);
 
+  const {category} = useParams()
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const initialFilter = {
@@ -22,23 +25,26 @@ const Products = () => {
     minPrice: 0,
     maxPrice: 250000,
     brand: "",
-    category: "",
+    category: category ? category : "",
     rating: 0,
     currentPage: 1
   }
   const [filter, setFilter] = useState(initialFilter);
 
-  const pageCount = Math.ceil(totalProductCount / resultPerPage);
+  let [pageCount, setPageCount] = useState(Math.ceil(totalProductCount / resultPerPage))
+
+  // const pageCount = Math.ceil(totalProductCount / resultPerPage);
+  
+  useEffect(() => {
+    setPageCount(Math.ceil(totalProductCount / resultPerPage))
+  }, [filter.category])
 
   const handlePageChange = (e) => {
-    console.log(e);
     setFilter({
       ...filter,
-      page: e.selected
+      currentPage: e.selected + 1
     })
   }
-
-  
 
   useEffect(() => {
     dispatch(getAllProducts(filter))
@@ -53,8 +59,6 @@ const Products = () => {
     setFilter(initialFilter)
   }
 
-
-  
   return (
     <>
       <div className="product-container">
@@ -76,12 +80,17 @@ const Products = () => {
                   <h2>No products found</h2>
                 </>}
               </Row>
-              <Row >
+              <Row className='mt-4'>
                 <ReactPaginate 
-                  previousLabel="< prev"
-                  nextLabel="next >"
+                  previousLabel={ <GrPrevious /> }
+                  nextLabel={ <GrNext />}
                   pageCount={pageCount}
                   onPageChange={handlePageChange}
+                  containerClassName='pagination'
+                  previousLinkClassName='pagination__link'
+                  nextLinkClassName='pagination__link'
+                  disabledClassName='pagination__link--disabled'
+                  activeClassName='pagination__link--active'
                 />
               </Row>
             </Col>

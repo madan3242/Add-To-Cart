@@ -26,3 +26,35 @@
 .product-details{
     margin-top: 5rem;
 }
+
+.pagination {
+    display: flex;
+    place-content: center;
+    list-style: none;
+    cursor: pointer;
+    margin: 2rem 0;
+  }
+  
+  .pagination a {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #0d6efd;
+    color: #0d6efd ;
+    margin: 0 5px;
+  }
+  
+  .pagination__link {
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .pagination__link--active a {
+    color: #fff;
+    background: #0d6efd ;
+  }
+  
+  .pagination__link--disabled a {
+    color: rgb(198, 197, 202);
+    border: 1px solid rgb(198, 197, 202);
+  }
+  
