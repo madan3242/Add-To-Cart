@@ -7,7 +7,7 @@ import Loader from "../Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toast";
 
-const Login = ({ setIsAuthenticated }) => {
+const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false)
@@ -48,7 +48,7 @@ const Login = ({ setIsAuthenticated }) => {
         email: loginUserData.email,
         password: loginUserData.password
       }
-      dispatch(login(data, setIsAuthenticated, setLoading, navigate, toast))
+      dispatch(login(data, setLoading, navigate, toast))
       toast("Logged In")
     } catch (error) { 
       toast(error.message)

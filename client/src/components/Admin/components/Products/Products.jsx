@@ -4,6 +4,7 @@ import AddProduct from './AddProduct'
 import './product.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts } from '../../../../redux/product/product.action'
+import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 
 const Products = () => {
   const [addProduct, setAddProduct] = useState(false)
@@ -33,11 +34,13 @@ const Products = () => {
                 <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Description</th>
+                {/* <th>Description</th> */}
                 <th>Photo</th>
                 <th>Category</th>
                 <th>Brand</th>
                 <th>Stocks</th>
+                <th>Update</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -48,13 +51,15 @@ const Products = () => {
                       <td>{product._id}</td>
                       <td>{product.name}</td>
                       <td>{product.price}</td>
-                      <td>{product.description}</td>
+                      {/* <td>{product.description}</td> */}
                       <td>
                         <img src={product.photos[0].secure_url} height={100} alt="" />
                       </td>
                       <td>{product.category}</td>
                       <td>{product.brand}</td>
                       <td>{product.stocks}</td>
+                      <td className='text-center'><AiOutlineEdit size={20} /></td>
+                      <td className='text-center'><AiOutlineDelete size={20} /></td>
                     </tr>
                   })
                 }</> : null

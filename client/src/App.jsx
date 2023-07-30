@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Admin from './components/Admin/Admin'
 import Navbar from './components/Navbar/Navbar'
@@ -18,13 +18,11 @@ import Cart from './components/Cart/Cart'
 import { ToastContainer } from 'react-toast'
 
 const App = () => {
-  const user = useSelector(state => state.auth.user);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const { user, isAuthenticated } = useSelector(state => state.auth);
+  
   useEffect(() => {
     if(localStorage.token){
       setAuthToken(localStorage.token)
-      setIsAuthenticated(true);
     }
   })
 
@@ -32,18 +30,15 @@ const App = () => {
     <>
       <>
       <Router >
-        <Navbar 
-          isAuthenticated={isAuthenticated}
-          setIsAuthenticated={setIsAuthenticated} 
-        />
+        <Navbar isAuthenticated={isAuthenticated} />
         <Routes>
           <Route path='/' exact element={<Home />}  />
-          <Route path='/login' element={ <Login setIsAuthenticated={setIsAuthenticated}/>} />
+          <Route path='/login' element={ <Login />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />
           <Route path='/password/reset/:token' element={<ResetPassword />} />
 
           <Route path='/profile' element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <ProtectedRoute user={user}>
                 <Profile />
               </ProtectedRoute>
             } 
@@ -54,7 +49,7 @@ const App = () => {
           <Route path='/cart' element={<Cart />} />
 
           <Route path='/admin/*' element={
-            <ProtectedRoute isAuthenticated={isAuthenticated} user={user}>
+            <ProtectedRoute isAuthenticated={isAuthenticated} user={user} isAdmin={true}>
               <Admin />
             </ProtectedRoute>
           } />

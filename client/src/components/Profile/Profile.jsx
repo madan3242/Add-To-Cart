@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../../redux/user/user.action";
 
 const Profile = () => {
-    const [edit, setEdit] = useState(true);
+    const [edit, setEdit] = useState(false);
     const dispatch = useDispatch();
     const userData = useSelector(state => state.auth.user)
   
@@ -25,7 +25,6 @@ const Profile = () => {
   
     const handleUpdate = (e) => {
       e.preventDefault();
-      setEdit(!edit)
       dispatch(updateProfile(user, setEdit))
     }
     return (
@@ -35,21 +34,21 @@ const Profile = () => {
             <div className="side-section-list">
               <ul>
                 <li>Profile</li>
-                <li onClick={() => setEdit(!edit)}>Update</li>
+                <li onClick={() => setEdit(true)}>Update</li>
+                <li>Change Password</li>
               </ul>
             </div>
           </Col>
           <Col lg={9} className="main-section" >
+
             <Form>
-              {/* <AiTwotoneEdit style={{ float: "right" }} size={20} onClick={() => setEdit(!edit)} /> */}
               <AiOutlineUser size={70} />
-  
               <Form.Group className="mb-3" as={Row}>
                 <Form.Label column sm="2">
                   Name
                 </Form.Label>
                 <Col sm="10">
-                  {!edit ? 
+                  {edit ? 
                     <Form.Control type="text" name="name" value={user?.name} onChange={handleUserChange} />
                     : <div style={{ paddingTop: "7px"}}>{user?.name}</div>
                   }
@@ -61,7 +60,7 @@ const Profile = () => {
                   Email
                 </Form.Label>
                 <Col sm="10">
-                  {!edit ?
+                  {edit ?
                     <Form.Control type="text" name="email" value={user?.email} onChange={handleUserChange} />
                     : <div style={{ paddingTop: "7px"}}>{user?.email}</div>
                   }
@@ -72,17 +71,18 @@ const Profile = () => {
                   Phone
                 </Form.Label>
                 <Col sm="10">
-                  {!edit ? <Form.Control type="text" name="phonenumber" value={user?.phonenumber} onChange={handleUserChange} /> : <div style={{ paddingTop: "7px"}}>{user?.phonenumber}</div>
+                  {edit ? <Form.Control type="text" name="phonenumber" value={user?.phonenumber} onChange={handleUserChange} /> : <div style={{ paddingTop: "7px"}}>{user?.phonenumber}</div>
                   }
                 </Col>
               </Form.Group>
-              {!edit &&
+              {edit &&
                 <div style={{float: "right"}}>
                   <Button variant="primary" onClick={handleUpdate}>Save</Button>&nbsp;
-                  <Button variant="secondary" onClick={() => setEdit(!edit)}>Cancel</Button>
+                  <Button variant="secondary" onClick={() => setEdit(false)}>Cancel</Button>
                 </div>
               }
             </Form>
+
           </Col>
         </Row>
       </Container>

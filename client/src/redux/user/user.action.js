@@ -50,51 +50,47 @@ const config = {
     }
 }
 //User signup
-export const signup = (data, setIsAuthenticated, setLoading, navigate) => {
+export const signup = (data, setLoading, navigate) => {
     return async (dispatch) => {
         try {
             dispatch({ type: SIGNUP_REQUEST })
             setLoading(true)
             const response = await axios.post(`${API_URL}/signup`, data, config)
             dispatch({ type: SIGNUP_SUCCESS, payload: response.data })
-            setIsAuthenticated(true)
             setLoading(false)
             navigate('/')
         } catch(error) {
             dispatch({ type: SIGNUP_FAILURE, payload: error.message})
             setLoading(false)
-            setIsAuthenticated(false)
         }
     }
 }
 //User login
-export const login = (data, setIsAuthenticated, setLoading, navigate, toast) => {
+export const login = (data, setLoading, navigate, toast) => {
     return async (dispatch) => {
         try {
             dispatch({ type: LOGIN_REQUEST })
             setLoading(true)
             const response = await axios.post(`${API_URL}/login`, data, config)
             dispatch({ type: LOGIN_SUCCESS, payload: response.data })
-            setIsAuthenticated(true)
             setLoading(false)
             navigate('/')
             toast.success("Login Successful")
         } catch(error) {
             dispatch({ type: LOGIN_FAILURE, payload: error.message})
             setLoading(false)
-            setIsAuthenticated(false)
             toast.error(error.message)
         }
     }
 }
 //User logout
-export const logout = (setIsAuthenticated) => {
+export const logout = (navigate) => {
     return async (dispatch) => {
         try {
             dispatch({ type: LOGOUT_REQUEST })
             const response = await axios.get(`${API_URL}/logout`)
             dispatch({ type: LOGOUT_SUCCESS })
-            setIsAuthenticated(false)
+            navigate('/login')
         } catch (error) {
             dispatch({ type: LOGOUT_FAILURE, payload: error.message })
         }
@@ -105,7 +101,6 @@ export const updateProfile = (data, setEdit) => {
     return async (dispatch) => {
         try {
             dispatch({ type: UPDATE_USER_REQUEST })
-
             const response = await axios.put(`${API_URL}/updateprofile`, data, config)
             dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data})
             setEdit(true)
