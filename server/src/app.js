@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+const errorMiddleware = require('./middlewares/errors');
 const app = express ();
 
 //express middlewares
@@ -29,6 +30,9 @@ const product = require('./routes/productRoutes');
 
 app.use('/api/v1', user);
 app.use('/api/v1', product);
+
+//Production error handler
+app.use(errorMiddleware);
 
 app.get('/', (req, res) => {
     res.send('<h1>Add To Cart - Backend</h1>')
