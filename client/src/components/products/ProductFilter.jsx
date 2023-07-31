@@ -22,7 +22,6 @@ const ProductFilter = ({ filter, setFilter, submitFilter, handleReset }) => {
     }
   return (
     <>
-      <Col lg={2} className="productFilter">
         <Form onSubmit={submitFilter} onReset={handleReset}>
             <Form.Group className="mb-3">
                 <Form.Label>Price</Form.Label>
@@ -62,7 +61,6 @@ const ProductFilter = ({ filter, setFilter, submitFilter, handleReset }) => {
                 <Button type="reset" variant="secondary">Clear Filter</Button>
             </div>
         </Form>
-      </Col>
     </>
   );
 };

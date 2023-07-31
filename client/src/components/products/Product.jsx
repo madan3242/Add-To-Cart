@@ -53,11 +53,11 @@ const Product = () => {
         {product && (
           <>
             <Row>
-              <Col lg={6}>
+              <Col lg={6} >
                 <Carousel>
                   {product?.photos?.map((photo) => {
                     return (
-                      <Carousel.Item key={photo.id} className="mx-auto">
+                      <Carousel.Item key={photo.id} className="mx-auto" style={{ height: "580px"}}>
                         <img src={photo?.secure_url} alt="" height="580px"  />
                       </Carousel.Item>
                     );

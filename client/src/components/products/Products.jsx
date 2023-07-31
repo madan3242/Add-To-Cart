@@ -29,12 +29,13 @@ const Products = () => {
   }
   const [filter, setFilter] = useState(initialFilter);
 
-  let [pageCount, setPageCount] = useState(Math.ceil(totalProductCount / resultPerPage))
+  // let [pageCount, setPageCount] = useState(1);
 
-  // const pageCount = Math.ceil(totalProductCount / resultPerPage);
+  let pageCount = Math.ceil(totalProductCount / resultPerPage);
   
   useEffect(() => {
-    setPageCount(Math.ceil(totalProductCount / resultPerPage))
+    pageCount = Math.ceil(totalProductCount / resultPerPage)
+    console.log(pageCount);
   }, [filter.category])
 
   const handlePageChange = (e) => {
@@ -59,19 +60,21 @@ const Products = () => {
 
   return (
     <>
-      <div className="product-container">
-      {/* {JSON.stringify(filter)} */}
-        <Container>
-          <Row>
-            <ProductFilter filter={filter} setFilter={setFilter} submitFilter={submitFilter} handleReset={handleReset} />
+        <Container className="product-container">
+          <Row className='mx-auto'>
+            <Col lg={2} className="product-filter">
+              <ProductFilter filter={filter} setFilter={setFilter} submitFilter={submitFilter} handleReset={handleReset} />
+            </Col>
             <Col md={12} lg={10}>
               <Row>
                 { products?.length > 0 ? <>                  
                   {products?.map((product) => {
-                    return <Col md={6} lg={3} className='product' key={product._id} onClick={() => navigate(`/products/${product._id}`)}>
+                    return <Col md={6} lg={4}  key={product._id} onClick={() => navigate(`/products/${product._id}`)}>
+                      <div className='product'>
                       <img src={product.photos[3].secure_url} alt={product.name} height="220px" />
                       <h4 className='mt-2'>{product.name}</h4>
                       <p>&#8377;{product.price}</p>
+                      </div>
                     </Col>
                   })}
                 </> : <>
@@ -94,7 +97,6 @@ const Products = () => {
             </Col>
           </Row>
         </Container>
-      </div>
     </>
   )
 }

@@ -6,11 +6,12 @@ import { useDispatch } from "react-redux";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(forgotPassword(email));
+    dispatch(forgotPassword(email, setLoading));
   }
   
   return (
@@ -33,7 +34,7 @@ const ForgotPassword = () => {
           </FloatingLabel>
           <div className="text-center">
             <Button variant="success" className="mb-2" type="submit">
-              Reset Password
+              {loading ? <Loader size={'sm'} /> : 'Reset Password'}
             </Button>
           </div>
         </Form>

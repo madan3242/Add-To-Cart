@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Admin from './components/Admin/Admin'
 import Navbar from './components/Navbar/Navbar'
@@ -18,11 +18,13 @@ import Cart from './components/Cart/Cart'
 import { ToastContainer } from 'react-toast'
 
 const App = () => {
-  const { user, isAuthenticated } = useSelector(state => state.auth);
-  
+  const { user } = useSelector(state => state.auth);
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
   useEffect(() => {
     if(localStorage.token){
       setAuthToken(localStorage.token)
+      setIsAuthenticated(true)
     }
   })
 
@@ -30,7 +32,7 @@ const App = () => {
     <>
       <>
       <Router >
-        <Navbar isAuthenticated={isAuthenticated} />
+        <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <Routes>
           <Route path='/' exact element={<Home />}  />
           <Route path='/login' element={ <Login />} />
@@ -49,7 +51,7 @@ const App = () => {
           <Route path='/cart' element={<Cart />} />
 
           <Route path='/admin/*' element={
-            <ProtectedRoute isAuthenticated={isAuthenticated} user={user} isAdmin={true}>
+            <ProtectedRoute user={user} isAdmin={true}>
               <Admin />
             </ProtectedRoute>
           } />

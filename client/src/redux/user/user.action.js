@@ -84,13 +84,14 @@ export const login = (data, setLoading, navigate, toast) => {
     }
 }
 //User logout
-export const logout = (navigate) => {
+export const logout = (navigate, setIsAuthenticated) => {
     return async (dispatch) => {
         try {
             dispatch({ type: LOGOUT_REQUEST })
             const response = await axios.get(`${API_URL}/logout`)
             dispatch({ type: LOGOUT_SUCCESS })
             navigate('/login')
+            setIsAuthenticated(false)
         } catch (error) {
             dispatch({ type: LOGOUT_FAILURE, payload: error.message })
         }
@@ -110,26 +111,30 @@ export const updateProfile = (data, setEdit) => {
     }
 }
 //update password
-export const updatePassword = (passwords) => {
+export const updatePassword = (passwords, toggleChangePassword) => {
     return async (dispatch) => {
         try {
             dispatch({ type: UPDATE_PASSWORD_REQUEST })
             const response = await axios.put(`${API_URL}/changepassword`, passwords, config)
             dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: response.data })
+            toggleChangePassword()
         } catch (error) {
             dispatch({ type: UPDATE_PASSWORD_FAILURE, payload: error.message })
         }
     }
 }
 //Forgot password
-export const forgotPassword = (email) => {
+export const forgotPassword = (email, setLoading) => {
     return async (dispatch) => {
         try {
             dispatch({ type: FORGOT_PASSWORD_REQUEST })
+            setLoading(true)
             const response = await axios.post(`${API_URL}/forgotpassword`, { email })
             dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: response.data })
+            setLoading(false)
         } catch (error) {
             dispatch({ type: FORGOT_PASSWORD_FAILURE, payload: error.message })
+            setLoading(false)
         }
     }
 }

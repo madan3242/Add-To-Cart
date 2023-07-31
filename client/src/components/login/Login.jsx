@@ -10,7 +10,7 @@ import { toast } from "react-toast";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   //login data
   const [loginUserData, setLoginUserData] = useState({
@@ -95,7 +95,7 @@ const Login = () => {
 
             <div className="text-center">
               <Button variant="success" className="mb-2" type="submit">
-                {!loading ? 'Login' : <Loader />}
+                {!loading ? 'Login' : <Loader size={'sm'} />}
               </Button>
               <p>
                 Don't have an account?{" "}
@@ -145,7 +145,7 @@ const Login = () => {
 
             <div className="text-center">
               <Button variant="success" className="mb-2" type="submit">
-                {!loading ? 'Signup' : <Loader />}
+                {!loading ? 'Signup' : <Loader size={'sm'} />}
               </Button>
               <p>
                 Already have an account ?{" "}

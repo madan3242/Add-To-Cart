@@ -7,7 +7,7 @@ import { BsCart2 } from 'react-icons/bs'
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/user/user.action";
 
-const HomeNavbar = ({ isAuthenticated }) => {
+const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
@@ -50,7 +50,7 @@ const HomeNavbar = ({ isAuthenticated }) => {
                       !isAuthenticated ? <>
                         <Button onClick={() => navigate('/login')} variant="null">Login / Signup</Button>
                       </> : <>
-                        <Button variant="null" onClick={() => dispatch(logout(navigate))} >Logout</Button>
+                        <Button variant="null" onClick={() => dispatch(logout(navigate, setIsAuthenticated))} >Logout</Button>
                         <AiOutlineUser size={25} onClick={() => navigate('/profile')} style={{ margin: "0 10px"}} />
                       </>
                     }

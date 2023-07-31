@@ -56,7 +56,6 @@ export const getAllProducts = (filter) => {
             }
 
             const response = await axios.get(`${API_URL}${url}`)
-            console.log(response);
             dispatch({ type: PRODUCTS_SUCCESS, payload: response.data })
         } catch (error) {
             dispatch({ type: PRODUCTS_FAILURE, payload: error.message })
