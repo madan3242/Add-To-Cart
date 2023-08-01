@@ -19,11 +19,13 @@ const Profile = () => {
       phonenumber: userData?.phonenumber
     })
 
-    const [passwords, setPasswords] = useState({
+    const initialPasswords = {
       currentPassword: "",
       newPassword: "",
       reNewPassword: "",
-    })
+    }
+
+    const [passwords, setPasswords] = useState(initialPasswords)
   
     const handleUserChange = (e) => {
       setUser({
@@ -73,9 +75,9 @@ const Profile = () => {
           <Col lg={3} className="side-section">
             <div className="side-section-list">
               <ul>
-                <li>Profile</li>
-                <li onClick={() => setEdit(true)}>Update</li>
-                <li onClick={() => setChangePassword(!changePassword)}>Change Password</li>
+                <li onClick={() => { setEdit(false); setChangePassword(false); setPasswords(initialPasswords) }}>Profile</li>
+                <li onClick={() => { setEdit(true); setChangePassword(false); setPasswords(initialPasswords) }}>Update</li>
+                <li onClick={() => { setEdit(false); setChangePassword(true) }}>Change Password</li>
               </ul>
             </div>
           </Col>
@@ -133,7 +135,7 @@ const Profile = () => {
                         Current Password
                       </Form.Label>
                       <Col sm="7">
-                          <Form.Control type="password" name="currentPassword" onChange={handlePasswordChange} />
+                          <Form.Control type="password" name="currentPassword" value={passwords.currentPassword} onChange={handlePasswordChange} />
                       </Col>
                     </Form.Group>
                   <Form.Group className="mb-3" as={Row}>
@@ -141,7 +143,7 @@ const Profile = () => {
                         New Password
                       </Form.Label>
                       <Col sm="7">
-                          <Form.Control type="password" name="newPassword" onChange={handlePasswordChange} />
+                          <Form.Control type="password" name="newPassword" value={passwords.newPassword} onChange={handlePasswordChange} />
                       </Col>
                     </Form.Group>
                   <Form.Group className="mb-3" as={Row}>
@@ -149,11 +151,18 @@ const Profile = () => {
                         Re-enter New Password
                       </Form.Label>
                       <Col sm="7">
-                          <Form.Control type="password" name="reNewPassword" onChange={handlePasswordChange} />
+                          <Form.Control type="password" name="reNewPassword" value={passwords.reNewPassword} onChange={handlePasswordChange} />
                       </Col>
                     </Form.Group>
                     <Button onClick={handlePasswordSubmit}>Change Password</Button> &nbsp;
-                    <Button variant="secondary" onClick={() => setChangePassword(false)}>Cancel</Button>
+                    <Button 
+                      variant="secondary" 
+                      onClick={() => {
+                        setChangePassword(false); setEdit(false); setPasswords(initialPasswords)
+                      }}
+                    >
+                      Cancel
+                    </Button>
                 </Form>
               </>
             }
