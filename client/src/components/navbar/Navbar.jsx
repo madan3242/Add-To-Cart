@@ -32,10 +32,10 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link onClick={() => navigate('/products')}>Products</Nav.Link>
-                  <Nav.Link onClick={() => navigate('/products')}>Mobiles</Nav.Link>
-                  <Nav.Link onClick={() => navigate('/products')}>Electronics</Nav.Link>
-                  <Nav.Link onClick={() => navigate('/products')}>Fashion</Nav.Link>
+                  <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Products</Nav.Link>
+                  <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Mobiles</Nav.Link>
+                  <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Electronics</Nav.Link>
+                  <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Fashion</Nav.Link>
                   <Form>
                     <Form.Control
                       type="search"
@@ -48,14 +48,14 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
                   <div style={{ display: "flex", placeItems: "center", padding: "0 15px"}}>
                     {
                       !isAuthenticated ? <>
-                        <Button onClick={() => navigate('/login')} variant="null">Login / Signup</Button>
+                        <Button onClick={() => navigate('/login')} variant="null" >Login / Signup</Button>
                       </> : <>
                         <Button variant="null" onClick={() => dispatch(logout(navigate, setIsAuthenticated))} >Logout</Button>
-                        <AiOutlineUser size={25} onClick={() => navigate('/profile')} style={{ margin: "0 10px"}} />
+                        <AiOutlineUser size={25} onClick={() => navigate('/profile')} style={{ margin: "0 10px", cursor: "pointer"}} />
                       </>
                     }
-                    <AiOutlineHeart size={25} onClick={() => navigate('/wishlist')} style={{ margin: "0 10px"}} />
-                    <BsCart2 size={25} onClick={() => navigate('/cart')} style={{ margin: "0 1px"}} />
+                    <AiOutlineHeart size={25} onClick={() => navigate('/wishlist')} style={{ margin: "0 10px", cursor: "pointer" }} />
+                    <BsCart2 size={25} onClick={() => navigate('/cart')} style={{ margin: "0 1px", cursor: "pointer"}} />
                   </div>
                 </Nav>
               </Offcanvas.Body>

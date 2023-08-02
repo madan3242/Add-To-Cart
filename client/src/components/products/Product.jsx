@@ -57,8 +57,8 @@ const Product = () => {
                 <Carousel>
                   {product?.photos?.map((photo) => {
                     return (
-                      <Carousel.Item key={photo.id} className="mx-auto" style={{ height: "580px"}}>
-                        <img src={photo?.secure_url} alt="" height="580px"  />
+                      <Carousel.Item key={photo.id} className="mx-auto" >
+                        <img src={photo?.secure_url} alt={photo.id} width={"100%"} className="text-center"  />
                       </Carousel.Item>
                     );
                   })}
@@ -78,14 +78,22 @@ const Product = () => {
                 </Row>
                 <h3>{product.brand}</h3>
                 <h1>{product.name}</h1>
-                <h3>&#8377;{product.price}</h3>
+                <h3>&#8377;{product.price} </h3>
+                <p>Inclusive of all taxes</p>
+                <p>EMI starts at ₹{Math.ceil(product.price / 24)}. No Cost EMI available.</p>
+                <h5>About this item</h5>
                 <p>{product.description}</p>
                 <Button size="lg" variant="secondary">
                   Add To Cart
                 </Button>
                 &nbsp;
                 <Button size="lg">Buy Now</Button>
-                <p style={{ color: "red" }}>Hurry up! {product.stocks} left</p>
+                <p style={{ color: "red" }}>{product.stocks <= 5 ? `Hurry up! ${product.stocks} left` : null}</p>
+              </Col>
+              <Col lg={6}>
+              
+              </Col>
+              <Col lg={6}>
                 <Row className="pt-4">
                   <h3>
                     Ratings & Reviews
@@ -144,6 +152,7 @@ const Product = () => {
                   })}
                 </Row>
               </Col>
+              
             </Row>
             <Row>
             </Row>
