@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Breadcrumb,
   Button,
   Card,
-  Carousel,
   Col,
   Container,
   Form,
@@ -14,6 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { addProductReview, getOneProduct } from "../../redux/product/product.action";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import ImageViewer from "react-simple-image-viewer";
 
 const Product = () => {
   const product = useSelector((state) => state.productDetails.product.product);
@@ -27,6 +27,11 @@ const Product = () => {
     rating: 0,
     comment: "",
     productId: id
+  });
+  //images for image viewer
+  const images = [];
+  product?.photos.forEach((photo) => {
+    images.push(photo.secure_url)
   });
 
   useEffect(() => {
@@ -46,23 +51,52 @@ const Product = () => {
     dispatch(getOneProduct(id));
   };
 
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+  const openImageViewer = useCallback((index) => {
+    setCurrentImage(index);
+    setIsViewerOpen(true);
+  }, []);
+
+  const closeImageViewer = () => {
+    setCurrentImage(0);
+    setIsViewerOpen(false);
+  };
+
   return (
     <>
       <Container className="product-details">
-        {/* {JSON.stringify(review)} */}
+        {/* {JSON.stringify(images)} */}
         {product && (
           <>
             <Row>
               <Col lg={6} >
-                <Carousel>
-                  {product?.photos?.map((photo) => {
-                    return (
-                      <Carousel.Item key={photo.id} className="mx-auto" >
-                        <img src={photo?.secure_url} alt={photo.id} width={"100%"} className="text-center"  />
-                      </Carousel.Item>
-                    );
+                <Row>
+                  {images?.map((photo, index) => {
+                      return <Col lg={6} key={index}>
+                        <img 
+                          src={photo} 
+                          alt={photo} 
+                          width={"100%"} 
+                          className="text-center"
+                          onClick={() => openImageViewer(index)}  
+                        />
+                      </Col>
                   })}
-                </Carousel>
+                {isViewerOpen && (
+                  <ImageViewer
+                    src={images}
+                    currentIndex={currentImage}
+                    onClose={closeImageViewer}
+                    disableScroll={false}
+                    backgroundStyle={{
+                      backgroundColor: "rgba(0,0,0,0.9)"
+                    }}
+                    closeOnClickOutside={true}
+                  />
+                )}
+                </Row>
               </Col>
               <Col lg={6}>
                 <Row>
@@ -76,34 +110,37 @@ const Product = () => {
                     <Breadcrumb.Item>{product.name}</Breadcrumb.Item>
                   </Breadcrumb>
                 </Row>
-                <h3>{product.brand}</h3>
-                <h1>{product.name}</h1>
-                <h3>&#8377;{product.price} </h3>
-                <p>Inclusive of all taxes</p>
-                <p>EMI starts at ₹{Math.ceil(product.price / 24)}. No Cost EMI available.</p>
-                <h5>About this item</h5>
-                <p>{product.description}</p>
-                <Button size="lg" variant="secondary">
-                  Add To Cart
-                </Button>
-                &nbsp;
-                <Button size="lg">Buy Now</Button>
-                <p style={{ color: "red" }}>{product.stocks <= 5 ? `Hurry up! ${product.stocks} left` : null}</p>
-              </Col>
-              <Col lg={6}>
-              
-              </Col>
-              <Col lg={6}>
+                <Row>
+                  <Col>
+                    <h3>{product.brand}</h3>
+                    <h1>{product.name}</h1>
+                    <h3>&#8377;{product.price} </h3>
+                    <p>Inclusive of all taxes</p>
+                    <p>EMI starts at ₹{Math.ceil(product.price / 24)}. No Cost EMI available.</p>
+                    <h5>About this item</h5>
+                    <p>{product.description}</p>
+                    <Button size="lg" variant="secondary">
+                      Add To Cart
+                    </Button>
+                    &nbsp;
+                    <Button size="lg">
+                      Buy Now
+                    </Button>
+                    <p style={{ color: "red" }}>
+                      {product.stocks <= 5 ? `Hurry up! ${product.stocks} left` : null}
+                    </p>
+                  </Col>
+                </Row>
                 <Row className="pt-4">
                   <h3>
-                    Ratings & Reviews
-                    <span style={{ float: "right" }}>
-                      <Button onClick={() => setAddReview(true)}>
-                        Add Review
-                      </Button>
-                    </span>
-                  </h3>
-                  {addReview && (
+                      Ratings & Reviews
+                      <span style={{ float: "right" }}>
+                        <Button onClick={() => setAddReview(true)}>
+                          Add Review
+                        </Button>
+                      </span>
+                    </h3>
+                    {addReview && (
                     <>
                       <Form className="mt-2" onSubmit={reviewSumitHandler}>
                         <Rating
@@ -134,7 +171,7 @@ const Product = () => {
                         </div>
                       </Form>
                     </>
-                  )}
+                    )}
                 </Row>
                 <Row>
                   <h2>{product.rating} <span><AiFillStar  style={{ color: "gold" }} /></span></h2>
@@ -152,9 +189,6 @@ const Product = () => {
                   })}
                 </Row>
               </Col>
-              
-            </Row>
-            <Row>
             </Row>
           </>
         )}
