@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Row, Table } from 'react-bootstrap'
+import { Button, Row, Table } from 'react-bootstrap'
 import AddProduct from './AddProduct'
 import './product.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts } from '../../../../redux/product/product.action'
-import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai'
 import ProductRow from './ProductRow'
 
 const Products = () => {

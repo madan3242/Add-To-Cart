@@ -118,6 +118,7 @@ const Product = () => {
                   </Breadcrumb>
                 </Row>
                 <Row>
+                  {qty}
                   <Col>
                     <h3>{product.brand}</h3>
                     <h1>{product.name}</h1>

@@ -17,9 +17,7 @@ export const cartReducer = (state = initialState, action) => {
             if(isItemExist){
                 return {
                     ...state,
-                    cartItems: state.cartItems.map((i) => {
-                        i.product === isItemExist ? item : i
-                    })
+                    cartItems: state.cartItems.map(i => i.product === isItemExist.product ? item : i)
                 }
             } else {
                 return {
@@ -32,7 +30,6 @@ export const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cartItems: state.cartItems.filter((i) => i.product !== action.payload)
-            
             }
 
         case SHIPPING_INFO: 

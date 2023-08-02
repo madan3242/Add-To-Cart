@@ -7,7 +7,6 @@ import CartRow from './CartRow'
 
 const Cart = () => {
   const { cartItems } = useSelector(state => state.cart)
-
   return (
     <>
         <Container className='cart-container'>
@@ -29,12 +28,11 @@ const Cart = () => {
                     </tr>
                   </thead>
                   <tbody>
-                  {cartItems.map((item) => {
-                    return <CartRow item={item} key={item.product} />
-                  })}
+                    {cartItems.map((item) => {
+                        return <CartRow item={item} key={item.product} />
+                    })}
                   </tbody>
                 </table>
-                
                 <Row>
                   <Col >
                     <div style={{ float: "right" }}>

@@ -2,25 +2,28 @@ import React from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addItemsToCart, removeItemsFromCart } from "../../redux/cart/cart.action";
+import { Button } from "react-bootstrap";
 
 const CartRow = ({ item }) => {
     const dispatch = useDispatch();
 
-    const increaseQuantity = (id, qty, stock) => {
+    const increaseQuantity = (id, qty, stocks) => {
         const newQty = qty + 1
-        if(stock <= qty) {
-            return;
+        if(stocks <= qty) {
+          return;
         }
         dispatch(addItemsToCart(id, newQty))
+        console.log(id +" "+ qty);
     }
-
+    
     const decreaseQuantity = (id, qty) => {
         const newQty = qty - 1
         if(1 >= qty) {
-            return;
+          return;
         }
         dispatch(addItemsToCart(id, newQty))
     }
+    
 
     const removeCartItemHandler = (id) => {
         dispatch(removeItemsFromCart(id))
@@ -28,15 +31,14 @@ const CartRow = ({ item }) => {
 
   return (
     <tr className="text-center">
-        {/* {JSON.stringify(item)} */}
       <td>
         <img src={item.image} alt="" height={100} />
       </td>
       <td>{item.name}</td>
       <td>
-        {/* <Button variant="null" onClick={() => decreaseQuantity(item.product, item.quantity)}>-</Button> */}
+        <Button variant="null" onClick={() => decreaseQuantity(item.product, item.quantity)}>-</Button>
             {item.quantity}
-        {/* <Button variant="null" onClick={() => increaseQuantity(item.product, item.quantity, item.stocks)}>+</Button> */}
+        <Button variant="null" onClick={() => increaseQuantity(item.product, item.quantity, item.stocks)}>+</Button>
       </td>
       <td>{item.price * item.quantity}</td>
       <td>
