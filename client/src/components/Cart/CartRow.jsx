@@ -8,12 +8,13 @@ const CartRow = ({ item }) => {
     const dispatch = useDispatch();
 
     const increaseQuantity = (id, qty, stocks) => {
-        const newQty = qty + 1
+        const newQty = parseInt(qty) + 1
+        console.log("Quantity: "+qty);
+        console.log("New Quantity: "+newQty);
         if(stocks <= qty) {
           return;
         }
         dispatch(addItemsToCart(id, newQty))
-        console.log(id +" "+ qty);
     }
     
     const decreaseQuantity = (id, qty) => {

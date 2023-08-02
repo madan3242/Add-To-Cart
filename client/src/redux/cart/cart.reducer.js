@@ -1,7 +1,7 @@
 import { ADD_CART_ITEM, REMOVE_CART_ITEM, SHIPPING_INFO } from "./cart.action"
 
 let initialState = {
-    cartItems: [],
+    cartItems: localStorage.cartItems ? JSON.parse(localStorage.cartItems) : [],
     shippingInfo: {}
 }
 

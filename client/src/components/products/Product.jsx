@@ -84,7 +84,6 @@ const Product = () => {
                       return <Col lg={6} key={index}>
                         <img 
                           src={photo} 
-                          alt={photo} 
                           width={"100%"} 
                           className="text-center"
                           onClick={() => openImageViewer(index)}  
@@ -118,7 +117,6 @@ const Product = () => {
                   </Breadcrumb>
                 </Row>
                 <Row>
-                  {qty}
                   <Col>
                     <h3>{product.brand}</h3>
                     <h1>{product.name}</h1>
@@ -192,7 +190,7 @@ const Product = () => {
                 <Row>
                   {product.reviews?.map((rev) => {
                     return <>
-                      <Card>
+                      <Card key={rev.name}>
                         <Card.Body>
                           <Card.Title>{rev.rating}<AiFillStar size={25} style={{ color: "gold" }} /> {rev.comment}</Card.Title>
                           <Card.Text>{rev.name}</Card.Text>

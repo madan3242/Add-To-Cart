@@ -11,11 +11,11 @@ const Cart = () => {
     <>
         <Container className='cart-container'>
             <Row className='mx-4'>
-              <Col className='mt-4'>
+              <Col className='my-4'>
                 <h1><AiOutlineShoppingCart /> Cart</h1>
               </Col>
             </Row>
-            <Row className='mx-4' style={{ marginBottom: "275px"}}>
+            <Row className='mx-4 ' style={{ marginBottom: "16rem"}}>
               {cartItems.length > 0 ? <>
                 <table>
                   <thead>

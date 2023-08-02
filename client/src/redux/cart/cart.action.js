@@ -10,7 +10,6 @@ export const SHIPPING_INFO = "SHIPPING_INFO"
 export const addItemsToCart = (id, quantity) => {
     return async (dispatch, getState) => {
         const { data } = await axios.get(`${API_URL}/products/${id}`)
-        console.log(id);
         dispatch({
             type: ADD_CART_ITEM,
             payload: {
