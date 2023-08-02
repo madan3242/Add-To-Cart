@@ -1,8 +1,46 @@
-export const cartReducer = (state, action) => {
+import { ADD_CART_ITEM, REMOVE_CART_ITEM, SHIPPING_INFO } from "./cart.action"
+
+let initialState = {
+    cartItems: [],
+    shippingInfo: {}
+}
+
+export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
-        case value:
+        case ADD_CART_ITEM:
+            const item = action.payload;
+
+            const isItemExist = state.cartItems.find(
+                (i) => i.product === item.product
+            )
+
+            if(isItemExist){
+                return {
+                    ...state,
+                    cartItems: state.cartItems.map((i) => {
+                        i.product === isItemExist ? item : i
+                    })
+                }
+            } else {
+                return {
+                    ...state,
+                    cartItems: [...state.cartItems, item]
+                }
+            }
+
+        case REMOVE_CART_ITEM:
+            return {
+                ...state,
+                cartItems: state.cartItems.filter((i) => i.product !== action.payload)
             
-    
+            }
+
+        case SHIPPING_INFO: 
+            return {
+                ...state,
+                shippingInfo: action.payload
+            }
+
         default:
             return state
     }

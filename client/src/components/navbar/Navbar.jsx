@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Container, Form, Nav, Navbar, Offcanvas } from "react-bootstrap";
+import { Badge, Button, Container, Form, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import "./navbar.css";
 import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user/user.action";
 
 const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { cartItems } = useSelector(state => state.cart)
   
   return (
     <>
@@ -55,7 +56,10 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
                       </>
                     }
                     <AiOutlineHeart size={25} onClick={() => navigate('/wishlist')} style={{ margin: "0 10px", cursor: "pointer" }} />
-                    <BsCart2 size={25} onClick={() => navigate('/cart')} style={{ margin: "0 1px", cursor: "pointer"}} />
+                    <div style={{ position: "relative"}}>
+                      <BsCart2 size={25} onClick={() => navigate('/cart')} style={{ margin: "0 1px", cursor: "pointer"}} />
+                      {cartItems.length > 0 && <Badge pill style={{ position: "absolute", top: "-12px", left: "3px" }}>{cartItems.length}</Badge>}
+                    </div>
                   </div>
                 </Nav>
               </Offcanvas.Body>

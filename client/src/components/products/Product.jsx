@@ -14,6 +14,7 @@ import { addProductReview, getOneProduct } from "../../redux/product/product.act
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import ImageViewer from "react-simple-image-viewer";
+import { addItemsToCart } from "../../redux/cart/cart.action";
 
 const Product = () => {
   const product = useSelector((state) => state.productDetails.product.product);
@@ -28,6 +29,12 @@ const Product = () => {
     comment: "",
     productId: id
   });
+
+  const [qty, setQty] = useState(1)
+
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+
   //images for image viewer
   const images = [];
   product?.photos.forEach((photo) => {
@@ -51,9 +58,6 @@ const Product = () => {
     dispatch(getOneProduct(id));
   };
 
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
-
   const openImageViewer = useCallback((index) => {
     setCurrentImage(index);
     setIsViewerOpen(true);
@@ -64,10 +68,13 @@ const Product = () => {
     setIsViewerOpen(false);
   };
 
+  const addItemToCartHandler = () => {
+    dispatch(addItemsToCart(id, qty))
+  }
+
   return (
     <>
       <Container className="product-details">
-        {/* {JSON.stringify(images)} */}
         {product && (
           <>
             <Row>
@@ -119,7 +126,12 @@ const Product = () => {
                     <p>EMI starts at ₹{Math.ceil(product.price / 24)}. No Cost EMI available.</p>
                     <h5>About this item</h5>
                     <p>{product.description}</p>
-                    <Button size="lg" variant="secondary">
+                    <p>Quantity: 
+                      <span>
+                        <Form.Control type="number" style={{ width: "60px"}} value={qty} onChange={(e) => setQty(e.target.value)}  />
+                      </span>
+                    </p> 
+                    <Button size="lg" variant="secondary" onClick={addItemToCartHandler}>
                       Add To Cart
                     </Button>
                     &nbsp;
