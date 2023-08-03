@@ -27,9 +27,13 @@ app.use(cors());
 //routes
 const user = require('./routes/userRoutes');
 const product = require('./routes/productRoutes');
+const order = require('./routes/orderRoutes');
+const payment = require('./routes/paymentRoutes');
 
 app.use('/api/v1', user);
 app.use('/api/v1', product);
+app.use('/api/v1', order);
+app.use('/api/v1', payment);
 
 //Production error handler
 app.use(errorMiddleware);

@@ -8,7 +8,7 @@ const { isLoggedIn } = require('../middlewares/user');
 
 const router = express.Router();
 
-router.route('/stripekey').post(isLoggedIn, stripeSendApiKey)
+router.route('/stripekey').get(isLoggedIn, stripeSendApiKey)
 
 router.route('/payment').post(isLoggedIn , processPayment)
 

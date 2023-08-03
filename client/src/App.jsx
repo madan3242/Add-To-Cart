@@ -18,24 +18,39 @@ import Cart from './components/Cart/Cart'
 import { ToastContainer } from 'react-toast'
 import Shipping from './components/Cart/Shipping'
 import ConfirmOrder from './components/Cart/ConfirmOrder'
+import { getApiKey } from './services/stripe'
+import { Elements } from '@stripe/react-stripe-js'
+import Payment from './components/Cart/Payment'
+import { loadStripe } from '@stripe/stripe-js'
 
 const App = () => {
   const { user } = useSelector(state => state.auth);
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-
+  const [stripeApiKey, setStripeApiKey] = useState();
+  
   useEffect(() => {
     if(localStorage.token){
       setAuthToken(localStorage.token)
       setIsAuthenticated(true)
+      getApiKey(setStripeApiKey)
     }
-  })
+  }, [stripeApiKey])
 
   return (
     <>
-      <>
       <Router >
         <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <Routes>
+          {stripeApiKey && 
+            <Route path='/process/payment' element={
+              <ProtectedRoute user={user}>
+                <Elements stripe={loadStripe(stripeApiKey)} >
+                  <Payment />
+                </Elements>
+              </ProtectedRoute>
+            } />
+           }
+
           <Route path='/' exact element={<Home />}  />
           <Route path='/login' element={ <Login />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />
@@ -69,12 +84,12 @@ const App = () => {
             </ProtectedRoute>
           } />
 
+          <Route element={window.location.pathname === '/process/payment' ? null : <NotFound /> }  />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>
-    </>
-    <ToastContainer delay={3000} />
+      {/* <ToastContainer delay={3000} /> */}
     </>
   )
 }
