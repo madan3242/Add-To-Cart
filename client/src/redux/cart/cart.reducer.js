@@ -2,7 +2,7 @@ import { ADD_CART_ITEM, REMOVE_CART_ITEM, SHIPPING_INFO } from "./cart.action"
 
 let initialState = {
     cartItems: localStorage.cartItems ? JSON.parse(localStorage.cartItems) : [],
-    shippingInfo: {}
+    shippingInfo: localStorage.shippingInfo ? JSON.parse(localStorage.shippingInfo) : {}
 }
 
 export const cartReducer = (state = initialState, action) => {

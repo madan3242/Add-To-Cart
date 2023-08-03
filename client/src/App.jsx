@@ -16,6 +16,8 @@ import ForgotPassword from './components/Login/ForgotPassword'
 import ResetPassword from './components/Login/ResetPassword'
 import Cart from './components/Cart/Cart'
 import { ToastContainer } from 'react-toast'
+import Shipping from './components/Cart/Shipping'
+import ConfirmOrder from './components/Cart/ConfirmOrder'
 
 const App = () => {
   const { user } = useSelector(state => state.auth);
@@ -49,6 +51,17 @@ const App = () => {
           <Route path='/products' element={<Products />} />
           <Route path='/products/:id' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/shipping' element={
+            <ProtectedRoute user={user}>
+              <Shipping />
+            </ProtectedRoute>
+          } />
+
+          <Route path='/order/confirm' element={
+            <ProtectedRoute user={user}>
+              <ConfirmOrder />
+            </ProtectedRoute>
+          } />
 
           <Route path='/admin/*' element={
             <ProtectedRoute user={user} isAdmin={true}>

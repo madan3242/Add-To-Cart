@@ -4,9 +4,15 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import CartRow from './CartRow'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
-  const { cartItems } = useSelector(state => state.cart)
+  const { cartItems } = useSelector(state => state.cart);
+  const navigate = useNavigate();
+
+  const checkoutHandler = () => {
+    navigate('/shipping')
+  }
   return (
     <>
         <Container className='cart-container'>
@@ -43,7 +49,7 @@ const Cart = () => {
                         )}`}
                         </>}
                       </p>
-                      <Button>Check Out</Button>
+                      <Button onClick={checkoutHandler}>Check Out</Button>
                     </div>
                   </Col>
                 </Row>
