@@ -16,9 +16,9 @@ const router = express.Router();
 
 router.route('/orders/new').post(createOrder)
 
-router.route('/order/:id').get(isLoggedIn ,getSingleOrder)
-
 router.route('/orders').get(isLoggedIn, getAllOrders)
+
+router.route('/orders/:id').get(isLoggedIn ,getSingleOrder)
 
 router.route('/admin/orders').get(isLoggedIn, customRole("admin"), adminAllOrders)
 

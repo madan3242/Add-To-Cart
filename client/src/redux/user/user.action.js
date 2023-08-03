@@ -187,3 +187,11 @@ export const adminUpdateUser = (id, data) => {
         }
     }
 }
+//Clearing the errors
+export const clearErrors = () => {
+    return async (dispatch) => {
+        dispatch({
+            type: CLEAR_ERRORS
+        })
+    }
+}

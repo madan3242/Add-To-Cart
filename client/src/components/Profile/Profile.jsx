@@ -9,6 +9,7 @@ import { toast } from "react-toast"
 const Profile = () => {
     const [edit, setEdit] = useState(false);
     const [changePassword, setChangePassword] = useState(false);
+    const [myOrders, setMyOrders] = useState(false);
 
     const dispatch = useDispatch();
     const userData = useSelector(state => state.auth.user)
@@ -75,8 +76,9 @@ const Profile = () => {
           <Col lg={3} className="side-section">
             <div className="side-section-list">
               <ul>
-                <li onClick={() => { setEdit(false); setChangePassword(false); setPasswords(initialPasswords) }}>Profile</li>
-                <li onClick={() => { setEdit(true); setChangePassword(false); setPasswords(initialPasswords) }}>Update</li>
+                <li onClick={() => { setEdit(false); setChangePassword(false); setPasswords(initialPasswords) }}>My Profile</li>
+                <li onClick={() => { setEdit(false); setChangePassword(false); setPasswords(initialPasswords); setMyOrders(true) }}>My Orders</li>
+                <li onClick={() => { setEdit(true); setChangePassword(false); setPasswords(initialPasswords) }}>Update Profile</li>
                 <li onClick={() => { setEdit(false); setChangePassword(true) }}>Change Password</li>
               </ul>
             </div>

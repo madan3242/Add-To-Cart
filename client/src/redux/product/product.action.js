@@ -34,6 +34,8 @@ export const DELETE_PRODUCT_REQUEST = 'NEW_PRODUCT_REQUEST'
 export const DELETE_PRODUCT_SUCCESS = 'NEW_PRODUCT_SUCCESS'
 export const DELETE_PRODUCT_FAILURE = 'NEW_PRODUCT_FAILURE'
 
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'
+
 import axios from "axios"
 const API_URL =  `http://localhost:8080/api/v1`
 
@@ -159,4 +161,12 @@ export const deleteProduct = (id) => {
             dispatch({ type: DELETE_PRODUCT_FAILURE, payload: error.message })
         }
     } 
+}
+//Clearing the errors
+export const clearErrors = () => {
+    return async (dispatch) => {
+        dispatch({
+            type: CLEAR_ERRORS
+        })
+    }
 }

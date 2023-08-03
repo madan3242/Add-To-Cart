@@ -5,6 +5,7 @@ import {
     ADMIN_PRODUCTS_FAILURE, 
     ADMIN_PRODUCTS_REQUEST, 
     ADMIN_PRODUCTS_SUCCESS, 
+    CLEAR_ERRORS, 
     NEW_PRODUCT_FAILURE, 
     NEW_PRODUCT_REQUEST, 
     NEW_PRODUCT_SUCCESS, 
@@ -46,6 +47,12 @@ export const productsReducer = (state = { products: [] }, action) => {
                 loading: false,
                 error: action.payload
             }
+        
+        case CLEAR_ERRORS:
+                return {
+                    ...state,
+                    error: null
+                }
         default:
             return state
     }
@@ -70,6 +77,12 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
                 loading: false,
                 error: action.payload
             }
+        
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
         default:
             return state   
     }
@@ -90,6 +103,12 @@ export const addProductReducer = (state = { product: {}}, action) => {
             return {
                 loading: false,
                 error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
             }
         default:
             return state
@@ -114,6 +133,12 @@ export const addReviewReducer = (state = { review: {} }, action) => {
                 ...state,
                 loading: true,
                 error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
             }
         default:
             return state

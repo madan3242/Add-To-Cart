@@ -2,6 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { userReducer, allUsersReducer } from "./user/user.reducer";
 import { addProductReducer, productDetailsReducer, productsReducer } from "./product/product.reducer";
 import { cartReducer } from "./cart/cart.reducer";
+import { orderReducer, ordersReducer } from "./order/order.reducer";
 
 export const rootReducer = combineReducers({
     auth: userReducer,
@@ -9,5 +10,7 @@ export const rootReducer = combineReducers({
     products: productsReducer,
     productDetails: productDetailsReducer,
     addProduct: addProductReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    order: orderReducer,
+    orders: ordersReducer
 })

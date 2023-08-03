@@ -96,6 +96,13 @@ export const userReducer = (state = initialState, action) => {
                 token: null,
                 isAuthenticated: false
             }
+        
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        
         default: return state
     }
 }
@@ -133,6 +140,13 @@ export const profileReducer = (state = { user: {} }, action) => {
                 loading: false,
                 error: action.payload
             }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+        
         default: return state
         
     }
