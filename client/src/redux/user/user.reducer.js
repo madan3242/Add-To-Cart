@@ -24,15 +24,14 @@ import {
     UPDATE_USER_FAILURE, 
     UPDATE_USER_REQUEST, 
     UPDATE_USER_SUCCESS, 
-     
 } from "./user.action"
 
 const initialState = {
     user: localStorage.user ? JSON.parse(localStorage.user) : null,
     token: null,
     loading: false,
-    isAuthinticated: false,
-    errorMessage: null
+    isAuthenticated: false,
+    error: null
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -62,7 +61,7 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                errorMessage: payload,
+                error: payload,
                 isAuthenticated: false,
             }
         case UPDATE_USER_REQUEST:

@@ -6,6 +6,7 @@ import {
   removeItemsFromCart,
 } from "../../redux/cart/cart.action";
 import { Button } from "react-bootstrap";
+import toast from "react-hot-toast";
 
 const CartRow = ({ item }) => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const CartRow = ({ item }) => {
 
   const removeCartItemHandler = (id) => {
     dispatch(removeItemsFromCart(id));
+    toast.error(`${item.name} removed from the cart`)
   };
 
   return (

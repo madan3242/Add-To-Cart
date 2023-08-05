@@ -23,6 +23,8 @@ import { Elements } from '@stripe/react-stripe-js'
 import Payment from './components/Cart/Payment'
 import { loadStripe } from '@stripe/stripe-js'
 
+import { Toaster } from 'react-hot-toast'
+
 const App = () => {
   const { user } = useSelector(state => state.auth);
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -32,14 +34,15 @@ const App = () => {
     if(localStorage.token){
       setAuthToken(localStorage.token)
       setIsAuthenticated(true)
-      getApiKey(setStripeApiKey)
     }
-  }, [stripeApiKey])
-
+    getApiKey(setStripeApiKey)
+  }, [user])
+  
   return (
     <>
       <Router >
         <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+        <ToastContainer delay={3000} position='top-center' />
         <Routes>
           {stripeApiKey && 
             <Route path='/process/payment' element={
@@ -88,8 +91,8 @@ const App = () => {
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
+        <Toaster position='top-center'  />
       </Router>
-      {/* <ToastContainer delay={3000} /> */}
     </>
   )
 }

@@ -15,6 +15,7 @@ import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import ImageViewer from "react-simple-image-viewer";
 import { addItemsToCart } from "../../redux/cart/cart.action";
+import toast from "react-hot-toast";
 
 const Product = () => {
   const product = useSelector((state) => state.productDetails.product.product);
@@ -70,6 +71,7 @@ const Product = () => {
 
   const addItemToCartHandler = () => {
     dispatch(addItemsToCart(id, qty))
+    toast.success(`You added ${qty} ${product.name} to cart`)
   }
 
   return (

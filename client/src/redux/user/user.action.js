@@ -50,7 +50,7 @@ const config = {
     }
 }
 //User signup
-export const signup = (data, setLoading, navigate) => {
+export const signup = (data, setLoading, navigate, toast) => {
     return async (dispatch) => {
         try {
             dispatch({ type: SIGNUP_REQUEST })
@@ -59,9 +59,11 @@ export const signup = (data, setLoading, navigate) => {
             dispatch({ type: SIGNUP_SUCCESS, payload: response.data })
             setLoading(false)
             navigate('/')
+            toast.success("Signup Successful")
         } catch(error) {
             dispatch({ type: SIGNUP_FAILURE, payload: error.message})
             setLoading(false)
+            toast.error(error.response.data.message)
         }
     }
 }
@@ -77,9 +79,9 @@ export const login = (data, setLoading, navigate, toast) => {
             navigate('/')
             toast.success("Login Successful")
         } catch(error) {
-            dispatch({ type: LOGIN_FAILURE, payload: error.message})
+            dispatch({ type: LOGIN_FAILURE, payload: error.response.data.message })
             setLoading(false)
-            toast.error(error.message)
+            toast.error(error.response.data.message)
         }
     }
 }
@@ -98,15 +100,17 @@ export const logout = (navigate, setIsAuthenticated) => {
     }
 }
 //Update profile
-export const updateProfile = (data, setEdit) => {
+export const updateProfile = (data, setEdit, toast) => {
     return async (dispatch) => {
         try {
             dispatch({ type: UPDATE_USER_REQUEST })
             const response = await axios.put(`${API_URL}/updateprofile`, data, config)
             dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data})
-            setEdit(true)
+            toast.success("Profile updated")
+            setEdit(false)
         } catch (error) {
             dispatch({ type: UPDATE_USER_FAILURE, payload: error.message })
+            toast.error(error.response.data.message)
         }
     }
 }

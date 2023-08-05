@@ -4,7 +4,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { AiOutlineUser } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePassword, updateProfile } from "../../redux/user/user.action";
-import { toast } from "react-toast"
+import { toast } from "react-hot-toast"
 
 const Profile = () => {
     const [edit, setEdit] = useState(false);
@@ -44,7 +44,7 @@ const Profile = () => {
   
     const handleUpdate = (e) => {
       e.preventDefault();
-      dispatch(updateProfile(user, setEdit))
+      dispatch(updateProfile(user, setEdit, toast))
     }
 
     const toggleChangePassword = () => {
@@ -63,8 +63,7 @@ const Profile = () => {
         if(passwords.newPassword === passwords.reNewPassword){
           dispatch(updatePassword(data, toggleChangePassword))
         } else {
-          // toast("Passwords don't match")
-          alert("Passwords don't match")
+          toast("Passwords don't match")
         }
       }
     }

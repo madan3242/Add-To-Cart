@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { login, signup } from "../../redux/user/user.action";
 import Loader from "../Loader/Loader";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toast";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -49,7 +49,6 @@ const Login = () => {
         password: loginUserData.password
       }
       dispatch(login(data, setLoading, navigate, toast))
-      toast("Logged In")
     } catch (error) { 
       toast(error.message)
     }
@@ -63,9 +62,9 @@ const Login = () => {
           email: signupUserData.email,
           password: signupUserData.password
         }
-        dispatch(signup(data, setIsAuthenticated, setLoading, navigate))
+        dispatch(signup(data, setIsAuthenticated, setLoading, navigate, toast))
       } catch (error) {
-        alert(JSON.stringify(error.message))
+        toast(error.message)
       }
   }
 
