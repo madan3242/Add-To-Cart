@@ -58,7 +58,7 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
                     <AiOutlineHeart size={25} onClick={() => navigate('/wishlist')} style={{ margin: "0 10px", cursor: "pointer" }} />
                     <div style={{ position: "relative"}}>
                       <BsCart2 size={25} onClick={() => navigate('/cart')} style={{ margin: "0 1px", cursor: "pointer"}} />
-                      {cartItems.length > 0 && <Badge pill style={{ position: "absolute", top: "-12px", left: "3px" }}>{cartItems.length}</Badge>}
+                      {cartItems?.length > 0 && <Badge pill style={{ position: "absolute", top: "-12px", left: "3px" }}>{cartItems.length}</Badge>}
                     </div>
                   </div>
                 </Nav>

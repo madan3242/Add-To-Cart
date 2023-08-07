@@ -35,14 +35,14 @@ const config = {
 }
 
 //Create Order
-export const createOrder = (order) => {
+export const createOrder = (order, navigate) => {
     return async (dispatch) => {
         try {
             console.log(order);
             dispatch({ type: CREATE_ORDER_REQUEST })
             const response = await axios.post(`${API_URL}/orders/new`, order, config);
             dispatch({ type: CREATE_ORDER_SUCCESS, payload: response.data })
-
+            navigate('/order/success')
         } catch (error) {
             dispatch({ type: CREATE_ORDER_FAILURE, payload: error.message })
         }
