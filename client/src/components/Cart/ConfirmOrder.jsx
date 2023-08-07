@@ -65,11 +65,11 @@ const ConfirmOrder = () => {
                         <th>Subtotal</th>
                       </tr>
                     </thead>
+                    <tbody>
                     {cartItems &&
                       cartItems.map((item) => {
                         return (
-                          <tbody>
-                            <tr>
+                            <tr key={item.product}>
                               <td>
                                 <img src={item.image} height={100} alt="" onClick={() => navigate(`/products/${item.product}`)} />
                               </td>
@@ -77,9 +77,9 @@ const ConfirmOrder = () => {
                               <td>{item.quantity}N</td>
                               <td>₹{item.quantity * item.price}</td>
                             </tr>
-                          </tbody>
                         );
                       })}
+                    </tbody>
                   </table>
                 </Row>
                 <Card.Title className="mt-2">Order summary:</Card.Title>

@@ -32,36 +32,35 @@ const Shipping = () => {
                 <h2 className="my-3">Shipping Details</h2>
             </Col>
         </Row>
-        {/* {JSON.stringify(shipping)} */}
         <Form  style={{ margin: "0 10rem"}}>
             <Row className="mb-3">
                 <Form.Group as={Col} className="mb-3">
                     <Form.Label>Address</Form.Label>
-                    <Form.Control placeholder="1234 Main St" type='text' name='address' onChange={shippingChangeHandler} />
+                    <Form.Control placeholder="1234 Main St" type='text' name='address' value={shipping?.address} onChange={shippingChangeHandler} />
                 </Form.Group>
                 <Form.Group as={Col} className="mb-3">
                     <Form.Label>City</Form.Label>
-                    <Form.Control placeholder="Bengaluru" type='text' name='city' onChange={shippingChangeHandler} />
+                    <Form.Control placeholder="Bengaluru" type='text' name='city' value={shipping?.city} onChange={shippingChangeHandler} />
                 </Form.Group>
             </Row>
             <Row className="mb-3">
                 <Form.Group as={Col} className="mb-3">
                     <Form.Label>State</Form.Label>
-                    <Form.Control placeholder="Karnataka" type='text' name='state' onChange={shippingChangeHandler} />
+                    <Form.Control placeholder="Karnataka" type='text' name='state' value={shipping?.state} onChange={shippingChangeHandler} />
                 </Form.Group>
                 <Form.Group as={Col} className="mb-3">
                     <Form.Label>Country</Form.Label>
-                    <Form.Control placeholder="India" type='text' name='country' onChange={shippingChangeHandler} />
+                    <Form.Control placeholder="India" type='text' name='country' value={shipping?.country} onChange={shippingChangeHandler} />
                 </Form.Group>
             </Row>
             <Row className="mb-3">
                 <Form.Group as={Col} className="mb-3">
                     <Form.Label>Pin Code</Form.Label>
-                    <Form.Control placeholder="6 digit Pin Code" type='text' name='pincode' onChange={shippingChangeHandler} />
+                    <Form.Control placeholder="6 digit Pin Code" type='text' name='pincode' value={shipping?.pincode} onChange={shippingChangeHandler} />
                 </Form.Group>
                 <Form.Group as={Col} className="mb-3">
                     <Form.Label>Mobile Number</Form.Label>
-                    <Form.Control placeholder="10 digit Mobile number" type='text' name='phoneNo' onChange={shippingChangeHandler} />
+                    <Form.Control placeholder="10 digit Mobile number" type='text' name='phoneNo' value={shipping?.phoneNo} onChange={shippingChangeHandler} />
                 </Form.Group>
             </Row>
             <Row className="mb-3">

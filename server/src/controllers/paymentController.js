@@ -15,7 +15,7 @@ exports.processPayment = AsyncErrors(async (req, res, next) => {
           enabled: true,
         },
       });
-    
+          
       res.status(200).json({
         success: true,
         amount: req.body.amount,

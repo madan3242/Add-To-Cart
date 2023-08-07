@@ -17,11 +17,12 @@ export const getApiKey = async(setStripeApiKey) => {
     }
 }
 
-export const stripePayment = async (paymentData) => {
+export const stripePayment = async (amount, setClientSecret) => {
     try {
-        const response = await axios.post(`${API_URL}/payment`, paymentData, config)
-        
+        amount = Math.round(amount * 100)
+        const response = await axios.post(`${API_URL}/payment`, { amount }, config)
+        setClientSecret(response?.data?.client_secret)
     } catch (error) {
-        
+        return error.message
     }
 }
