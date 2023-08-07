@@ -33,7 +33,7 @@ const Payment = () => {
             >
               {clientSecret && (
                 <Elements stripe={loadStripe(stripeApiKey)} options={options}>
-                  <CheckoutForm orderInfo={orderInfo} client_secret={clientSecret} />
+                  <CheckoutForm orderInfo={orderInfo} />
                 </Elements>
               )}
             </div>

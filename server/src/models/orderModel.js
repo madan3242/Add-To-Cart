@@ -18,7 +18,7 @@ const orderSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        postalCode: {
+        pinCode: {
             type: String,
             required: true
         },

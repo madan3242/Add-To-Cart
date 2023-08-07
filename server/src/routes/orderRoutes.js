@@ -14,7 +14,7 @@ const {
 
 const router = express.Router();
 
-router.route('/orders/new').post(createOrder)
+router.route('/orders/new').post(isLoggedIn, createOrder)
 
 router.route('/orders').get(isLoggedIn, getAllOrders)
 

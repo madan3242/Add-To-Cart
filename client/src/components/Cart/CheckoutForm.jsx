@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast"
 import { createOrder } from "../../redux/order/order.action";
 
-const CheckoutForm = ({ orderInfo, client_secret }) => {
+const CheckoutForm = ({ orderInfo }) => {
   const stripe = useStripe();
   const elements = useElements();
 
