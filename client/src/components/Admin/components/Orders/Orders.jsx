@@ -16,12 +16,11 @@ const Orders = () => {
       <Row>
         <h2>Orders</h2>
       </Row>
-      {/* {JSON.stringify(orders[0])} */}
       <Row style={{ margin: "1rem" }}>
         <Table striped bordered hover>
           <thead>
             <tr>
-                <th>Order ID</th>
+              <th>Order ID</th>
               <th>Shipping Info</th>
               <th>Phone No</th>
               <th>Payment ID</th>
@@ -34,9 +33,10 @@ const Orders = () => {
             </tr>
           </thead>
           <tbody>
-            {orders && orders.map((order) => {
-              return <OrderRow order={order} key={order?._id} />
-            })}
+            {orders &&
+              orders.map((order) => {
+                return <OrderRow order={order} key={order?._id} />;
+              })}
           </tbody>
         </Table>
       </Row>

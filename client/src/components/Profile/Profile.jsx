@@ -5,11 +5,11 @@ import { AiOutlineUser } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePassword, updateProfile } from "../../redux/user/user.action";
 import { toast } from "react-hot-toast"
+import MyOrders from "./MyOrders";
 
 const Profile = () => {
     const [edit, setEdit] = useState(false);
     const [changePassword, setChangePassword] = useState(false);
-    const [myOrders, setMyOrders] = useState(false);
 
     const dispatch = useDispatch();
     const userData = useSelector(state => state.auth.user)
@@ -70,13 +70,11 @@ const Profile = () => {
     
     return (
       <Container className="profileContainer">
-        {/* {JSON.stringify(passwords)} */}
         <Row className="user-profile">
           <Col lg={3} className="side-section">
             <div className="side-section-list">
               <ul>
                 <li onClick={() => { setEdit(false); setChangePassword(false); setPasswords(initialPasswords) }}>My Profile</li>
-                <li onClick={() => { setEdit(false); setChangePassword(false); setPasswords(initialPasswords); setMyOrders(true) }}>My Orders</li>
                 <li onClick={() => { setEdit(true); setChangePassword(false); setPasswords(initialPasswords) }}>Update Profile</li>
                 <li onClick={() => { setEdit(false); setChangePassword(true) }}>Change Password</li>
               </ul>
@@ -168,6 +166,9 @@ const Profile = () => {
               </>
             }
           </Col>
+        </Row>
+        <Row>
+          <MyOrders />
         </Row>
       </Container>
     );
