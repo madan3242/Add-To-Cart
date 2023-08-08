@@ -70,8 +70,8 @@ const ConfirmOrder = () => {
                       cartItems.map((item) => {
                         return (
                             <tr key={item.product}>
-                              <td>
-                                <img src={item.image} height={100} alt="" onClick={() => navigate(`/products/${item.product}`)} />
+                              <td style={{ cursor: "pointer" }}>
+                                <img src={item.image} height={100} alt="" onClick={() => navigate(`/product/${item.product}`)} />
                               </td>
                               <td>{item.name}</td>
                               <td>{item.quantity}N</td>

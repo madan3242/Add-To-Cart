@@ -7,9 +7,11 @@ import {
 } from "../../redux/cart/cart.action";
 import { Button } from "react-bootstrap";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const CartRow = ({ item }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const increaseQuantity = (id, qty, stocks) => {
     const newQty = parseInt(qty) + 1;
@@ -36,7 +38,7 @@ const CartRow = ({ item }) => {
 
   return (
     <tr className="text-center">
-      <td>
+      <td onClick={() => navigate(`/product/${item.product}`)} style={{ cursor: "pointer" }}>
         <img src={item.image} alt="" height={100} />
       </td>
       <td>{item.name}</td>

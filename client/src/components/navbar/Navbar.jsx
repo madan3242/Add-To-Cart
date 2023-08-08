@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge, Button, Container, Form, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import "./navbar.css";
@@ -10,7 +10,18 @@ import { logout } from "../../redux/user/user.action";
 const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { cartItems } = useSelector(state => state.cart)
+  const { cartItems } = useSelector(state => state.cart);
+
+  const [keyword, setKeyword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if(keyword.trim()){
+      navigate(`/products/${keyword}`)
+    }else {
+      navigate(`/products`)
+    }
+  }
   
   return (
     <>
@@ -37,13 +48,14 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
                   <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Mobiles</Nav.Link>
                   <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Electronics</Nav.Link>
                   <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Fashion</Nav.Link>
-                  <Form>
+                  <Form style={{ display: "flex", placeItems: "center"}} onSubmit={handleSubmit}>
                     <Form.Control
                       type="search"
                       placeholder="Search for products"
                       className="me-2"
                       aria-label="Search"
                       style={{ width: "300px"}}
+                      onChange={(e) => setKeyword(e.target.value)}
                     />
                   </Form>
                   <div style={{ display: "flex", placeItems: "center", padding: "0 15px"}}>

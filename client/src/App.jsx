@@ -37,12 +37,9 @@ const App = () => {
       <Router >
         <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <Routes>
-          {/* {stripeApiKey &&  */}
             <Route path='/process/payment' element={
               <ProtectedRoute user={user}>
-                {/* <Elements stripe={loadStripe(stripeApiKey)} > */}
                   <Payment />
-                {/* </Elements> */}
               </ProtectedRoute>
             } />
           
@@ -60,7 +57,8 @@ const App = () => {
           />
           
           <Route path='/products' element={<Products />} />
-          <Route path='/products/:id' element={<Product />} />
+          <Route path='/products/:keyword' element={<Products />} />
+          <Route path='/product/:id' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/shipping' element={
             <ProtectedRoute user={user}>

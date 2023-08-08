@@ -4,7 +4,7 @@ import ProductFilter from './ProductFilter'
 import './Products.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../redux/product/product.action'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 import { GrNext, GrPrevious } from 'react-icons/gr'
 
@@ -16,6 +16,7 @@ const Products = () => {
     filteredProductNumber
   } = useSelector((state) => state.products);
 
+  let {keyword} = useParams("keyword");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const initialFilter = {
@@ -29,14 +30,15 @@ const Products = () => {
   }
   const [filter, setFilter] = useState(initialFilter);
 
-  // let [pageCount, setPageCount] = useState(1);
-
   let pageCount = Math.ceil(totalProductCount / resultPerPage);
   
   useEffect(() => {
     pageCount = Math.ceil(totalProductCount / resultPerPage)
-    console.log(pageCount);
-  }, [filter.category])
+    setFilter({
+      ...filter,
+      keyword: keyword?.length > 0 ? keyword : ""
+    })
+  }, [filter.category, keyword])
 
   const handlePageChange = (e) => {
     setFilter({
@@ -69,7 +71,7 @@ const Products = () => {
               <Row>
                 { products?.length > 0 ? <>                  
                   {products?.map((product) => {
-                    return <Col md={6} lg={4}  key={product._id} onClick={() => navigate(`/products/${product._id}`)}>
+                    return <Col md={6} lg={4}  key={product._id} onClick={() => navigate(`/product/${product._id}`)}>
                       <div className='product'>
                       <img src={product.photos[3].secure_url} alt={product.name} height="220px" />
                       <h4 className='mt-2'>{product.name}</h4>
