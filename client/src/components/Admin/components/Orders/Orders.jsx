@@ -17,7 +17,7 @@ const Orders = () => {
         <h2>Orders</h2>
       </Row>
       <Row style={{ margin: "1rem" }}>
-        <Table striped bordered hover>
+        <Table striped bordered hover className="text-center">
           <thead>
             <tr>
               <th>Order ID</th>
@@ -30,6 +30,7 @@ const Orders = () => {
               <th>Total Amount</th>
               <th>Order Status</th>
               <th>Update</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>

@@ -6,9 +6,30 @@ import {
   AiOutlineDelete,
   AiOutlineEdit,
 } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { deleteProduct, updateProduct } from "../../../../redux/product/product.action";
 
 const ProductRow = ({ product }) => {
   const [edit, setEdit] = useState(false);
+  const [update, setUpdate] = useState(product);
+  const dispatch = useDispatch()
+
+  const handleEdit = () => {
+    dispatch(updateProduct(product._id, update, setEdit))
+    dispatch(getAdminProducts())
+  }
+
+  const handleChange = (e) => {
+    setUpdate({
+      ...update,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleDelete = () => {
+    dispatch(deleteProduct(product._id))
+    dispatch(getAdminProducts())
+  }
 
   return (
     <>
@@ -17,26 +38,26 @@ const ProductRow = ({ product }) => {
         {edit ? (
           <>
             <td>
-              <Form.Control type="text" value={product.name} />
+              <Form.Control type="text" value={update.name} name="name" onChange={handleChange} />
             </td>
             <td>
-              <Form.Control type="text" value={product.price} />
+              <Form.Control type="text" value={update.price} name="price" onChange={handleChange} />
             </td>
             <td>
               <img src={product.photos[0].secure_url} height={100} alt="" />
             </td>
             <td>
-              <Form.Control type="text" value={product.category} />
+              <Form.Control type="text" value={update.category} name="category" onChange={handleChange} />
             </td>
             <td>
-              <Form.Control type="text" value={product.brand} />
+              <Form.Control type="text" value={update.brand} name="brand" onChange={handleChange} />
             </td>
             <td>
-              <Form.Control type="text" value={product.stocks} />
+              <Form.Control type="text" value={update.stocks} name="stocks" onChange={handleChange} />
             </td>
 
             <td className="text-center">
-              <AiOutlineCheck /> &nbsp;
+              <AiOutlineCheck onClick={handleEdit} /> &nbsp;
               <AiOutlineClose onClick={() => setEdit(false)} />
             </td>
             <td className="text-center">
@@ -58,7 +79,7 @@ const ProductRow = ({ product }) => {
               <AiOutlineEdit size={20} onClick={() => setEdit(true)} />
             </td>
             <td className="text-center">
-              <AiOutlineDelete size={20} />
+              <AiOutlineDelete size={20} onClick={handleDelete} />
             </td>
           </>
         )}

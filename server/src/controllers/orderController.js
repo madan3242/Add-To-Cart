@@ -76,7 +76,7 @@ exports.adminAllOrders = AsyncErrors(async(req, res, next) => {
 })
 
 exports.updateOrder = AsyncErrors(async(req, res, next) => {
-    const order = Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id);
 
     if(!order){
         return next(new ErrorHandler("No order found", 404))
@@ -101,13 +101,11 @@ exports.updateOrder = AsyncErrors(async(req, res, next) => {
 })
 
 exports.deleteOrder = AsyncErrors(async(req, res, next) => {
-    const order = Order.findById(req.params.id);
+    const order = await Order.findByIdAndDelete(req.params.id);
 
     if(!order){
         return next(new ErrorHandler("No order found", 404))
     }
-
-    await order.remove();
 
     res.status(200).json({
         success: true,

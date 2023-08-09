@@ -180,12 +180,13 @@ export const adminDeleteUser = (id) => {
     }
 }
 //Admin update user
-export const adminUpdateUser = (id, data) => {
+export const adminUpdateUser = (id, data, setEdit) => {
     return async (dispatch) => {
         try {
             dispatch({ type: ADMIN_UPDATE_USER_REQUEST })
             const response = await axios.put(`${API_URL}/admin/users/${id}`, data, config)
             dispatch({ type: ADMIN_UPDATE_USER_SUCCESS, payload: response.data})
+            setEdit(false)
         } catch (error) {
             dispatch({ type: ADMIN_UPDATE_USER_FAILURE, payload: error.message })
         }

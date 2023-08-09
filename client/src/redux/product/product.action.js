@@ -139,12 +139,13 @@ export const createProduct = (data, setAddProduct) => {
     }
 }
 //Update product
-export const updateProduct = (id, data) => {
+export const updateProduct = (id, data, setEdit) => {
     return async (dispatch) => {
         try {
             dispatch({ type: UPDATE_PRODUCT_REQUEST })
             const response = await axios.put(`${API_URL}/admin/products/${id}`, data, config)
             dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: response.data })
+            setEdit(false)
         } catch (error) {
             dispatch({ type: UPDATE_PRODUCT_FAILURE, payload: error.message })
         }

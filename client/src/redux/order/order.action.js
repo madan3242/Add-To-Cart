@@ -87,12 +87,13 @@ export const adminOrders = () => {
     }
 }
 //Update order
-export const updateOrder = (id, order) => {
+export const updateOrder = (id, order, setEdit) => {
     return async (dispatch) => {
         try {
             dispatch({ type: UPDATE_ORDER_REQUEST })
             const response = await axios.put(`${API_URL}/admin/orders/${id}`, order, config);
             dispatch({ type: UPDATE_ORDER_SUCCESS, payload: response.data })
+            setEdit(false)
         } catch (error) {
             dispatch({ type: UPDATE_ORDER_FAILURE, payload: error.message })
         }
