@@ -5,7 +5,7 @@ import { adminOrders } from "../../../../redux/order/order.action";
 import OrderRow from "./OrderRow";
 
 const Orders = () => {
-  const { orders } = useSelector((state) => state.orders.orders);
+  const { orders, totalAmount } = useSelector((state) => state.orders.orders);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,7 +14,10 @@ const Orders = () => {
   return (
     <>
       <Row>
-        <h2>Orders</h2>
+        <h2>Orders</h2>        
+        <span>
+          <h3 style={{ float: "right" }}>Total: {totalAmount} </h3>
+        </span>
       </Row>
       <Row style={{ margin: "1rem" }}>
         <Table striped bordered hover className="text-center">
@@ -41,6 +44,7 @@ const Orders = () => {
           </tbody>
         </Table>
       </Row>
+      
     </>
   );
 };
