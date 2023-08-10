@@ -19,7 +19,6 @@ const MyOrders = () => {
           <h2>My Orders</h2>
         </Col>
       </Row>
-      {/* {JSON.stringify(orders)} */}
       <Row>
         <Col lg>
           <Table striped bordered hover>
@@ -38,7 +37,7 @@ const MyOrders = () => {
                     <tr key={order._id}>
                       <td>
                         {order.orderItems.map((item) => {
-                            return <td onClick={() => navigate(`/products/${item.product}`)} style={{ cursor: "pointer"}}><img src={item.image} height={100} alt="" /></td>
+                            return <td onClick={() => navigate(`/product/${item.product}`)} style={{ cursor: "pointer"}}><img src={item.image} height={100} alt="" /></td>
                             
                         })}
                       </td>
