@@ -62,7 +62,7 @@ const Login = () => {
           email: signupUserData.email,
           password: signupUserData.password
         }
-        dispatch(signup(data, setIsAuthenticated, setLoading, navigate, toast))
+        dispatch(signup(data, setLoading, navigate, toast))
       } catch (error) {
         toast(error.message)
       }
