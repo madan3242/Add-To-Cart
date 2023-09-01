@@ -126,15 +126,18 @@ export const getAdminProducts = () => {
     }
 }
 //Create Product
-export const createProduct = (data, setAddProduct) => {
+export const createProduct = (data, setAddProduct, setLoading) => {
     return async (dispatch) => {
         try {
             dispatch({ type: NEW_PRODUCT_REQUEST })
+            setLoading(true)
             const response = await axios.post(`${API_URL}/admin/products/add`, data, config)
             dispatch({ type: NEW_PRODUCT_SUCCESS, payload: response.data })
+            setLoading(false)
             setAddProduct(false)
         } catch (error) {
             dispatch({ type: NEW_PRODUCT_FAILURE, payload: error.message })
+            setLoading(false)
         }
     }
 }

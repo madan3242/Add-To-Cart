@@ -3,6 +3,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../../../redux/product/product.action";
 import { GrClose } from "react-icons/gr";
+import Loader from "../../../Loader/Loader";
 
 const AddProduct = ({ setAddProduct, toggleAddProduct }) => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const AddProduct = ({ setAddProduct, toggleAddProduct }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProduct(product, setAddProduct))
+    dispatch(createProduct(product, setAddProduct, setLoading))
   };
   return (
     <>
@@ -91,7 +92,7 @@ const AddProduct = ({ setAddProduct, toggleAddProduct }) => {
           </Row>
 
           <Button type="submit" className="mt-3">
-            Add Product
+            {loading ? <Loader size={"sm"}/> : "Add Product"}
           </Button>
         </Form>
       </div>

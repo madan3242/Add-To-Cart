@@ -73,7 +73,7 @@ const Products = () => {
                   {products?.map((product) => {
                     return <Col md={6} lg={4}  key={product._id} onClick={() => navigate(`/product/${product._id}`)}>
                       <div className='product'>
-                      <img src={product.photos[3].secure_url} alt={product.name} height="220px" />
+                      <img src={product.photos[0].secure_url} alt={product.name} height="220px" />
                       <h4 className='mt-2'>{product.name}</h4>
                       <p>&#8377;{product.price}</p>
                       </div>

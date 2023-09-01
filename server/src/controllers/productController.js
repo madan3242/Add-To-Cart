@@ -227,19 +227,17 @@ exports.adminUpdateProduct = AsyncErrors(async (req, res, next) => {
 })
 
 exports.adminDeleteProduct = AsyncErrors(async (req, res, next) => {
-  let product = await Product.findById(req.params.id)
+  let product = await Product.findByIdAndDelete(req.params.id)
 
   if(!product){
     return next(new ErrorHandler('Product not found', 401))
   }
 
   for (let index = 0; index < product.photos.length; index++) {
-    const res = await cloudinary.uploader.destroy(
-      product.photos[index].tempFilePath
+    await cloudinary.uploader.destroy(
+      product.photos[index].id
     )
   }
-
-  await product.remove()
 
   res.status(201).json({
     success: true,
