@@ -26,7 +26,7 @@ export const ORDER_DETAILS_FAILURE = "ORDER_DETAILS_FAILURE"
 
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
-const API_URL =  `http://localhost:8080/api/v1`
+const API_URL =  `http://localhost:${import.meta.env.VITE_API_URL}/api/v1`
 
 const config = {
     headers: {

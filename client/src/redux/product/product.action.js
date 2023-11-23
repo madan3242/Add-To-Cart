@@ -37,7 +37,7 @@ export const DELETE_PRODUCT_FAILURE = 'NEW_PRODUCT_FAILURE'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
 import axios from "axios"
-const API_URL =  `http://localhost:8080/api/v1`
+const API_URL =  `http://localhost:${import.meta.env.VITE_API_URL}/api/v1`
 
 const config = {
     headers: {
