@@ -20,7 +20,7 @@ app.use(fileUpload({
 }));
 
 //morgan middleware
-app.use(morgan('dev'));
+app.use(morgan('common'));
 //cors middleware
 app.use(cors());
 
