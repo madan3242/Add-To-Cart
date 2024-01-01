@@ -8,7 +8,9 @@ const cookieParser = require('cookie-parser')
 const errorMiddleware = require('./middlewares/errors');
 const app = express ();
 
-//express middlewares
+/**
+ * Middlewares
+ */
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -24,7 +26,9 @@ app.use(morgan('common'));
 //cors middleware
 app.use(cors());
 
-//routes
+/**
+ * Routes
+ */
 const user = require('./routes/userRoutes');
 const product = require('./routes/productRoutes');
 const order = require('./routes/orderRoutes');
