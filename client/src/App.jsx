@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Admin from './components/Admin/Admin'
 import Navbar from './components/Navbar/Navbar'
@@ -20,6 +20,7 @@ import ConfirmOrder from './components/Cart/ConfirmOrder'
 import Payment from './components/Cart/Payment'
 import { Toaster } from 'react-hot-toast'
 import OrderSuccess from './components/Cart/OrderSuccess'
+import { Spinner } from 'react-bootstrap'
 
 const App = () => {
   const { user } = useSelector(state => state.auth);
@@ -35,59 +36,64 @@ const App = () => {
   return (
     <>
       <Router >
-        <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
-        <Routes>
-            <Route path='/process/payment' element={
+        <Suspense 
+          fallback={<Spinner />}
+        >
+
+          <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+          <Routes>
+              <Route path='/process/payment' element={
+                <ProtectedRoute user={user}>
+                    <Payment />
+                </ProtectedRoute>
+              } />
+            
+
+            <Route path='/' exact element={<Home />}  />
+            <Route path='/login' element={ <Login />} />
+            <Route path='/forgotpassword' element={<ForgotPassword />} />
+            <Route path='/password/reset/:token' element={<ResetPassword />} />
+
+            <Route path='/profile' element={
+                <ProtectedRoute user={user}>
+                  <Profile />
+                </ProtectedRoute>
+              } 
+            />
+            
+            <Route path='/products' element={<Products />} />
+            <Route path='/products/:keyword' element={<Products />} />
+            <Route path='/product/:id' element={<Product />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/shipping' element={
               <ProtectedRoute user={user}>
-                  <Payment />
+                <Shipping />
               </ProtectedRoute>
             } />
-          
 
-          <Route path='/' exact element={<Home />}  />
-          <Route path='/login' element={ <Login />} />
-          <Route path='/forgotpassword' element={<ForgotPassword />} />
-          <Route path='/password/reset/:token' element={<ResetPassword />} />
-
-          <Route path='/profile' element={
+            <Route path='/order/confirm' element={
               <ProtectedRoute user={user}>
-                <Profile />
+                <ConfirmOrder />
               </ProtectedRoute>
-            } 
-          />
-          
-          <Route path='/products' element={<Products />} />
-          <Route path='/products/:keyword' element={<Products />} />
-          <Route path='/product/:id' element={<Product />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/shipping' element={
-            <ProtectedRoute user={user}>
-              <Shipping />
-            </ProtectedRoute>
-          } />
+            } />
+            <Route path='/order/success' element={
+              <ProtectedRoute user={user}>
+                <OrderSuccess />
+              </ProtectedRoute>
+            } />
 
-          <Route path='/order/confirm' element={
-            <ProtectedRoute user={user}>
-              <ConfirmOrder />
-            </ProtectedRoute>
-          } />
-          <Route path='/order/success' element={
-            <ProtectedRoute user={user}>
-              <OrderSuccess />
-            </ProtectedRoute>
-          } />
+            <Route path='/admin/*' element={
+              <ProtectedRoute user={user} isAdmin={true}>
+                <Admin />
+              </ProtectedRoute>
+            } />
 
-          <Route path='/admin/*' element={
-            <ProtectedRoute user={user} isAdmin={true}>
-              <Admin />
-            </ProtectedRoute>
-          } />
-
-          <Route element={window.location.pathname === '/process/payment' ? null : <NotFound /> }  />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-        <Footer />
-        <Toaster position='top-center'  />
+            <Route element={window.location.pathname === '/process/payment' ? null : <NotFound /> }  />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+          <Footer />
+          <Toaster position='top-center'  />
+        </Suspense>
       </Router>
     </>
   )
