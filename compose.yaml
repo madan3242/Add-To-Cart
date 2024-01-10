@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  server:
+    container_name: server
+    build:
+      context: ./server
+    ports:
+      - 8000:8000
+    restart: always
+    depends_on:
+      - database
+      - cache
+
+  client:
+    container_name: client
+    build:
+      context: ./client
+    restart: always
+    ports:
+      - 4000:4000
+    depends_on:
+      - server
+
+  database:
+    container_name: database
+    image: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - database-data:/var/lib/mongodb/data
+
+  cache:
+    container_name: cache
+    image: redis
+    restart: always
+
+volumes:
+  database-data:
