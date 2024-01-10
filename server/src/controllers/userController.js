@@ -5,6 +5,9 @@ const cookieToken = require("../utils/cookieToken");
 const { emailHelper } = require("../utils/emailHelper");
 const crypto = require("crypto")
 
+/**
+ * Signup
+ */
 exports.signup = AsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body
 
@@ -27,6 +30,9 @@ exports.signup = AsyncErrors(async (req, res, next) => {
   cookieToken(user, res);
 })
 
+/**
+ * Login
+ */
 exports.login = AsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -49,6 +55,9 @@ exports.login = AsyncErrors(async (req, res, next) => {
   cookieToken(user, res)
 })
 
+/**
+ * Logout
+ */
 exports.logout = AsyncErrors(async (req, res, next) => {
   res.cookie("token", null, {
     expiresIn: new Date( Date.now()),
@@ -60,6 +69,9 @@ exports.logout = AsyncErrors(async (req, res, next) => {
   })
 })
 
+/**
+ * Forgot password
+ */
 exports.forgotPassword = AsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email })
 
@@ -72,7 +84,7 @@ exports.forgotPassword = AsyncErrors(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const resetPasswordUrl = `${req.protocol}://${req.get("host")}/passsword/reset/${resetToken}`
+  const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`
 
   //craft message
   const message = `Your password reset token is: \n\n ${resetPasswordUrl} \n\n If you have not requested this email then, Please ignore it.`;
@@ -101,6 +113,9 @@ exports.forgotPassword = AsyncErrors(async (req, res, next) => {
   }
 })
 
+/**
+ * Reset password
+ */
 exports.resetPassword = AsyncErrors(async (req, res, next) => {
   //get token from params
   const token = req.params.token;
@@ -111,7 +126,7 @@ exports.resetPassword = AsyncErrors(async (req, res, next) => {
     .update(token)
     .digest("hex")
 
-  // find user based on hashed ontoken and time
+  // find user based on hashed on token and time
   const user = await User.findOne({
     resetToken,
     resetPasswordExpire: { $gt: Date.now() }
@@ -149,6 +164,9 @@ exports.viewProfile = AsyncErrors(async (req, res, next) => {
   })
 })
 
+/**
+ * Update profile
+ */
 exports.updateProfile = AsyncErrors(async (req, res, next) => {
   const {name, email, phonenumber} = req.body
 
@@ -167,10 +185,13 @@ exports.updateProfile = AsyncErrors(async (req, res, next) => {
   })
 })
 
+/**
+ * Change password
+ */
 exports.changePassword = AsyncErrors(async (req, res, next) => {
   //get user from middleware
   const userId = req.user.id;
-  //get user fro database
+  //get user from database
   const user = await User.findById(userId).select('+password');
   //check is old password valid
   const isOldPassword = user.comparePassword(req.body.oldPassword)

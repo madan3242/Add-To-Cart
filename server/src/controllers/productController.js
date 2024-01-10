@@ -4,6 +4,9 @@ const ApiFeatures = require("../utils/ApiFeatures");
 const ErrorHandler = require("../utils/errorHandler");
 const cloudinary = require("cloudinary").v2;
 
+/**
+ * View all products
+ */
 exports.getAllProducts = AsyncErrors(async (req, res, next) => {
   const resultPerPage = 6;
   const totalProductCount = await Product.countDocuments();
@@ -13,7 +16,7 @@ exports.getAllProducts = AsyncErrors(async (req, res, next) => {
     .filter()
 
   let products = await productsObj.base;
-  // console.log(productsObj.base);
+
   let filteredProductNumber = products.length;
 
   productsObj.pagination(resultPerPage);

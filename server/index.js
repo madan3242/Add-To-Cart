@@ -2,6 +2,9 @@ const app = require('./src/app');
 const connectDb = require('./src/config/dbConfig');
 const cloudinary = require('cloudinary').v2;
 
+/**
+ * Cloudinary config
+ */
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
@@ -10,5 +13,5 @@ cloudinary.config({
 
 app.listen(process.env.PORT, ()=> {
     connectDb();
-    console.log(`SERVER RUNNING ${process.env.PORT}`);
+    console.log(`SERVER RUNNING ON PORT ${process.env.PORT}`);
 })

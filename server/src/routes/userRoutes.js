@@ -20,6 +20,9 @@ const {
 
 const router = express.Router();
 
+/**
+ * User routes
+ */
 router.route('/signup').post(signup);
 router.route('/login').post(login);
 router.route('/logout').get(logout);
@@ -29,7 +32,13 @@ router.route('/profile').get(isLoggedIn, viewProfile);
 router.route('/updateprofile').put(isLoggedIn, updateProfile);
 router.route('/changepassword').put(isLoggedIn, changePassword);
 
-//admin routes
+/**
+ * Admin routes
+ * 1. View all users
+ * 2. View one user 
+ * 3. Update one user
+ * 4. Delete user
+ */
 router.route('/admin/users').get(isLoggedIn, customRole('admin'), adminGetAllUsers)
 
 router.route('/admin/users/:id')
