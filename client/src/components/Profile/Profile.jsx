@@ -4,7 +4,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { AiOutlineUser } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePassword, updateProfile } from "../../redux/user/user.action";
-import { toast } from "react-hot-toast"
+import toast from "react-hot-toast"
 import MyOrders from "./MyOrders";
 
 const Profile = () => {
@@ -53,18 +53,19 @@ const Profile = () => {
 
     const handlePasswordSubmit = (e) => {
       e.preventDefault();
-      console.log(changePassword);
       let data = {
         oldPassword: passwords.currentPassword,
         password: passwords.newPassword
       }
-
-      if(passwords.newPassword.length >= 0 &&  passwords.reNewPassword >= 0){
-        if(passwords.newPassword === passwords.reNewPassword){
+      if(passwords.newPassword.length > 0 &&  passwords.reNewPassword.length > 0){
+        if(passwords.newPassword === passwords.reNewPassword){          
           dispatch(updatePassword(data, toggleChangePassword))
+          setPasswords(initialPasswords);
         } else {
           toast("Passwords don't match")
         }
+      } else {
+        toast("Please Enter Passwords")
       }
     }
     
