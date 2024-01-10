@@ -93,7 +93,7 @@ const Login = () => {
             </FloatingLabel>
 
             <div className="text-center">
-              <Button variant="success" className="mb-2" type="submit">
+              <Button variant="success" className="mb-2" type="submit"  style={{ width: "75px"}}>
                 {!loading ? 'Login' : <Loader size={'sm'} />}
               </Button>
               <p>
@@ -143,7 +143,7 @@ const Login = () => {
             </FloatingLabel>
 
             <div className="text-center">
-              <Button variant="success" className="mb-2" type="submit">
+              <Button variant="success" className="mb-2" type="submit" style={{ width: "75px"}}>
                 {!loading ? 'Signup' : <Loader size={'sm'} />}
               </Button>
               <p>
