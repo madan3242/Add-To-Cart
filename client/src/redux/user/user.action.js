@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_URL, config } from "../../config";
 
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
@@ -42,13 +43,6 @@ export const ADMIN_UPDATE_USER_FAILURE = "ADMIN_UPDATE_USER_FAILURE";
 
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
-const API_URL =  `http://localhost:${import.meta.env.VITE_API_URL}/api/v1`
-
-const config = {
-    headers: {
-        'Content-Type': 'application/json'
-    }
-}
 //User signup
 export const signup = (data, setLoading, navigate, toast) => {
     return async (dispatch) => {

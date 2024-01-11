@@ -22,6 +22,8 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
       navigate(`/products`)
     }
   }
+
+  
   
   return (
     <>

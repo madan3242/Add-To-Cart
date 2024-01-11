@@ -37,13 +37,8 @@ export const DELETE_PRODUCT_FAILURE = 'NEW_PRODUCT_FAILURE'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
 import axios from "axios"
-const API_URL =  `http://localhost:${import.meta.env.VITE_API_URL}/api/v1`
+import { API_URL, config } from "../../config"
 
-const config = {
-    headers: {
-        'Content-Type': 'application/json'
-    }
-}
 //Get All Products
 export const getAllProducts = (filter) => {
     const {keyword, currentPage = 2, minPrice = 0, maxPrice = 250000, category = "", rating = 0} = filter
