@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ProductFilter from './ProductFilter'
 import './Products.css'
@@ -7,7 +7,6 @@ import { getAllProducts } from '../../redux/product/product.action'
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 import { GrNext, GrPrevious } from 'react-icons/gr'
-import { FilterContext } from '../../context/FilterContext'
 
 const Products = () => {
   const {
@@ -17,7 +16,6 @@ const Products = () => {
     filteredProductNumber
   } = useSelector((state) => state.products);
 
-  // const state = useContext(FilterContext);
 
   let { keyword } = useParams("keyword");
   const dispatch = useDispatch();
