@@ -6,6 +6,7 @@ import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user/user.action";
+import { getAllProducts } from "../../redux/product/product.action";
 
 const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const navigate = useNavigate();
@@ -23,7 +24,10 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
     }
   }
 
-  
+  const filter =  (category) => {
+    dispatch(getAllProducts({category: category}))
+    navigate('/products')
+  }
   
   return (
     <>
@@ -47,9 +51,9 @@ const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Products</Nav.Link>
-                  <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Mobiles</Nav.Link>
-                  <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Electronics</Nav.Link>
-                  <Nav.Link onClick={() => navigate('/products')} style={{ cursor: "pointer"}}>Fashion</Nav.Link>
+                  <Nav.Link onClick={() => filter('mobiles')} style={{ cursor: "pointer"}}>Mobiles</Nav.Link>
+                  <Nav.Link onClick={() => filter('electronics')} style={{ cursor: "pointer"}}>Electronics</Nav.Link>
+                  <Nav.Link onClick={() => filter('fashion')} style={{ cursor: "pointer"}}>Fashion</Nav.Link>
                   <Form style={{ display: "flex", placeItems: "center"}} onSubmit={handleSubmit}>
                     <Form.Control
                       type="search"

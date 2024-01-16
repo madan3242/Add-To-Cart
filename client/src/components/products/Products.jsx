@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ProductFilter from './ProductFilter'
 import './Products.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../redux/product/product.action'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 import { GrNext, GrPrevious } from 'react-icons/gr'
+import { FilterContext } from '../../context/FilterContext'
 
 const Products = () => {
   const {
@@ -16,9 +17,12 @@ const Products = () => {
     filteredProductNumber
   } = useSelector((state) => state.products);
 
-  let {keyword} = useParams("keyword");
+  // const state = useContext(FilterContext);
+
+  let { keyword } = useParams("keyword");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const initialFilter = {
     keyword: "",
     minPrice: 0,
