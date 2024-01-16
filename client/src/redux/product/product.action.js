@@ -41,6 +41,7 @@ import { API_URL, config } from "../../config"
 
 //Get All Products
 export const getAllProducts = (filter) => {
+    console.log(filter);
     const {keyword, currentPage = 2, minPrice = 0, maxPrice = 250000, category = "", rating = 0} = filter
     return async (dispatch) => {
         try {

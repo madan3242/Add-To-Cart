@@ -39,66 +39,66 @@ const App = () => {
   
   return (
     <>
-      <Router >
-        <Suspense 
-          fallback={<Spinner />}
-        >
-          <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
-          <Routes>
-              <Route path='/process/payment' element={
+        <Router >
+          <Suspense 
+            fallback={<Spinner />}
+          >
+            <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+            <Routes>
+                <Route path='/process/payment' element={
+                  <ProtectedRoute user={user}>
+                      <Payment />
+                  </ProtectedRoute>
+                } />
+              
+              <Route path='/' exact element={<Home />}  />
+              <Route path='/login' element={ <Login />} />
+              <Route path='/forgotpassword' element={<ForgotPassword />} />
+              <Route path='/password/reset/:token' element={<ResetPassword />} />
+
+              <Route path='/profile' element={
+                  <ProtectedRoute user={user}>
+                    <Profile />
+                  </ProtectedRoute>
+                } 
+              />
+              
+              <Route path='/products' element={<Products />} />
+              <Route path='/products/:keyword' element={<Products />} />
+              <Route path='/product/:id' element={<Product />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='/shipping' element={
                 <ProtectedRoute user={user}>
-                    <Payment />
+                  <Shipping />
                 </ProtectedRoute>
               } />
-            
-            <Route path='/' exact element={<Home />}  />
-            <Route path='/login' element={ <Login />} />
-            <Route path='/forgotpassword' element={<ForgotPassword />} />
-            <Route path='/password/reset/:token' element={<ResetPassword />} />
 
-            <Route path='/profile' element={
+              <Route path='/order/confirm' element={
                 <ProtectedRoute user={user}>
-                  <Profile />
+                  <ConfirmOrder />
                 </ProtectedRoute>
-              } 
-            />
-            
-            <Route path='/products' element={<Products />} />
-            <Route path='/products/:keyword' element={<Products />} />
-            <Route path='/product/:id' element={<Product />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/shipping' element={
-              <ProtectedRoute user={user}>
-                <Shipping />
-              </ProtectedRoute>
-            } />
+              } />
+              <Route path='/order/success' element={
+                <ProtectedRoute user={user}>
+                  <OrderSuccess />
+                </ProtectedRoute>
+              } />
 
-            <Route path='/order/confirm' element={
-              <ProtectedRoute user={user}>
-                <ConfirmOrder />
-              </ProtectedRoute>
-            } />
-            <Route path='/order/success' element={
-              <ProtectedRoute user={user}>
-                <OrderSuccess />
-              </ProtectedRoute>
-            } />
+              {/* Admin Routes */}
+              <Route path='/admin/*' element={
+                <ProtectedRoute user={user} isAdmin={true}>
+                  <Admin />
+                </ProtectedRoute>
+              } />
 
-            {/* Admin Routes */}
-            <Route path='/admin/*' element={
-              <ProtectedRoute user={user} isAdmin={true}>
-                <Admin />
-              </ProtectedRoute>
-            } />
-
-            {/* Route not found */}
-            <Route element={window.location.pathname === '/process/payment' ? null : <NotFound /> }  />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-          <Footer />
-          <Toaster position='top-center'  />
-        </Suspense>
-      </Router>
+              {/* Route not found */}
+              <Route element={window.location.pathname === '/process/payment' ? null : <NotFound /> }  />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+            <Footer />
+            <Toaster position='top-center'  />
+          </Suspense>
+        </Router>
     </>
   )
 }
