@@ -50,7 +50,11 @@ const App = () => {
                       <Payment />
                   </ProtectedRoute>
                 } />
+<<<<<<< HEAD
 
+=======
+              
+>>>>>>> 2eb1f644df7735217e8963fc4368ecda5474662c
               <Route path='/' exact element={<Home />}  />
               <Route path='/login' element={ <Login />} />
               <Route path='/forgotpassword' element={<ForgotPassword />} />
@@ -62,7 +66,11 @@ const App = () => {
                   </ProtectedRoute>
                 } 
               />
+<<<<<<< HEAD
 
+=======
+              
+>>>>>>> 2eb1f644df7735217e8963fc4368ecda5474662c
               <Route path='/products' element={<Products />} />
               <Route path='/products/:keyword' element={<Products />} />
               <Route path='/product/:id' element={<Product />} />
