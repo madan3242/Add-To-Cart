@@ -12,10 +12,11 @@ import Footer from './components/Footer/Footer';
 import Products from './components/Products/Products';
 import Product from './components/Products/Product';
 import Cart from './components/Cart/Cart';
-import Shipping from './components/Cart/Shipping';
-import ConfirmOrder from './components/Cart/ConfirmOrder';
-import Payment from './components/Cart/Payment';
-import OrderSuccess from './components/Cart/OrderSuccess';
+
+import Shipping from './components/Order/Shipping';
+import ConfirmOrder from './components/Order/ConfirmOrder';
+import Payment from './components/Order/Payment';
+import OrderSuccess from './components/Order/OrderSuccess';
 
 import Login from './components/Login/Login';
 import ForgotPassword from './components/Login/ForgotPassword';
@@ -63,14 +64,14 @@ const App = () => {
                   </ProtectedRoute>
                 } 
               />
-              
+
               <Route path='/wishlist' element={
                   <ProtectedRoute user={user}>
                     <Wishlist />
                   </ProtectedRoute>
                 } 
               />
-              
+
               <Route path='/products' element={<Products />} />
               <Route path='/products/:keyword' element={<Products />} />
               <Route path='/product/:id' element={<Product />} />

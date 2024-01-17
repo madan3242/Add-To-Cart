@@ -5,7 +5,7 @@ import {
 } from "@stripe/react-stripe-js";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast"
 import { createOrder } from "../../redux/order/order.action";
 import { useNavigate } from 'react-router-dom'
@@ -13,12 +13,9 @@ import { useNavigate } from 'react-router-dom'
 const CheckoutForm = ({ orderInfo }) => {
   const stripe = useStripe();
   const elements = useElements();
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { cartItems, shippingInfo } = useSelector(state => state.cart);
-  const { user } = useSelector(state => state.auth);
 
   let order = {
     shippingInfo,

@@ -13,7 +13,7 @@ const ResetPassword = () => {
     const [passwords, setPasswords] = useState({
         password: "",
         confirmPassword: ""
-    })
+    });
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -30,8 +30,8 @@ const ResetPassword = () => {
         if(passwords.password === passwords.confirmPassword){
             dispatch(resetPassword(token, passwords, setLoading, navigate));
         } else {
-            setError("Passwords don't match")
-            toast("Passwords don't match")
+            setError("Passwords don't match");
+            toast("Passwords don't match");
         }
     }
   return (
@@ -75,4 +75,4 @@ const ResetPassword = () => {
   )
 }
 
-export default ResetPassword
+export default ResetPassword;

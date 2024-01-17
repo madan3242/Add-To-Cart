@@ -94,30 +94,36 @@ export const logout = (navigate, setIsAuthenticated) => {
     }
 }
 //Update profile
-export const updateProfile = (data, setEdit, toast) => {
+export const updateProfile = (data, setEdit, toast, setLoading) => {
     return async (dispatch) => {
         try {
-            dispatch({ type: UPDATE_USER_REQUEST })
-            const response = await axios.put(`${API_URL}/updateprofile`, data, config)
-            dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data})
-            toast.success("Profile updated")
+            dispatch({ type: UPDATE_USER_REQUEST });
+            setLoading(true);
+            const response = await axios.put(`${API_URL}/updateprofile`, data, config);
+            dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data});
+            toast.success("Profile updated");
             setEdit(false)
+            setLoading(false);
         } catch (error) {
             dispatch({ type: UPDATE_USER_FAILURE, payload: error.message })
             toast.error(error.response.data.message)
+            setLoading(false);
         }
     }
 }
 //update password
-export const updatePassword = (passwords, toggleChangePassword) => {
+export const updatePassword = (passwords, toggleChangePassword, setLoading) => {
     return async (dispatch) => {
         try {
-            dispatch({ type: UPDATE_PASSWORD_REQUEST })
-            const response = await axios.put(`${API_URL}/changepassword`, passwords, config)
-            dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: response.data })
-            toggleChangePassword()
+            dispatch({ type: UPDATE_PASSWORD_REQUEST });
+            setLoading(true);
+            const response = await axios.put(`${API_URL}/changepassword`, passwords, config);
+            dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: response.data });
+            setLoading(false);
+            toggleChangePassword();
         } catch (error) {
             dispatch({ type: UPDATE_PASSWORD_FAILURE, payload: error.message })
+            setLoading(false);
         }
     }
 }

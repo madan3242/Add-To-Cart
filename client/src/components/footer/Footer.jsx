@@ -32,8 +32,6 @@ const Footer = () => {
               </Col>
           </Col>
         </Row>
-        
-        
       </Container>
       <div className="footer" onClick={() => navigate('/admin')}>All Right Reserved {year} ® - Add To Cart</div>
     </>
