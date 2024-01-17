@@ -21,7 +21,6 @@ const Product = () => {
   const product = useSelector((state) => state.productDetails.product.product);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //product id
   const { id } = useParams();
 
   const [addReview, setAddReview] = useState(false);
@@ -74,6 +73,10 @@ const Product = () => {
     toast.success(`You added ${qty} ${product.name} to cart`)
   }
 
+  const buyNowHandler = () => {
+    dispatch(addItemsToCart(id, qty))
+    navigate("/shipping");
+  };
   return (
     <>
       <Container className="product-details">
@@ -139,7 +142,7 @@ const Product = () => {
                       Add To Cart
                     </Button>
                     &nbsp;
-                    <Button size="lg">
+                    <Button size="lg" onClick={buyNowHandler}>
                       Buy Now
                     </Button>
                     <p style={{ color: "red" }}>

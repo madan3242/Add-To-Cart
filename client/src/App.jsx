@@ -1,31 +1,31 @@
-import React, { Suspense, useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { Toaster } from 'react-hot-toast'
-import { Spinner } from 'react-bootstrap'
+import React, { Suspense, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
+import { Spinner } from 'react-bootstrap';
 
-import Admin from './components/Admin/Admin'
-import Navbar from './components/Navbar/Navbar'
-import Home from './components/Home/Home'
-import Footer from './components/Footer/Footer'
+import Admin from './components/Admin/Admin';
+import Navbar from './components/Navbar/Navbar';
+import Home from './components/Home/Home';
+import Footer from './components/Footer/Footer';
 
-import Products from './components/Products/Products'
-import Product from './components/Products/Product'
-import Cart from './components/Cart/Cart'
-import Shipping from './components/Cart/Shipping'
-import ConfirmOrder from './components/Cart/ConfirmOrder'
-import Payment from './components/Cart/Payment'
-import OrderSuccess from './components/Cart/OrderSuccess'
+import Products from './components/Products/Products';
+import Product from './components/Products/Product';
+import Cart from './components/Cart/Cart';
+import Shipping from './components/Cart/Shipping';
+import ConfirmOrder from './components/Cart/ConfirmOrder';
+import Payment from './components/Cart/Payment';
+import OrderSuccess from './components/Cart/OrderSuccess';
 
-import Login from './components/Login/Login'
-import ForgotPassword from './components/Login/ForgotPassword'
-import ResetPassword from './components/Login/ResetPassword'
-import Profile from './components/Profile/Profile'
+import Login from './components/Login/Login';
+import ForgotPassword from './components/Login/ForgotPassword';
+import ResetPassword from './components/Login/ResetPassword';
+import Profile from './components/Profile/Profile';
+import Wishlist from './components/Profile/Wishlist';
 
-import { setAuthToken } from './services/setAuthToken'
-import NotFound from './components/NotFound/NotFound'
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import Wishlist from './components/Profile/Wishlist'
+import { setAuthToken } from './services/setAuthToken';
+import NotFound from './components/NotFound/NotFound';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 const App = () => {
   const { user } = useSelector(state => state.auth);

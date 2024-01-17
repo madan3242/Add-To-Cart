@@ -26,9 +26,7 @@ const ConfirmOrder = () => {
         tax,
         total
     }
-
     sessionStorage.setItem('orderInfo', JSON.stringify(data))
-
     navigate('/process/payment')
   }
 
