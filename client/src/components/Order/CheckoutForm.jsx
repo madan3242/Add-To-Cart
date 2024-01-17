@@ -3,12 +3,13 @@ import {
     useElements, 
     useStripe 
 } from "@stripe/react-stripe-js";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast"
 import { createOrder } from "../../redux/order/order.action";
 import { useNavigate } from 'react-router-dom'
+import Loader from "../Loader/Loader";
 
 const CheckoutForm = ({ orderInfo }) => {
   const stripe = useStripe();
@@ -16,6 +17,7 @@ const CheckoutForm = ({ orderInfo }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartItems, shippingInfo } = useSelector(state => state.cart);
+  const [loading, setLoading] = useState(false);
 
   let order = {
     shippingInfo,
@@ -27,7 +29,7 @@ const CheckoutForm = ({ orderInfo }) => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     if (!stripe || !elements) {
       return;
     }
@@ -43,6 +45,7 @@ const CheckoutForm = ({ orderInfo }) => {
     if (result.error) {
       console.log(result.error.message);
       toast(result.error.message)
+      setLoading(false);
     } else {
         if(result.paymentIntent.status === "succeeded"){
             order.paymentInfo = {
@@ -50,6 +53,7 @@ const CheckoutForm = ({ orderInfo }) => {
                 status: result.paymentIntent.status
             }
         }
+        setLoading(false);
         dispatch(createOrder(order, navigate))
     }
   };
@@ -58,8 +62,8 @@ const CheckoutForm = ({ orderInfo }) => {
     <>
       <Form className="text-center"  onSubmit={handleSubmit}>
         <PaymentElement />
-        <Button className="mt-3" type="submit">
-          Submit
+        <Button className="mt-3" type="submit" style={{ size: "75px"}}>
+          {loading ?  <Loader size={'sm'} /> :'Submit'}
         </Button>
       </Form>
     </>

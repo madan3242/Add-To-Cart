@@ -8,7 +8,7 @@ const ConfirmOrder = () => {
   const { user } = useSelector((state) => state.auth);
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 
-  const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.country} - ${shippingInfo.pincode}`;
+  const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.country} - ${shippingInfo.pinCode}`;
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
