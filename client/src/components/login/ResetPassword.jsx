@@ -3,6 +3,9 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { resetPassword } from '../../redux/user/user.action';
+import Loader from '../Loader/Loader';
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const ResetPassword = () => {
     const { token } = useParams();
@@ -11,7 +14,9 @@ const ResetPassword = () => {
         password: "",
         confirmPassword: ""
     })
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setPasswords({
@@ -23,9 +28,10 @@ const ResetPassword = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(passwords.password === passwords.confirmPassword){
-            dispatch(resetPassword(token, passwords));
+            dispatch(resetPassword(token, passwords, setLoading, navigate));
         } else {
             setError("Passwords don't match")
+            toast("Passwords don't match")
         }
     }
   return (
@@ -59,7 +65,9 @@ const ResetPassword = () => {
                     />
                 </FloatingLabel>
                 <div className="text-center">
-                    <Button variant="success" type='submit'>Submit</Button>
+                    <Button variant="success" type='submit' style={{ width: "75px"}}>
+                        {loading ? <Loader size={'sm'} /> : 'Submit '}
+                    </Button>
                 </div>
             </Form>
         </div>

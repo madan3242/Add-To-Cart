@@ -121,23 +121,23 @@ exports.resetPassword = AsyncErrors(async (req, res, next) => {
   const token = req.params.token;
 
   // hash the token as db also stores the hashed version 
-  const resetToken = crypto
+  const resetPasswordToken = crypto
     .createHash("sha256")
     .update(token)
-    .digest("hex")
+    .digest("hex");
 
   // find user based on hashed on token and time
   const user = await User.findOne({
-    resetToken,
-    resetPasswordExpire: { $gt: Date.now() }
-  })
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
 
   if(!user) {
     return next(new ErrorHandler('Token is invalid or expired', 400))
   }
 
   //check if password and confirm password matched
-  if(req.body.password !== req.ody.confirmPassword) {
+  if(req.body.password !== req.body.confirmPassword) {
     return next(new ErrorHandler("Password and Confirm Password Don't Match", 400))
   }
 

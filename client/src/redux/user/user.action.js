@@ -137,14 +137,20 @@ export const forgotPassword = (email, setLoading) => {
     }
 }
 //Reset password
-export const resetPassword = (token, passwords) => {
+export const resetPassword = (token, passwords, setLoading, navigate) => {
     return async (dispatch) => {
         try {
+            
             dispatch({ type: RESET_PASSWORD_REQUEST })
+            setLoading(true);
             const response = await axios.put(`${API_URL}/password/reset/${token}`, passwords, config)
+            console.log(response);
             dispatch({ type: RESET_PASSWORD_SUCCESS, payload: response.data })
+            setLoading(false);
+            navigate("/login");
         } catch (error) {
             dispatch({ type: RESET_PASSWORD_FAILURE, payload: error.message })
+            setLoading(false);
         }
     }
 }
