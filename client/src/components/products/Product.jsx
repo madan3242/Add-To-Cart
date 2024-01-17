@@ -80,6 +80,20 @@ const Product = () => {
         {product && (
           <>
             <Row>
+              <Col lg={6}>
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/")}>
+                      Home
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item onClick={() => navigate("/products")}>
+                      Products
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>{product.name}</Breadcrumb.Item>
+                  </Breadcrumb>
+              </Col>
+              <Col lg={6}></Col>
+            </Row>
+            <Row>
               <Col lg={6} >
                 <Row>
                   {images?.map((photo, index) => {
@@ -107,17 +121,6 @@ const Product = () => {
                 </Row>
               </Col>
               <Col lg={6}>
-                <Row>
-                  <Breadcrumb>
-                    <Breadcrumb.Item onClick={() => navigate("/")}>
-                      Home
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item onClick={() => navigate("/products")}>
-                      Products
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item>{product.name}</Breadcrumb.Item>
-                  </Breadcrumb>
-                </Row>
                 <Row>
                   <Col>
                     <h3>{product.brand}</h3>

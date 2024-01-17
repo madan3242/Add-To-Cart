@@ -25,6 +25,7 @@ import Profile from './components/Profile/Profile'
 import { setAuthToken } from './services/setAuthToken'
 import NotFound from './components/NotFound/NotFound'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import Wishlist from './components/Profile/Wishlist'
 
 const App = () => {
   const { user } = useSelector(state => state.auth);
@@ -59,6 +60,13 @@ const App = () => {
               <Route path='/profile' element={
                   <ProtectedRoute user={user}>
                     <Profile />
+                  </ProtectedRoute>
+                } 
+              />
+              
+              <Route path='/wishlist' element={
+                  <ProtectedRoute user={user}>
+                    <Wishlist />
                   </ProtectedRoute>
                 } 
               />
