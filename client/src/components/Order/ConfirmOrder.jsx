@@ -1,15 +1,14 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const ConfirmOrder = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 
-  const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.country} - ${shippingInfo.pincode}`;
+  const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.country} - ${shippingInfo.pinCode}`;
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
@@ -26,9 +25,7 @@ const ConfirmOrder = () => {
         tax,
         total
     }
-
     sessionStorage.setItem('orderInfo', JSON.stringify(data))
-
     navigate('/process/payment')
   }
 

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Badge, Button, Container, Form, Nav, Navbar, Offcanvas } from "react-bootstrap";
-import "./navbar.css";
-import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
-import { BsCart2 } from 'react-icons/bs'
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user/user.action";
+import "./navbar.css";
+import { Badge, Button, Container, Form, Nav, Navbar, Offcanvas } from "react-bootstrap";
+import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
+import { BsCart2 } from 'react-icons/bs'
 
 const HomeNavbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const navigate = useNavigate();

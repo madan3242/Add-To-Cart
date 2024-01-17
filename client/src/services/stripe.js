@@ -1,12 +1,5 @@
 import axios from "axios"
-
-const API_URL =  `http://localhost:8000/api/v1`
-
-const config = {
-    headers: {
-        'Content-Type': 'application/json'
-    }
-}
+import { API_URL, config } from "../config"
 
 export const getApiKey = async(setStripeApiKey) => {
     try {

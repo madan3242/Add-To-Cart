@@ -1,4 +1,5 @@
 import axios from "axios"
+import { API_URL, config } from "../../config"
 
 export const CREATE_ORDER_REQUEST = "CREATE_ORDER_REQUEST"
 export const CREATE_ORDER_SUCCESS = "CREATE_ORDER_SUCCESS"
@@ -25,14 +26,6 @@ export const ORDER_DETAILS_SUCCESS = "ORDER_DETAILS_SUCCESS"
 export const ORDER_DETAILS_FAILURE = "ORDER_DETAILS_FAILURE"
 
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
-
-const API_URL =  `http://localhost:${import.meta.env.VITE_API_URL}/api/v1`
-
-const config = {
-    headers: {
-        'Content-Type': 'application/json'
-    }
-}
 
 //Create Order
 export const createOrder = (order, navigate) => {

@@ -4,7 +4,7 @@ import ProductFilter from './ProductFilter'
 import './Products.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../redux/product/product.action'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 import { GrNext, GrPrevious } from 'react-icons/gr'
 
@@ -16,9 +16,11 @@ const Products = () => {
     filteredProductNumber
   } = useSelector((state) => state.products);
 
-  let {keyword} = useParams("keyword");
+
+  let { keyword } = useParams("keyword");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const initialFilter = {
     keyword: "",
     minPrice: 0,
@@ -84,17 +86,19 @@ const Products = () => {
                 </>}
               </Row>
               <Row className='mt-4'>
-                <ReactPaginate 
-                  previousLabel={ <GrPrevious /> }
-                  nextLabel={ <GrNext />}
-                  pageCount={pageCount}
-                  onPageChange={handlePageChange}
-                  containerClassName='pagination'
-                  previousLinkClassName='pagination__link'
-                  nextLinkClassName='pagination__link'
-                  disabledClassName='pagination__link--disabled'
-                  activeClassName='pagination__link--active'
-                />
+                  {products.length < filteredProductNumber ? <>
+                    <ReactPaginate 
+                      previousLabel={ <GrPrevious /> }
+                      nextLabel={ <GrNext />}
+                      pageCount={pageCount}
+                      onPageChange={handlePageChange}
+                      containerClassName='pagination'
+                      previousLinkClassName='pagination__link'
+                      nextLinkClassName='pagination__link'
+                      disabledClassName='pagination__link--disabled'
+                      activeClassName='pagination__link--active'
+                    />
+                  </> : <></>}
               </Row>
             </Col>
           </Row>

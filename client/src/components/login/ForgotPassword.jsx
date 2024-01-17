@@ -12,6 +12,7 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(forgotPassword(email, setLoading));
+    toast("Please check your inbox");
   }
   
   return (
@@ -33,8 +34,8 @@ const ForgotPassword = () => {
             />
           </FloatingLabel>
           <div className="text-center">
-            <Button variant="success" className="mb-2" type="submit">
-              {loading ? <Loader size={'sm'} /> : 'Reset Password'}
+            <Button variant="success" className="mb-2" type="submit" style={{ width: "75px"}}>
+              {loading ? <Loader size={'sm'} /> : 'Reset '}
             </Button>
           </div>
         </Form>

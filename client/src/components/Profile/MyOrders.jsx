@@ -7,11 +7,12 @@ import { useNavigate } from 'react-router-dom'
 const MyOrders = () => {
   const { orders } = useSelector((state) => state.orders.orders);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(myOrders());
   }, [dispatch]);
+  
   return (
     <Col lg className="user-orders" style={{ margin: "2% 0", padding: "2%" }}>
       <Row>
@@ -25,7 +26,7 @@ const MyOrders = () => {
             <thead>
               <tr>
                 <th>Orders</th>
-                <th>Adddress</th>
+                <th>Address</th>
                 <th>Payment Status</th>
                 <th>Order Status</th>
               </tr>

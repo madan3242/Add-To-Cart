@@ -21,7 +21,6 @@ const Product = () => {
   const product = useSelector((state) => state.productDetails.product.product);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //product id
   const { id } = useParams();
 
   const [addReview, setAddReview] = useState(false);
@@ -74,11 +73,29 @@ const Product = () => {
     toast.success(`You added ${qty} ${product.name} to cart`)
   }
 
+  const buyNowHandler = () => {
+    dispatch(addItemsToCart(id, qty))
+    navigate("/shipping");
+  };
   return (
     <>
       <Container className="product-details">
         {product && (
           <>
+            <Row>
+              <Col lg={6}>
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => navigate("/")}>
+                      Home
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item onClick={() => navigate("/products")}>
+                      Products
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>{product.name}</Breadcrumb.Item>
+                  </Breadcrumb>
+              </Col>
+              <Col lg={6}></Col>
+            </Row>
             <Row>
               <Col lg={6} >
                 <Row>
@@ -108,17 +125,6 @@ const Product = () => {
               </Col>
               <Col lg={6}>
                 <Row>
-                  <Breadcrumb>
-                    <Breadcrumb.Item onClick={() => navigate("/")}>
-                      Home
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item onClick={() => navigate("/products")}>
-                      Products
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item>{product.name}</Breadcrumb.Item>
-                  </Breadcrumb>
-                </Row>
-                <Row>
                   <Col>
                     <h3>{product.brand}</h3>
                     <h1>{product.name}</h1>
@@ -136,7 +142,7 @@ const Product = () => {
                       Add To Cart
                     </Button>
                     &nbsp;
-                    <Button size="lg">
+                    <Button size="lg" onClick={buyNowHandler}>
                       Buy Now
                     </Button>
                     <p style={{ color: "red" }}>

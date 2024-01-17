@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_URL, config } from "../../config";
 
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
@@ -42,13 +43,6 @@ export const ADMIN_UPDATE_USER_FAILURE = "ADMIN_UPDATE_USER_FAILURE";
 
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
-const API_URL =  `http://localhost:${import.meta.env.VITE_API_URL}/api/v1`
-
-const config = {
-    headers: {
-        'Content-Type': 'application/json'
-    }
-}
 //User signup
 export const signup = (data, setLoading, navigate, toast) => {
     return async (dispatch) => {
@@ -100,30 +94,36 @@ export const logout = (navigate, setIsAuthenticated) => {
     }
 }
 //Update profile
-export const updateProfile = (data, setEdit, toast) => {
+export const updateProfile = (data, setEdit, toast, setLoading) => {
     return async (dispatch) => {
         try {
-            dispatch({ type: UPDATE_USER_REQUEST })
-            const response = await axios.put(`${API_URL}/updateprofile`, data, config)
-            dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data})
-            toast.success("Profile updated")
+            dispatch({ type: UPDATE_USER_REQUEST });
+            setLoading(true);
+            const response = await axios.put(`${API_URL}/updateprofile`, data, config);
+            dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data});
+            toast.success("Profile updated");
             setEdit(false)
+            setLoading(false);
         } catch (error) {
             dispatch({ type: UPDATE_USER_FAILURE, payload: error.message })
             toast.error(error.response.data.message)
+            setLoading(false);
         }
     }
 }
 //update password
-export const updatePassword = (passwords, toggleChangePassword) => {
+export const updatePassword = (passwords, toggleChangePassword, setLoading) => {
     return async (dispatch) => {
         try {
-            dispatch({ type: UPDATE_PASSWORD_REQUEST })
-            const response = await axios.put(`${API_URL}/changepassword`, passwords, config)
-            dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: response.data })
-            toggleChangePassword()
+            dispatch({ type: UPDATE_PASSWORD_REQUEST });
+            setLoading(true);
+            const response = await axios.put(`${API_URL}/changepassword`, passwords, config);
+            dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: response.data });
+            setLoading(false);
+            toggleChangePassword();
         } catch (error) {
             dispatch({ type: UPDATE_PASSWORD_FAILURE, payload: error.message })
+            setLoading(false);
         }
     }
 }
@@ -143,14 +143,20 @@ export const forgotPassword = (email, setLoading) => {
     }
 }
 //Reset password
-export const resetPassword = (token, passwords) => {
+export const resetPassword = (token, passwords, setLoading, navigate) => {
     return async (dispatch) => {
         try {
+            
             dispatch({ type: RESET_PASSWORD_REQUEST })
+            setLoading(true);
             const response = await axios.put(`${API_URL}/password/reset/${token}`, passwords, config)
+            console.log(response);
             dispatch({ type: RESET_PASSWORD_SUCCESS, payload: response.data })
+            setLoading(false);
+            navigate("/login");
         } catch (error) {
             dispatch({ type: RESET_PASSWORD_FAILURE, payload: error.message })
+            setLoading(false);
         }
     }
 }

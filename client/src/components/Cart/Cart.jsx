@@ -1,5 +1,4 @@
 import React from "react";
-import "./Cart.css";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -16,7 +15,7 @@ const Cart = () => {
   
   return (
     <>
-      <Container className="cart-container" style={{ marginBottom: "23rem" }}>
+      <Container style={{ marginBottom: "23rem", marginTop: "4rem" }}>
         {cartItems.length > 0 ? (
           <>
             <Row className="mx-4">
