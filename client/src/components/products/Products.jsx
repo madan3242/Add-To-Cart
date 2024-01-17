@@ -86,17 +86,19 @@ const Products = () => {
                 </>}
               </Row>
               <Row className='mt-4'>
-                <ReactPaginate 
-                  previousLabel={ <GrPrevious /> }
-                  nextLabel={ <GrNext />}
-                  pageCount={pageCount}
-                  onPageChange={handlePageChange}
-                  containerClassName='pagination'
-                  previousLinkClassName='pagination__link'
-                  nextLinkClassName='pagination__link'
-                  disabledClassName='pagination__link--disabled'
-                  activeClassName='pagination__link--active'
-                />
+                  {products.length < filteredProductNumber ? <>
+                    <ReactPaginate 
+                      previousLabel={ <GrPrevious /> }
+                      nextLabel={ <GrNext />}
+                      pageCount={pageCount}
+                      onPageChange={handlePageChange}
+                      containerClassName='pagination'
+                      previousLinkClassName='pagination__link'
+                      nextLinkClassName='pagination__link'
+                      disabledClassName='pagination__link--disabled'
+                      activeClassName='pagination__link--active'
+                    />
+                  </> : <></>}
               </Row>
             </Col>
           </Row>
