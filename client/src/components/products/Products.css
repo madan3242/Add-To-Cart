@@ -35,24 +35,24 @@
     list-style: none;
     cursor: pointer;
     margin: 2rem 0;
+    color: #0d6efd;
   }
   
   .pagination a {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #0d6efd;
-    color: #0d6efd ;
+    background-color: #f5f5f5;
     margin: 0 5px;
   }
-  
+
   .pagination__link {
     font-weight: bold;
     text-decoration: none;
   }
   
   .pagination__link--active a {
-    color: #fff;
-    background: #0d6efd ;
+    background-color: #fff;
   }
   
   .pagination__link--disabled a {
