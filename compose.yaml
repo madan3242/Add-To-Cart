@@ -1,6 +1,15 @@
 version: "3.8"
 
 services:
+  database:
+    container_name: database
+    image: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - database-data:/var/lib/mongodb/data
+
   server:
     container_name: server
     build:
@@ -21,15 +30,6 @@ services:
       - 4000:4000
     depends_on:
       - server
-
-  database:
-    container_name: database
-    image: mongodb
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - database-data:/var/lib/mongodb/data
 
   cache:
     container_name: cache
