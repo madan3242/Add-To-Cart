@@ -1,40 +1,51 @@
 version: "3.8"
 
 services:
-  mongodb:
-    container_name: mongodb
-    image: mongodb
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - mongodb-data:/var/lib/mongodb/data
-
-  redis-cache:
-    container_name: redis-cache
-    image: redis:7.2.3-alpine
-    restart: always
-
-  server:
-    container_name: server
-    build:
-      context: ./server
-    ports:
-      - 8000:8000
-    restart: always
-    depends_on:
-      - mongodb
-      - redis-cache
-
   client:
     container_name: client
     build:
       context: ./client
-    restart: always
     ports:
       - 4000:4000
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: always
+    networks:
+      - react-express
     depends_on:
       - server
+
+  mongo:
+    container_name: mongo
+    image: mongo:7.0
+    restart: always
+    volumes:
+      - mongodb-data:/var/lib/mongodb/data
+    networks:
+      - express-mongo
+    expose:
+      - 27017
+
+  server:
+    container_name: server
+    build:
+      context: server
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - express-mongo
+      - react-express
+    depends_on:
+      - mongodb
+
+networks:
+  react-express:
+  express:mongo:
 
 volumes:
   mongodb-data:
