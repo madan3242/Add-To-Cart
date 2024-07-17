@@ -1,0 +1,29 @@
+.login-container, .reset-container {
+    margin-top: 5rem;
+    display: flex;
+    place-content: center;
+}
+
+.login-form, .reset-form {
+    background-color: #f5f5f5;
+    width: 600px;
+    margin: 2rem;
+    padding: 3rem;
+}
+
+.reset-form {
+    height: 350px;
+}
+
+.form {
+    position: relative;
+}
+
+.close-icon {
+    float: right;
+    cursor: pointer;
+}
+
+.span-button {
+    cursor: pointer;
+}

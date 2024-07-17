@@ -1,3 +1,4 @@
+import Navbar from './components/navbar/HomeNavbar';
 import React, { Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -5,7 +6,6 @@ import { Toaster } from 'react-hot-toast';
 import { Spinner } from 'react-bootstrap';
 
 import Admin from './components/Admin/Admin';
-import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
 
