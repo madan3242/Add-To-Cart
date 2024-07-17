@@ -5,10 +5,10 @@ const ProtectedRoute = ({isAdmin, user, children }) => {
     return <Navigate to={'/login'} replace />
   }
 
-  if(isAdmin && user.role !== "admin") {
-    return <Navigate to={'/'} replace />
+  if(isAdmin && user?.role !== "admin") {
+    return <Navigate to={'/admin/'} replace />
   }
-  return children
+  return children;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;

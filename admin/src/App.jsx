@@ -1,14 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css'
-import AdminNavbar from "./components/Navbar/Navbar";
-import Sidebar from "./components/Sidebar/Sidebar";
+import Navbar from "./components/Navbar/Navbar";
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { setAuthToken } from './services/setAuthToken';
 import Login from "./pages/Login";
-import Orders from './pages/Orders';
-import User from './pages/Users';
-import Products from './pages/Products';
+import Home from './pages/Home';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import { Toaster } from 'react-hot-toast';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const { user } = useSelector(state => state.auth);
@@ -23,18 +23,17 @@ function App() {
 
   return (
     <>
-      <AdminNavbar />
-      <div className="admin-container">
-        <Sidebar />
-        <div className="admin-main">
-          <Routes>
+      <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      <Routes>
             <Route path='/login' element={<Login />} />
-            <Route path='/users' element={<User />} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/orders' element={<Orders />} />
-          </Routes>
-        </div>
-      </div>
+            <Route path='/admin/*' element={
+                <ProtectedRoute user={user} isAdmin={true} >
+                  <Home />
+                </ProtectedRoute>
+            }/>
+      </Routes>
+      <Footer />
+      <Toaster position='top-center' />
     </>
   )
 }
