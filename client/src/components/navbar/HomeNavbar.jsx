@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user/user.action";
-import "./navbar.css";
+import "./Navbar.css";
 import { Badge, Button, Container, Form, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
